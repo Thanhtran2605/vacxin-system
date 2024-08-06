@@ -3,9 +3,9 @@ package group7.springmvc.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import group7.springmvc.model.User;
+import group7.springmvc.model.Role;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-	User findByUsername(String username);
+public interface RoleRepository extends JpaRepository<Role, Long>{
+	Role findByValue(String value);
 }

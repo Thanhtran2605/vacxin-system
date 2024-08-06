@@ -14,11 +14,6 @@
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/bootstrap/css/bootstrap.min.css" />" />
   <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/bootstrap-icons/bootstrap-icons.css" />" />
-  <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/boxicons/css/boxicons.min.css" />" />
-  <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/quill/quill.snow.css" />" />
-  <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/quill/quill.bubble.css" />" />
-  <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/remixicon/remixicon.css" />" />
-  <link rel="stylesheet" href="<c:url value="/resources/admin/vendor/simple-datatables/style.css" />" />
 
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="<c:url value="/resources/admin/css/style.css" />" >

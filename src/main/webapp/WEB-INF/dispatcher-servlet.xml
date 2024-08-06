@@ -26,45 +26,54 @@
 	</bean>
 
 	<mvc:annotation-driven />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**"
+		location="/resources/" />
 
 	<jpa:repositories
 		base-package="group7.springmvc.repository" />
-		
-		<!-- Step 1: Define Database DataSource / connection pool -->
+
+
+	<!-- Step 1: Define Database DataSource / connection pool -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:sqlserver://localhost:1433; encrypt=true; databaseName=vacxin-system; trustServerCertificate=true;" />
-		<property name="username" value="mhieu" />
-		<property name="password" value="20112003" />
+			value="jdbc:mysql://localhost:3306/vacxin-system" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
+
 	<!-- Step 2: Setup JPA entity Manager factory -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="group7.springmvc.model" />
+		<property name="packagesToScan"
+			value="group7.springmvc.model" />
 		<property name="jpaVendorAdapter">
 			<bean
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
-				<property name="generateDdl" value="true" />
 				<property name="databasePlatform"
-					value="org.hibernate.dialect.SQLServer2012Dialect" />
+					value="org.hibernate.dialect.MySQL5Dialect" />
 			</bean>
 		</property>
+		 <property name="jpaProperties">
+        <props>
+            <prop key="hibernate.hbm2ddl.auto">update</prop> <!-- or "create", "create-drop", "validate" -->
+        </props>
+    </property>
 	</bean>
-		
+
 	<!-- Step 3: Setup JPA transaction manager -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory" />
-	</bean>  
-	<!-- Step 4: Enable configuration of transactional behavior based on annotations  -->
+	</bean>
+
+	<!-- Step 4: Enable configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven
-		transaction-manager="transactionManager" /> 
-		
+		transaction-manager="transactionManager" />
+
 </beans>
