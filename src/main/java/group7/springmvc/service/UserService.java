@@ -1,9 +1,11 @@
 package group7.springmvc.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import group7.springmvc.model.User;
 import group7.springmvc.repository.UserRepository;
 
@@ -16,6 +18,10 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+	public List<User> findAll() {
+		return userRepository.findAll();
+	}
+
 	public Optional<User> findById(Long id) {
 		return userRepository.findById(id);
 	}
@@ -23,9 +29,8 @@ public class UserService {
 	public void deleteById(Long id) {
 		userRepository.deleteById(id);
 	}
-	
+
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
-
 }

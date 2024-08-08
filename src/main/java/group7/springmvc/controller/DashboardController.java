@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import group7.springmvc.service.UserService;
 
 @Controller
@@ -25,4 +24,5 @@ public class DashboardController {
 		//model.addAttribute("newUser" ,new User());
 		return "admin/auth/profile";
 	}
+
 }

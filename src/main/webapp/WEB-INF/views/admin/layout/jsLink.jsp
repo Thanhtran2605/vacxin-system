@@ -13,6 +13,8 @@
   <script src="<c:url value="/resources/admin/vendor/simple-datatables/simple-datatables.js" />"></script>
   <script src="<c:url value="/resources/admin/vendor/tinymce/tinymce.min.js" />"></script>
   <script src="<c:url value="/resources/admin/vendor/php-email-form/validate.js" />"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+  
 
   <!-- Template Main JS File -->
   <script src="<c:url value="/resources/admin/js/main.js" />"></script>

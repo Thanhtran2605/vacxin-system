@@ -13,7 +13,9 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode.Exclude;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -37,6 +39,7 @@ public class User {
 	
 	@ManyToOne
 	@JoinColumn(name = "role_id")
+	@ToString.Exclude
 	Role role;
 	
 }

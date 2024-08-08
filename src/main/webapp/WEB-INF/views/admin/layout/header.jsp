@@ -34,7 +34,7 @@
 				data-bs-toggle="dropdown"> <img
 					src="<c:url value="/resources/images/user-default.jpg" />"
 					alt="Profile" class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+					class="d-none d-md-block dropdown-toggle ps-2">ADMIN</span>
 			</a>
 
 				<ul
