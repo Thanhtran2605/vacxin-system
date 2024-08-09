@@ -18,3 +18,16 @@
 
   <!-- Template Main JS File -->
   <script src="<c:url value="/resources/admin/js/main.js" />"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+	    const shortenElements = document.querySelectorAll('.shorten-text');
+	    const maxLength = 50; // Maximum length of characters before truncation
+
+	    shortenElements.forEach(function(element) {
+	        let originalText = element.textContent;
+	        if (originalText.length > maxLength) {
+	            element.textContent = originalText.substring(0, maxLength) + '...';
+	        }
+	    });
+	});
+  </script>
