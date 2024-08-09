@@ -1,4 +1,4 @@
-package group7.springmvc.controller;
+package group7.springmvc.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

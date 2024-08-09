@@ -1,4 +1,4 @@
-package group7.springmvc.controller;
+package group7.springmvc.controller.admin;
 
 import java.sql.Date;
 import java.util.List;

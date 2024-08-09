@@ -1,4 +1,4 @@
-package group7.springmvc.controller;
+package group7.springmvc.controller.client;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
