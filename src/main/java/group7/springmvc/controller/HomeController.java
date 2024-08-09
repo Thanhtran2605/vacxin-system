@@ -8,7 +8,7 @@ public class HomeController {
 	
 	@GetMapping("/home")
 	public String home() {
-		return "user/home";
+		return "client/home";
 	}
 	
 	@GetMapping("/")
@@ -18,12 +18,12 @@ public class HomeController {
 	
 	@GetMapping("/about")
 	public String about() {
-		return "user/about";
+		return "client/about";
 	}
 	
 	@GetMapping("/contact")
 	public String contact() {
-		return "user/contact";
+		return "client/contact";
 	}
 	
 }
