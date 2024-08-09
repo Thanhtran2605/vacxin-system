@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import group7.springmvc.model.User;
 import group7.springmvc.repository.UserRepository;
 
@@ -33,4 +32,23 @@ public class UserService {
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
+	
+	public User updateUser(Long id, User updatedUser) {
+        Optional<User> existingUserOptional = userRepository.findById(id);
+        if (existingUserOptional.isPresent()) {
+            User existingUser = existingUserOptional.get();
+            // Cập nhật thông tin của người dùng
+            existingUser.setUsername(updatedUser.getUsername());
+            existingUser.setEmail(updatedUser.getEmail());
+//            existingUser.setPassword(updatedUser.getPassword());
+            existingUser.setPhone(updatedUser.getPhone());
+            existingUser.setAddress(updatedUser.getAddress());
+            existingUser.setBirthday(updatedUser.getBirthday());
+            existingUser.setRole(updatedUser.getRole());
+
+            // Lưu lại người dùng đã được cập nhật
+            return userRepository.save(existingUser);
+        }
+        return null;
+}
 }

@@ -47,7 +47,7 @@
 									<th scope="col">Username</th>
 									<th scope="col">Phone</th>
 									<th scope="col">Email</th>
-									<th scope="col">birthday</th>									
+									<th scope="col">Birthday</th>									
 									<th scope="col">Address</th>
 									<th scope="col">ROLE</th>
 									<th scope="col">Edit</th>
@@ -66,15 +66,21 @@
 						                <td>${user.role.value}</td>
 									
 									<td class="text-center">
-									  <a href="#" class="btn btn-success btn-sm">
+									  <a href="/vacxin-system/admin/qluser/edit/${user.id}" class="btn btn-success btn-sm">
 									    <i class="bi bi-pencil-square"></i>
 									  </a>
 									</td>
+									
 									<td class="text-center">
-									  <a href="#" class="btn btn-danger btn-sm">
-									    <i class="bi bi-trash"></i>
-									  </a>
-									</td>									
+							            <!-- Form to delete user -->
+							            <form action="/vacxin-system/admin/qluser/delete" method="post" style="display:inline;">
+							                <input type="hidden" name="userId" value="${user.id}" />
+							                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">
+							                    <i class="bi bi-trash"></i>
+							                </button>
+							            </form>
+							        </td>		
+																
 								</tr>
 								</c:forEach> 
 							</tbody>

@@ -1,27 +1,97 @@
 package group7.springmvc.controller;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import group7.springmvc.model.Role;
 import group7.springmvc.model.User;
+import group7.springmvc.service.RoleService;
 import group7.springmvc.service.UserService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/qluser")
 public class QLuserController {
     @Autowired
     private UserService userService; 
+    @Autowired RoleService roleService;
 
-    @GetMapping("/qluser")
+    @GetMapping("")
     public String QLuser(ModelMap model) {
         List<User> users = userService.findAll();
         model.addAttribute("listUser", users);
-        System.out.println("user: " + users);
-        return "admin/dashboard/QLuser";
+        return "admin/QL_user/index";
     }
+    
+    @GetMapping("edit/{id}")
+    public String editUser(@PathVariable("id") Long id, ModelMap model) {
+        Optional<User> optionalUser = userService.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            model.addAttribute("editUser", user);
+            // Giả sử bạn có một phương thức để lấy danh sách các vai trò
+            List<Role> roles = roleService.findAll(); 
+            model.addAttribute("roles", roles);
+            return "admin/QL_user/edit";
+        } else {
+            // Xử lý nếu không tìm thấy người dùng
+            return "redirect:/admin/qluser";
+        }
+    }        
+    
+    @PostMapping("edit/{id}")
+    public String updateUser(
+            @PathVariable("id") Long id, 
+            @RequestParam("username") String username,
+            @RequestParam("email") String email,
+//            @RequestParam("password") String password,
+            @RequestParam("phone") String phone,
+            @RequestParam("address") String address,
+            @RequestParam("birthday") Date birthday,
+            @RequestParam("role") Long roleId,
+            RedirectAttributes redirectAttributes) {
+    	
+    
+        Role role = roleService.findById(roleId);    
+        User updatedUser = User.builder()
+            .username(username)
+            .email(email)
+//            .password(password)
+            .phone(phone)
+            .address(address)
+            .birthday(birthday)
+            .role(role)
+            .build();
+        
+        System.out.println("Role ID from form: " + roleId);
+
+        System.out.println("Role retrieved from DB: " + role);
+
+        // Cập nhật User
+        User savedUser = userService.updateUser(id, updatedUser);
+
+        if (savedUser != null) {
+            redirectAttributes.addFlashAttribute("message", "User updated successfully!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "User update failed!");
+        }
+
+        return "redirect:/admin/qluser";
+    }        
+    
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam("userId") Long userId, RedirectAttributes redirectAttributes) {
+        userService.deleteById(userId);
+        redirectAttributes.addFlashAttribute("message", "User deleted successfully!");
+        return "redirect:/admin/qluser";
+    }   
 }

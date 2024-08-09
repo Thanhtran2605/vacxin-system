@@ -18,4 +18,8 @@ public class RoleService {
 	public Role findByValue(String value) {
 		return roleRepository.findByValue(value);
 	}
+	
+	 public Role findById(Long id) {
+	        return roleRepository.findById(id).orElse(null);
+	    }	
 }
