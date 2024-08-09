@@ -53,7 +53,6 @@ public class QLuserController {
             @PathVariable("id") Long id, 
             @RequestParam("username") String username,
             @RequestParam("email") String email,
-//            @RequestParam("password") String password,
             @RequestParam("phone") String phone,
             @RequestParam("address") String address,
             @RequestParam("birthday") Date birthday,
@@ -65,7 +64,6 @@ public class QLuserController {
         User updatedUser = User.builder()
             .username(username)
             .email(email)
-//            .password(password)
             .phone(phone)
             .address(address)
             .birthday(birthday)

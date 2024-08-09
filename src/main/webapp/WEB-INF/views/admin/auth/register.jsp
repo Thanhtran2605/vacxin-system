@@ -24,7 +24,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div
-							class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+							class="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
 							<div class="card mb-3">
 
@@ -40,7 +40,7 @@
 									<form:form method="post" action="/vacxin-system/register"
 										modelAttribute="newUser" class="row g-3 needs-validation"
 										novalidate="novalidate">
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourEmail" path="email" class="form-label">Your Email</form:label>
 											<form:input type="email" path="email" class="form-control"
 												id="yourEmail" required="required" />
@@ -48,7 +48,7 @@
 												Email adddress!</div>
 										</div>
 
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourUsername" path="username"
 												class="form-label">Username</form:label>
 											<div class="input-group has-validation">
@@ -59,7 +59,7 @@
 											</div>
 										</div>
 
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourPassword" path="password"
 												class="form-label">Password</form:label>
 											<form:input type="password" path="password"
@@ -68,14 +68,14 @@
 												password!</div>
 										</div>
 
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourPhone" path="phone" class="form-label">Phone</form:label>
 											<form:input type="text" path="phone" class="form-control"
 												id="yourPhone" required="required" />
 											<div class="invalid-feedback">Please enter your phone!</div>
 										</div>
 
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourAddress" path="address"
 												class="form-label">Address</form:label>
 											<form:input type="text" path="address" class="form-control"
@@ -84,7 +84,7 @@
 												address!</div>
 										</div>						
 
-										<div class="col-12">
+										<div class="col-6">
 											<form:label for="yourBirthday" path="birthday"
 												class="form-label">Birthday</form:label>
 											<form:input type="date" path="birthday" class="form-control"
@@ -92,6 +92,8 @@
 											<div class="invalid-feedback">Please enter your
 												birthday!</div>
 										</div>
+										
+							
 
 										<div class="col-12">
 											<button class="btn btn-primary w-100" type="submit">Create

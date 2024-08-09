@@ -22,19 +22,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="vaccine")
-public class Vaccine {
+@Table(name = "vaccine_location")
+public class VaccineLocation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-	
-	String name;
-	String country;
-	String description;
-	String image;
-	String disease;
-	
-	double price;
-	
+
+	String address;
 
 }

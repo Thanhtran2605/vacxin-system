@@ -1,13 +1,17 @@
+/*
+ *	(C) Copyright 2024. All Rights Reserved.
+ *	@author DELL
+ * 	@date Aug 9, 2024
+ *	@version 1.0
+*/
 package group7.springmvc.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,28 +25,27 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "users")
-public class User {
-	
+@Table(name = "payments")
+public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
-	
-	String username;
-	String email;
-	String password;
-	
-	String phone;
-	String address;
-	Date birthday;
-	
-	String fullName;
-	String gender;
-	
+	Long id;
+
 	@ManyToOne
-	@JoinColumn(name = "role_id")
+	@JoinColumn(name = "patient_id")
 	@ToString.Exclude
-	Role role;
-	
+	Patient patient;
+
+	@ManyToOne
+	@JoinColumn(name = "receptionist_id")
+	@ToString.Exclude
+	Receptionist receptionist;
+
+	int quantity;
+
+	double unitPrice;
+
+	double totalAmount;
+
+	Date paymentDate;
 }

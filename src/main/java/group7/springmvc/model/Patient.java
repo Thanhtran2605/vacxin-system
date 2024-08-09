@@ -1,18 +1,15 @@
 package group7.springmvc.model;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
@@ -21,28 +18,19 @@ import lombok.experimental.SuperBuilder;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "users")
-public class User {
-	
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "patients")
+public class Patient extends User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
-	
-	String username;
-	String email;
-	String password;
-	
-	String phone;
-	String address;
-	Date birthday;
-	
-	String fullName;
-	String gender;
+	private long id;
+
+	String idCard;
+
+	String note;
 	
 	@ManyToOne
-	@JoinColumn(name = "role_id")
+    @JoinColumn(name = "user_id")
 	@ToString.Exclude
-	Role role;
-	
+    User user;
 }
