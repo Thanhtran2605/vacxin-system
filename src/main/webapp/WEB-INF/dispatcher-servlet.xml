@@ -8,15 +8,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
 	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.3.xsd 
+	http://www.springframework.org/schema/context/spring-context.xsd 
 	http://www.springframework.org/schema/mvc 
-	http://springframework.org/schema/mvc/spring-mvc-4.3.xsd 
+	http://springframework.org/schema/mvc/spring-mvc.xsd 
 	http://www.springframework.org/schema/jdbc 
-	http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd 
+	http://www.springframework.org/schema/jdbc/spring-jdbc.xsd 
 	http://www.springframework.org/schema/data/jpa 
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
     http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<context:component-scan
 		base-package="group7.springmvc.*" />
 	<bean

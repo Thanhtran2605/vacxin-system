@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "vaccine_location")
 public class VaccineLocation {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 
 	String address;
-
 }
