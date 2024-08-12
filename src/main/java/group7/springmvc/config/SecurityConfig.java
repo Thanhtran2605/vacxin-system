@@ -13,6 +13,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import static org.springframework.security.config.Customizer.withDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 
+// Đầu tiên là file SecurityConfig 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -24,18 +25,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	AuthenticationSuccessHandler authenticationSuccessHandler() {
 		return new SuccessHandler();
 	}
-	 
+	// Hàm này giúp xử lý các yêu cầu HTTP và bảo mật ứng dụng web
+	// cấu hình các quy tắc phân quyền cho các đường dẫn URL
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(requests -> requests
-                        .antMatchers("/", "/home", "/register").permitAll() 
-                        .antMatchers("/admin/**").hasRole("ADMIN") 
+                		// được phép truy cập bởi bất kỳ ai mà không cần xác thực (public).
+                        .antMatchers("/", "/home", "/register").permitAll()                         
+                        // chỉ cho phép người dùng có vai trò (role) ADMIN truy cập
+                        .antMatchers("/admin/**").hasAnyRole("ADMIN", "DOCTOR", "RECEPTIONIST")                         
+                        // Mọi yêu cầu khác ngoài những cái trên đều yêu cầu người dùng phải xác thực (login)
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .formLogin(login -> login
                         .loginPage("/login") 
-                        .successHandler(authenticationSuccessHandler())
+                        .successHandler(authenticationSuccessHandler())	// Liên quan tới file SuccessHandler.java
                         .permitAll())
 
                 .csrf(csrf -> csrf.disable())
@@ -43,18 +48,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll());
     }
 	
+	// Hàm này giúp thiết lập cách Spring Security sẽ lấy thông tin người dùng để xác thực.
+	@Override
+	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(customUserDetailService); // Liên quan tới file CustomUserDetailService.java
+	}
+	
 	@Override
     public void configure(WebSecurity web) throws Exception {
         web
             .ignoring()
             .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }
-
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(customUserDetailService);
-	}
 
     @Bean
     public PasswordEncoder passwordEncoder() {

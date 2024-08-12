@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import group7.springmvc.model.User;
 import group7.springmvc.service.RoleService;
@@ -42,10 +41,9 @@ public class AuthController {
 			Model model) {
 		String hassPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(hassPassword);
-		user.setRole(roleService.findByValue("USER"));
+		user.setRole(roleService.findByValue("PATIENT"));
 		userService.save(user);
 		return "redirect:/login";
-	}
-	
+	}	
 	
 }
