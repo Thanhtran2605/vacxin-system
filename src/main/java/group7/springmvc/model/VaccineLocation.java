@@ -6,6 +6,8 @@
 */
 package group7.springmvc.model;
 
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,4 +32,12 @@ public class VaccineLocation {
 	long id;
 
 	String address;
+	String nameLocation;
+	String phone;
+	String email;
+	String website;
+	String fanpage;
+	String imageLink;
+	LocalTime openingHours;
+	LocalTime closingHours;
 }
