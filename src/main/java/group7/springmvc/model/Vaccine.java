@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="vaccines")
+@Table(name="vaccine")
 public class Vaccine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

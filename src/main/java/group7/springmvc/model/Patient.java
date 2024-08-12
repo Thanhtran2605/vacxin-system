@@ -8,29 +8,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Data
 @NoArgsConstructor
-@SuperBuilder
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@Builder
 @Table(name = "patients")
-public class Patient extends User {
+public class Patient {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	long id;
 
 	String idCard;
-
 	String note;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id")
 	@ToString.Exclude
-    User user;
+	User user;
 }

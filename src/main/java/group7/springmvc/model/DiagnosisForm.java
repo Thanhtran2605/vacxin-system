@@ -15,18 +15,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Data
 @NoArgsConstructor
-@SuperBuilder
+@AllArgsConstructor
+@Builder
 @Table(name = "diagnosis_forms")
 public class DiagnosisForm {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
@@ -41,8 +46,8 @@ public class DiagnosisForm {
 	@ToString.Exclude
 	Doctor doctor;
 
+	@Temporal(TemporalType.DATE)
 	Date date;
 
 	String description;
-
 }
