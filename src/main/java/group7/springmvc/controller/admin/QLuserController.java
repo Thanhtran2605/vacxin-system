@@ -26,26 +26,16 @@ public class QLuserController {
     @Autowired RoleService roleService;
 
     @GetMapping("")
-    public String QLuser(
-            @RequestParam(value = "username", required = false) String username,
-            ModelMap model) {
-
+    public String QLuser(@RequestParam(value = "username", required = false) String username, ModelMap model) {
         List<User> users;
-
-        // Nếu username không rỗng, thực hiện tìm kiếm
         if (username != null && !username.isEmpty()) {
-            User user = userService.findByUsername(username);
-            users = user != null ? List.of(user) : List.of(); // Tạo danh sách với 1 user hoặc danh sách rỗng
+            users = userService.findByUsernameContaining(username);
         } else {
-            // Nếu không có tham số tìm kiếm, trả về tất cả người dùng
             users = userService.findAll();
         }
-
         model.addAttribute("listUser", users);
         return "admin/QL_user/index";
     }
-
-
     
     @GetMapping("edit/{id}")
     public String editUser(@PathVariable("id") Long id, ModelMap model) {

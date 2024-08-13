@@ -52,4 +52,8 @@ public class UserService {
         return null;
 	}
 	
+	public List<User> findByUsernameContaining(String keyword) {
+        return userRepository.findByUsernameContaining(keyword);
+    }
+	
 }
