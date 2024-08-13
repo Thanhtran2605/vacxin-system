@@ -73,13 +73,13 @@
         </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+            <a href="/vacxin-system/admin/schedules">
+              <i class="bi bi-circle"></i><span>Danh sách lịch tiêm</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
+             <a href="/vacxin-system/admin/schedules/add">
+              <i class="bi bi-circle"></i><span>Thêm lịch tiêm chủng</span>
             </a>
           </li>
         
