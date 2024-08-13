@@ -78,7 +78,7 @@
             </a>
           </li>
           <li>
-            <a href="icons-remix.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Remix Icons</span>
             </a>
           </li>
@@ -92,7 +92,7 @@
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Chart.js</span>
             </a>
           </li>
@@ -108,28 +108,28 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="/vacxin-system/admin/profile">
           <i class="bi bi-person"></i>
           <span>Hồ sơ</span>
         </a>
       </li><!-- End Profile Page Nav -->    
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-envelope"></i>
           <span>Liên hệ</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-card-list"></i>
           <span>Đăng ký</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="#">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Đăng nhập</span>
         </a>
