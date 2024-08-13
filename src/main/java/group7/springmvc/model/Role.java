@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="roles")
+@Table(name="role")
 public class Role {
 	
 	@Id

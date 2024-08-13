@@ -29,7 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "diagnosis_forms")
+@Table(name = "diagnosis_form")
 public class DiagnosisForm {
 
 	@Id

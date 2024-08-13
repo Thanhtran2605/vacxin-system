@@ -38,7 +38,7 @@
 					<h5 class="card-title">Nhập thông tin địa điểm tiêm</h5>
 
 					<!-- General Form Elements -->
-					<form method="post" action="/vacxin-system/admin/VL/add">
+					<form method="post" action="/vacxin-system/admin/vacloc/add">
 						<div class="row mb-3">
 							<label for="nameLocation" class="col-sm-2 col-form-label">Tên
 								Địa Điểm</label>
@@ -110,9 +110,9 @@
 						<div class="text-center">
 							<button type="submit" class="btn btn-primary">Thêm Mới</button>
 						</div>
-					</form>
+					</form> 
 					<!-- End General Form Elements -->
-
+					
 				</div>
 			</div>
 		</section>

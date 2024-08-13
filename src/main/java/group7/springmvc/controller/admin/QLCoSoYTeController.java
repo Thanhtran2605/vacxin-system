@@ -93,6 +93,7 @@ public class QLCoSoYTeController {
     @GetMapping("add")
     public String addVaccineLocation(Model model) {
         model.addAttribute("addLocation", new VaccineLocation());
+        System.out.println("okok");
         return "admin/QL_CoSoYTe/add";
     }
 
@@ -108,7 +109,8 @@ public class QLCoSoYTeController {
             @RequestParam("openingHours") LocalTime openingHours,
             @RequestParam("closingHours") LocalTime closingHours,
             RedirectAttributes redirectAttributes) {
-
+    	System.out.println(address + nameLocation+ phone+ 
+    			email+ website+ fanpage);
         VaccineLocation newLocation = VaccineLocation.builder()
                 .nameLocation(nameLocation)
                 .address(address)
@@ -129,6 +131,6 @@ public class QLCoSoYTeController {
             redirectAttributes.addFlashAttribute("error", "Thêm địa điểm tiêm không thành công!");
         }
 
-        return "redirect:/admin/VL";
+        return "redirect:/admin/vacloc";
     }
 }
