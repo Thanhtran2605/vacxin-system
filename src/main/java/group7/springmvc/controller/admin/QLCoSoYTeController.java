@@ -19,81 +19,21 @@ import group7.springmvc.model.VaccineLocation;
 import group7.springmvc.service.VaccineLocationService;
 
 @Controller
-@RequestMapping("/admin/vacloc")
+@RequestMapping("/admin/qlvaccinelocation")
 public class QLCoSoYTeController {
 
-    @Autowired
-    private VaccineLocationService vaccineLocationService;
+	@Autowired
+	private VaccineLocationService vaccineLocationService;
 
-    @GetMapping("")
-    public String getAllVaccineLocations(Model model) {
-        model.addAttribute("danhsachvaccineLocation", vaccineLocationService.findAll());
-        return "admin/QL_CoSoYTe/index";
-    }
-
-    @GetMapping("edit/{id}")
-    public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
-        Optional<VaccineLocation> optionalLocation = vaccineLocationService.findById(id);
-        if (optionalLocation.isPresent()) {
-            VaccineLocation location = optionalLocation.get();
-            model.addAttribute("editLocation", location);
-            return "admin/QL_CoSoYTe/edit";
-        } else {
-            return "redirect:/admin/vacloc";
-        }
-    }
-
-    @PostMapping("edit/{id}")
-    public String updateVaccineLocation(
-            @PathVariable("id") Long id,
-            @RequestParam("address") String address,
-            @RequestParam("nameLocation") String nameLocation,
-            @RequestParam("phone") String phone,
-            @RequestParam("email") String email,
-            @RequestParam("website") String website,
-            @RequestParam("fanpage") String fanpage,
-            @RequestParam("imageLink") String imageLink,
-            @RequestParam("openingHours") String openingHoursStr,
-            @RequestParam("closingHours") String closingHoursStr,
-            RedirectAttributes redirectAttributes) {
-
-        LocalTime openingHours = LocalTime.parse(openingHoursStr);
-        LocalTime closingHours = LocalTime.parse(closingHoursStr);
-
-        VaccineLocation updatedLocation = VaccineLocation.builder()
-                .address(address)
-                .nameLocation(nameLocation)
-                .phone(phone)
-                .email(email)
-                .website(website)
-                .fanpage(fanpage)
-                .imageLink(imageLink)
-                .openingHours(openingHours)
-                .closingHours(closingHours)
-                .build();
-
-        VaccineLocation savedLocation = vaccineLocationService.save(updatedLocation);
-
-        if (savedLocation != null) {
-            redirectAttributes.addFlashAttribute("message", "Vaccine location updated successfully!");
-        } else {
-            redirectAttributes.addFlashAttribute("error", "Vaccine location update failed!");
-        }
-
-        return "redirect:/admin/vacloc";
-    }
-
-    @PostMapping("/delete")
-    public String deleteVaccineLocation(@RequestParam("locationId") Long locationId, RedirectAttributes redirectAttributes) {
-        vaccineLocationService.deleteById(locationId);
-        redirectAttributes.addFlashAttribute("message", "Vaccine location deleted successfully!");
-        return "redirect:/admin/vacloc";
-    }
-
-    @GetMapping("add")
-    public String addVaccineLocation(Model model) {
-        model.addAttribute("addLocation", new VaccineLocation());
-        System.out.println("okok");
+	@GetMapping("")
+	public String getAllVaccineLocations(Model model) {
+		model.addAttribute("listVaccineLocation", vaccineLocationService.findAll());
+		return "admin/QL_CoSoYTe/index";
+	}
+	
+	
+	@GetMapping("/add")
+    public String showAddVaccineLocationForm(Model model) {
         return "admin/QL_CoSoYTe/add";
     }
 
@@ -106,11 +46,14 @@ public class QLCoSoYTeController {
             @RequestParam("website") String website,
             @RequestParam("fanpage") String fanpage,
             @RequestParam("imageLink") String imageLink,
-            @RequestParam("openingHours") LocalTime openingHours,
-            @RequestParam("closingHours") LocalTime closingHours,
+            @RequestParam("openingHours") String openingHoursStr,
+            @RequestParam("closingHours") String closingHoursStr,
             RedirectAttributes redirectAttributes) {
-    	System.out.println(address + nameLocation+ phone+ 
-    			email+ website+ fanpage);
+
+        // Convert strings to LocalTime
+        LocalTime openingHours = LocalTime.parse(openingHoursStr);
+        LocalTime closingHours = LocalTime.parse(closingHoursStr);
+
         VaccineLocation newLocation = VaccineLocation.builder()
                 .nameLocation(nameLocation)
                 .address(address)
@@ -126,11 +69,77 @@ public class QLCoSoYTeController {
         VaccineLocation savedLocation = vaccineLocationService.save(newLocation);
 
         if (savedLocation != null) {
-            redirectAttributes.addFlashAttribute("message", "Địa điểm tiêm được thêm mới thành công!");
+            redirectAttributes.addFlashAttribute("message", "New vaccine location added successfully!");
         } else {
-            redirectAttributes.addFlashAttribute("error", "Thêm địa điểm tiêm không thành công!");
+            redirectAttributes.addFlashAttribute("error", "Failed to add new vaccine location!");
         }
 
-        return "redirect:/admin/vacloc";
+        return "redirect:/admin/qlvaccinelocation";
     }
+    
+
+	@GetMapping("edit/{id}")
+	public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
+		Optional<VaccineLocation> optionalLocation = vaccineLocationService.findById(id);
+		if (optionalLocation.isPresent()) {
+			VaccineLocation location = optionalLocation.get();
+			model.addAttribute("editLocation", location);
+			return "admin/QL_CoSoYTe/edit";
+		} else {
+			return "redirect:/admin/qlvaccinelocation";
+		}
+	}
+
+	@PostMapping("edit/{id}")
+	public String updateVaccineLocation(@PathVariable("id") Long id, @RequestParam("address") String address,
+			@RequestParam("nameLocation") String nameLocation, @RequestParam("phone") String phone,
+			@RequestParam("email") String email, @RequestParam("website") String website,
+			@RequestParam("fanpage") String fanpage, @RequestParam("imageLink") String imageLink,
+			@RequestParam("openingHours") String openingHoursStr, @RequestParam("closingHours") String closingHoursStr,
+			RedirectAttributes redirectAttributes) {
+
+		// Convert strings to LocalTime
+		LocalTime openingHours = LocalTime.parse(openingHoursStr);
+		LocalTime closingHours = LocalTime.parse(closingHoursStr);
+
+		// Fetch existing location by id
+		Optional<VaccineLocation> optionalLocation = vaccineLocationService.findById(id);
+		if (optionalLocation.isPresent()) {
+			VaccineLocation existingLocation = optionalLocation.get();
+
+			// Update the existing location's details
+			existingLocation.setAddress(address);
+			existingLocation.setNameLocation(nameLocation);
+			existingLocation.setPhone(phone);
+			existingLocation.setEmail(email);
+			existingLocation.setWebsite(website);
+			existingLocation.setFanpage(fanpage);
+			existingLocation.setImageLink(imageLink);
+			existingLocation.setOpeningHours(openingHours);
+			existingLocation.setClosingHours(closingHours);
+
+			// Save updated location
+			VaccineLocation savedLocation = vaccineLocationService.save(existingLocation);
+
+			if (savedLocation != null) {
+				redirectAttributes.addFlashAttribute("message", "Vaccine location updated successfully!");
+			} else {
+				redirectAttributes.addFlashAttribute("error", "Vaccine location update failed!");
+			}
+		} else {
+			redirectAttributes.addFlashAttribute("error", "Vaccine location not found!");
+		}
+
+		return "redirect:/admin/qlvaccinelocation";
+	}
+
+	@PostMapping("/delete")
+	public String deleteVaccineLocation(@RequestParam("locationId") Long locationId,
+			RedirectAttributes redirectAttributes) {
+		vaccineLocationService.deleteById(locationId);
+		redirectAttributes.addFlashAttribute("message", "Vaccine location deleted successfully!");
+		return "redirect:/admin/qlvaccinelocation";
+	}
+	
+
 }
