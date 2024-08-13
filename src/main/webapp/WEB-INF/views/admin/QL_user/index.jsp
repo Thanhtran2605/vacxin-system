@@ -39,6 +39,19 @@
 
 				<div class="card">
 					<div class="card-body">
+						<br>
+						<!-- Form tìm kiếm chỉ theo Username -->
+						<form action="/vacxin-system/admin/qluser" method="get"
+							class="row mb-3">
+							<div class="col-9 col-sm-10">
+								<input type="text" class="form-control" name="username"
+									placeholder="Tìm theo Username" value="${param.username}">
+							</div>
+							<div class="col-3 col-sm-2 text-end">
+								<button type="submit" class="btn btn-primary w-100">Tìm
+									kiếm</button>
+							</div>
+						</form>
 
 						<table class="table table-striped ">
 							<thead>
@@ -47,7 +60,7 @@
 									<th scope="col">Username</th>
 									<th scope="col">Phone</th>
 									<th scope="col">Email</th>
-									<th scope="col">Birthday</th>									
+									<th scope="col">Birthday</th>
 									<th scope="col">Address</th>
 									<th scope="col">ROLE</th>
 									<th scope="col">Edit</th>
@@ -55,34 +68,36 @@
 								</tr>
 							</thead>
 							<tbody>
-						<c:forEach var="user" items="${listUser}">
-								<tr>
-									<th scope="row">${user.id}</th>
-									<td >${user.username}</td>
-									<td >${user.phone}</td>
-						                <td>${user.email}</td>
-						                <td>${user.birthday}</td>
-						                <td>${user.address}</td>
-						                <td>${user.role.value}</td>
-									
-									<td class="text-center">
-									  <a href="/vacxin-system/admin/qluser/edit/${user.id}" class="btn btn-success btn-sm">
-									    <i class="bi bi-pencil-square"></i>
-									  </a>
-									</td>
-									
-									<td class="text-center">
-							            <!-- Form to delete user -->
-							            <form action="/vacxin-system/admin/qluser/delete" method="post" style="display:inline;">
-							                <input type="hidden" name="userId" value="${user.id}" />
-							                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">
-							                    <i class="bi bi-trash"></i>
-							                </button>
-							            </form>
-							        </td>		
-																
-								</tr>
-								</c:forEach> 
+								<c:forEach var="user" items="${listUser}">
+									<tr>
+										<th scope="row">${user.id}</th>
+										<td>${user.username}</td>
+										<td>${user.phone}</td>
+										<td>${user.email}</td>
+										<td>${user.birthday}</td>
+										<td>${user.address}</td>
+										<td>${user.role.value}</td>
+
+										<td class="text-center"><a
+											href="/vacxin-system/admin/qluser/edit/${user.id}"
+											class="btn btn-success btn-sm"> <i
+												class="bi bi-pencil-square"></i>
+										</a></td>
+
+										<td class="text-center">
+											<!-- Form to delete user -->
+											<form action="/vacxin-system/admin/qluser/delete"
+												method="post" style="display: inline;">
+												<input type="hidden" name="userId" value="${user.id}" />
+												<button type="submit" class="btn btn-danger btn-sm"
+													onclick="return confirm('Are you sure you want to delete this user?');">
+													<i class="bi bi-trash"></i>
+												</button>
+											</form>
+										</td>
+
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 
