@@ -57,27 +57,36 @@ public class QLCoSoYTeController {
             @RequestParam("closingHours") String closingHoursStr,
             RedirectAttributes redirectAttributes) {
 
+        // Convert strings to LocalTime
         LocalTime openingHours = LocalTime.parse(openingHoursStr);
         LocalTime closingHours = LocalTime.parse(closingHoursStr);
 
-        VaccineLocation updatedLocation = VaccineLocation.builder()
-                .address(address)
-                .nameLocation(nameLocation)
-                .phone(phone)
-                .email(email)
-                .website(website)
-                .fanpage(fanpage)
-                .imageLink(imageLink)
-                .openingHours(openingHours)
-                .closingHours(closingHours)
-                .build();
+        // Fetch existing location by id
+        Optional<VaccineLocation> optionalLocation = vaccineLocationService.findById(id);
+        if (optionalLocation.isPresent()) {
+            VaccineLocation existingLocation = optionalLocation.get();
+            
+            // Update the existing location's details
+            existingLocation.setAddress(address);
+            existingLocation.setNameLocation(nameLocation);
+            existingLocation.setPhone(phone);
+            existingLocation.setEmail(email);
+            existingLocation.setWebsite(website);
+            existingLocation.setFanpage(fanpage);
+            existingLocation.setImageLink(imageLink);
+            existingLocation.setOpeningHours(openingHours);
+            existingLocation.setClosingHours(closingHours);
 
-        VaccineLocation savedLocation = vaccineLocationService.save(updatedLocation);
+            // Save updated location
+            VaccineLocation savedLocation = vaccineLocationService.save(existingLocation);
 
-        if (savedLocation != null) {
-            redirectAttributes.addFlashAttribute("message", "Vaccine location updated successfully!");
+            if (savedLocation != null) {
+                redirectAttributes.addFlashAttribute("message", "Vaccine location updated successfully!");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Vaccine location update failed!");
+            }
         } else {
-            redirectAttributes.addFlashAttribute("error", "Vaccine location update failed!");
+            redirectAttributes.addFlashAttribute("error", "Vaccine location not found!");
         }
 
         return "redirect:/admin/vacloc";
@@ -94,7 +103,7 @@ public class QLCoSoYTeController {
     public String addVaccineLocation(Model model) {
         model.addAttribute("addLocation", new VaccineLocation());
         System.out.println("okok");
-        return "admin/QL_CoSoYTe/add";
+        return "admin/QL_Co	SoYTe/add";
     }
 
     @PostMapping("/add")
