@@ -45,7 +45,7 @@ public class DoctorController {
 			doctors = doctorService.findByIdOrName(search);
 		} else {
 			// Nếu không có tìm kiếm, lấy tất cả bác sĩ
-			doctors = doctorService.findAll();
+			doctors = doctorService.getAllDoctors();
 		}
 
 		model.addAttribute("doctors", doctors);
@@ -54,7 +54,7 @@ public class DoctorController {
 
 	@GetMapping("/edit/{id}")
 	public String editDoctor(@PathVariable("id") Long id, ModelMap model) {
-		Doctor doctor = doctorService.findById(id).orElse(null);
+		Doctor doctor = doctorService.getDoctorById(id);
 		if (doctor != null) {
 			model.addAttribute("doctor", doctor);
 			return "admin/QL_doctor/edit";
@@ -68,7 +68,7 @@ public class DoctorController {
 			@RequestParam("licenseNumber") String licenseNumber,
 			@RequestParam("yearsOfExperience") int yearsOfExperience, RedirectAttributes redirectAttributes) {
 
-		Doctor doctor = doctorService.findById(id).orElse(null);
+		Doctor doctor = doctorService.getDoctorById(id);
 		if (doctor != null) {
 			doctor.setSpecialization(specialization);
 			doctor.setLicenseNumber(licenseNumber);

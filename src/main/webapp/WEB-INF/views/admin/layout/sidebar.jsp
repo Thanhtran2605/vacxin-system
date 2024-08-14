@@ -29,6 +29,24 @@
           </li>
         </ul>
       </li><!-- End Components Nav -->
+      
+         <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#employee-management-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Quản lý nhân viên</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="employee-management-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/vacxin-system/admin/doctor">
+              <i class="bi bi-circle"></i><span>Quản lý Bác sĩ</span>
+            </a>
+          </li>
+          <li>
+            <a href="/vacxin-system/admin/receptionist">
+              <i class="bi bi-circle"></i><span>Quản lý Lễ tân</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">

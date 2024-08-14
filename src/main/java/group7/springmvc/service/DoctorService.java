@@ -18,14 +18,36 @@ import group7.springmvc.repository.DoctorRepository;
 public class DoctorService {
 
 	@Autowired
-    private DoctorRepository doctorRepository;
+	private DoctorRepository doctorRepository;
 
-    public List<Doctor> getAllDoctors() {
-        return doctorRepository.findAll();
-    }
+	public Doctor save(Doctor doctor) {
+		return doctorRepository.save(doctor);
+	}
 
-    public Doctor getDoctorById(Long id) {
-        return doctorRepository.findById(id).orElse(null);
-    }
-	
+	public List<Doctor> getAllDoctors() {
+		return doctorRepository.findAll();
+	}
+
+	public Doctor getDoctorById(Long id) {
+		return doctorRepository.findById(id).orElse(null);
+	}
+
+	public void deleteById(Long id) {
+		doctorRepository.deleteById(id);
+	}
+
+	public List<Doctor> findByIdOrName(String searchTerm) {
+		List<Doctor> receptionists;
+		try {
+			// Kiểm tra nếu searchTerm có thể chuyển đổi thành Long
+			Long id = Long.parseLong(searchTerm);
+			// Tìm theo ID
+			receptionists = doctorRepository.findById(id).map(receptionist -> List.of(receptionist))
+					.orElseGet(List::of); // Trả về danh sách rỗng nếu không tìm thấy
+		} catch (NumberFormatException e) {
+			// Nếu không phải ID, tìm kiếm theo tên
+			receptionists = doctorRepository.findByName(searchTerm);
+		}
+		return receptionists;
+	}
 }
