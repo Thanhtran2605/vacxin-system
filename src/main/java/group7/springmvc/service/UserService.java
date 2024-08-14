@@ -33,6 +33,10 @@ public class UserService {
 		return userRepository.findByUsername(username);
 	}
 	
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+	
 	public User updateUser(Long id, User updatedUser) {
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isPresent()) {

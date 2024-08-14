@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,13 +30,22 @@ public class Vaccine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	
-	String name;
-	String country;
-	String description;
-	String image;
-	String disease;
-	
-	double price;
-	
+	@NotBlank(message = "Tên vaccine không được trống")
+    private String name;
+
+    @NotNull(message = "Giá is không được trống")
+    private Double price;
+
+    @NotBlank(message = "Nơi sản xuất is không được trống")
+    private String country;
+
+    @NotBlank(message = "Bệnh is không được trống")
+    private String disease;
+
+    @NotBlank(message = "Mô tả is không được trống")
+    private String description;
+
+    @NotBlank(message = "URL Hình ảnh is không được trống")
+    private String image;
 
 }

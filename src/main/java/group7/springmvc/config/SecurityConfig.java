@@ -40,11 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic(withDefaults())
                 .formLogin(login -> login
                         .loginPage("/login") 
-                        .successHandler(authenticationSuccessHandler())	// Liên quan tới file SuccessHandler.java
+                        .successHandler(authenticationSuccessHandler())	// Liên quan tới file SuccessHandler.java 
+                        .failureUrl("/login?error=true")
                         .permitAll())
 
                 .csrf(csrf -> csrf.disable())
                 .logout(logout -> logout
+                		.logoutSuccessUrl("/login?logout=true")
                         .permitAll());
     }
 	

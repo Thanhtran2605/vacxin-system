@@ -78,8 +78,8 @@
             </a>
           </li>
           <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+            <a href="/vacxin-system/admin/vaccines/create">
+              <i class="bi bi-circle"></i><span>Thêm Vaccine</span>
             </a>
           </li>
         </ul>

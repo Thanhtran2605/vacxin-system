@@ -1,6 +1,7 @@
 package group7.springmvc.controller.admin;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +61,7 @@ public class QLuserController {
             @RequestParam("email") String email,
             @RequestParam("phone") String phone,
             @RequestParam("address") String address,
-            @RequestParam("birthday") Date birthday,
+            @RequestParam("birthday") LocalDate birthday,
             @RequestParam("role") Long roleId,
             RedirectAttributes redirectAttributes) {
     	
