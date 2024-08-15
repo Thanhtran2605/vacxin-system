@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -61,10 +62,15 @@ public class QLuserController {
             @RequestParam("email") String email,
             @RequestParam("phone") String phone,
             @RequestParam("address") String address,
-            @RequestParam("birthday") LocalDate birthday,
+            @RequestParam("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
             @RequestParam("role") Long roleId,
             RedirectAttributes redirectAttributes) {
     	
+    	// Kiểm tra ngày sinh
+        if (birthday.isAfter(LocalDate.now())) {
+            redirectAttributes.addFlashAttribute("error", "Ngày sinh không được vượt quá ngày hiện tại!");
+            return "redirect:/admin/qluser/edit/" + id;
+        }
     
         Role role = roleService.findById(roleId);    
         User updatedUser = User.builder()
