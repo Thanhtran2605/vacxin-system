@@ -17,9 +17,9 @@
 		<!-- Collapsible wrapper -->
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<!-- Navbar brand -->
-			<a class="navbar-brand mt-2 mt-lg-0" href="/vacxin-system/"> <img
-				src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-				height="15" alt="MDB Logo" loading="lazy" />
+			<a class="navbar-brand mt-2 mt-lg-0" href="/vacxin-system/"> 
+			<img src="<c:url value="/resources/images/logo.png" />" alt="" width="40">
+			<span class="d-none d-lg-block">Vacxin</span>
 			</a>
 			<!-- Left links -->
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">

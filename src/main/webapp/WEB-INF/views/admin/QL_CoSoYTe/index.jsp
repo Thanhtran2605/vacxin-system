@@ -33,11 +33,14 @@
 				</ol>
 			</nav>
 		</div>
-
 		<section class="section">
 			<div class="row">
-				<div class="card">
-					<div class="card-body">
+			
+					
+				<div class="card">								
+					<div class="card-body"><br>
+					<a href="/vacxin-system/admin/qlvaccinelocation/add"
+				class="btn btn-primary">Thêm Cơ Sở Y Tế</a><br>
 						<br>
 						<!-- Form tìm kiếm chỉ theo Name Location -->
 						<form action="/vacxin-system/admin/qlvaccinelocation" method="get"
@@ -109,9 +112,7 @@
 					</div>
 				</div>
 			</div>
-			<a href="/vacxin-system/admin/qlvaccinelocation/add"
-				class="btn btn-primary">Thêm Cơ Sở Y Tế</a>
-
+			
 		</section>
 
 	</main>

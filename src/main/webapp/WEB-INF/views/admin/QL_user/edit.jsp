@@ -36,7 +36,7 @@
 
 		<section class="section">
 			<div class="card">
-				<div class="card-body">
+				<div class="card-body">	
 					<h5 class="card-title"></h5>
 
 					<!-- General Form Elements -->
@@ -45,21 +45,21 @@
 						<div class="row mb-3">
 							<label for="inputText" class="col-sm-2 col-form-label">Username</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="username"
+								<input type="text" class="form-control" name="username" required = "required"
 									value="${editUser.username}">
 							</div>
 						</div>
 						<div class="row mb-3">
 							<label for="inputEmail" class="col-sm-2 col-form-label">Phone</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="phone"
+								<input type="text" class="form-control" name="phone" required = "required"
 									value="${editUser.phone}">
 							</div>
 						</div>
 						<div class="row mb-3">
 							<label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" name="email"
+								<input type="email" class="form-control" name="email" required = "required"
 									value="${editUser.email}">
 							</div>
 						</div>
@@ -67,7 +67,7 @@
 						<div class="row mb-3">
 							<label for="inputDate" class="col-sm-2 col-form-label">Birthday</label>
 							<div class="col-sm-10">
-								<input type="date" class="form-control" name="birthday"
+								<input type="date" class="form-control" name="birthday" required = "required"
 									value="${editUser.birthday}">
 							</div>
 						</div>
@@ -75,7 +75,7 @@
 						<div class="row mb-3">
 							<label for="inputNumber" class="col-sm-2 col-form-label">Address</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" name="address"
+								<input type="text" class="form-control" name="address" required = "required"
 									value="${editUser.address}">
 							</div>
 						</div>

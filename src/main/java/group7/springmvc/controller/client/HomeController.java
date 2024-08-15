@@ -11,6 +11,7 @@ public class HomeController {
 		return "client/home";
 	}
 	
+	
 	@GetMapping("/")
     public String root() {
         return "redirect:/home";
