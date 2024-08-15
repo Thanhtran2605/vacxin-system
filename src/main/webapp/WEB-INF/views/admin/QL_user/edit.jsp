@@ -38,7 +38,21 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title"></h5>
+						
+						<!-- Hiển thị thông báo lỗi -->
+					<c:if test="${not empty error}">
+						<div class="alert alert-danger">
+							<c:out value="${error}" />
+						</div>
+					</c:if>
 
+					<!-- Hiển thị thông báo thành công -->
+					<c:if test="${not empty message}">
+						<div class="alert alert-success">
+							<c:out value="${message}" />
+						</div>
+					</c:if>
+					
 					<!-- General Form Elements -->
 					<form method="post"
 						action="/vacxin-system/admin/qluser/edit/${editUser.id}">
