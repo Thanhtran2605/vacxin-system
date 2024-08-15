@@ -22,11 +22,6 @@
               <i class="bi bi-circle"></i><span>Quản lý người dùng</span>
             </a>
           </li>
-          <li>
-            <a href="components-accordion.html">
-              <i class="bi bi-circle"></i><span>Quản lý nhân viên</span>
-            </a>
-          </li>
         </ul>
       </li><!-- End Components Nav -->
       
@@ -138,20 +133,6 @@
           <span>Liên hệ</span>
         </a>
       </li><!-- End Contact Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-card-list"></i>
-          <span>Đăng ký</span>
-        </a>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Đăng nhập</span>
-        </a>
-      </li><!-- End Login Page Nav -->
      
     </ul>
 

@@ -79,7 +79,7 @@ public class QLCoSoYTeController {
     
 
 	@GetMapping("edit/{id}")
-	public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
+public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
 		Optional<VaccineLocation> optionalLocation = vaccineLocationService.findById(id);
 		if (optionalLocation.isPresent()) {
 			VaccineLocation location = optionalLocation.get();
