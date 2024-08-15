@@ -36,7 +36,7 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/vacxin-system/admin/vacloc">
+            <a href="/vacxin-system/admin/qlvaccinelocation">
               <i class="bi bi-circle"></i><span>Danh sách địa điểm tiêm</span>
             </a>
           </li>
