@@ -15,8 +15,7 @@
      <jsp:include page="layout/header.jsp" /> 
      <div class="container">
       <h1>Home</h1>
-      <a class="btn btn-primary" href="/vacxin-system/login">Login</a>
-      <a class="btn btn-primary" href="/vacxin-system/register">Register</a>
+      
      </div>
      <!-- ======= JS ======= -->
      <jsp:include page="layout/jsLink.jsp" />

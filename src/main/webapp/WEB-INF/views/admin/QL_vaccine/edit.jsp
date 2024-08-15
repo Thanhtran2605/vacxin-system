@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Thêm mới vaccine</title>
+<title>Sửa vaccine</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 <!-- ======= CSS ======= -->
@@ -25,18 +25,18 @@
 	<main id="main" class="main">
 		<div class="d-flex align-items-center justify-content-between">
 			<div class="pagetitle">
-				<h1>Thêm mới Vaccine</h1>
+				<h1>Sửa Vaccine</h1>
 				<nav>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 						<li class="breadcrumb-item">Pages</li>
 						<li class="breadcrumb-item">Vaccines</li>
-						<li class="breadcrumb-item active">Thêm</li>
+						<li class="breadcrumb-item active">Sửa</li>
 					</ol>
 				</nav>
 			</div>
 			<a class="btn btn-sm btn-danger" href="/vacxin-system/admin/vaccines"><i
-				class="bi bi-backspace"></i> Trở về</a>
+				class="bi bi-backspace"></i> Trở lại</a>
 		</div>
 
 		<section class="section dashboard">
@@ -44,8 +44,9 @@
 
 				<div class="card">
 					<div class="card-body">
-						<form:form class="row g-3 mt-3" modelAttribute="newVaccine"
-							action="/vacxin-system/admin/vaccines/create" method="post">
+						<form:form class="row g-3 mt-3" modelAttribute="editVaccine"
+							action="/vacxin-system/admin/vaccines/edit" method="post">
+							<form:input path="id" type="hidden" />
 							<div class="col-md-9">
 								<form:label path="name" class="form-label">Tên vaccine</form:label>
 								<form:input type="text" path="name" class="form-control" />
@@ -86,6 +87,7 @@
 								<button type="submit" class="btn btn-sm btn-primary">Submit</button>
 								<button type="reset" class="btn btn-sm btn-secondary">Reset</button>
 							</div>
+
 						</form:form>
 					</div>
 				</div>

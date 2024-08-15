@@ -40,8 +40,6 @@
 				<ul
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
-
-
 					<li><a class="dropdown-item d-flex align-items-center"
 						href="profile"> <i class="bi bi-person"></i> <span>My
 								Profile</span>
@@ -49,16 +47,11 @@
 					<li>
 						<hr class="dropdown-divider">
 					</li>
-					<!-- <a class="dropdown-item d-flex align-items-center"
-						href="#"> <i class="bi bi-box-arrow-right"></i> <span>Sign
-								Out</span>
-					
-					</a> -->
 					<li>
 						<form action="/vacxin-system/logout" method="post">
 							<button class="dropdown-item d-flex align-items-center"
 								type="submit">
-								<i class="bi bi-box-arrow-right"></i> <span>Sign Out
+								<i class="bi bi-box-arrow-right"></i> Sign Out
 							</button>
 						</form>
 					</li>

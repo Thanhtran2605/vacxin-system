@@ -36,68 +36,55 @@
 										<p class="text-center small">Enter your personal details
 											to create account</p>
 									</div>
-
-									<form:form method="post" action="/vacxin-system/register"
-										modelAttribute="newUser" class="row g-3 needs-validation"
-										novalidate="novalidate">
-										<div class="col-6">
-											<form:label for="yourEmail" path="email" class="form-label">Your Email</form:label>
-											<form:input type="email" path="email" class="form-control"
-												id="yourEmail" required="required" />
-											<div class="invalid-feedback">Please enter a valid
-												Email adddress!</div>
-										</div>
-
-										<div class="col-6">
-											<form:label for="yourUsername" path="username"
-												class="form-label">Username</form:label>
-											<div class="input-group has-validation">
-												<form:input type="text" path="username" class="form-control"
-													id="yourUsername" required="required" />
-												<div class="invalid-feedback">Please choose a
-													username.</div>
+ 										 <c:if test="${ message != null }">
+											<div class="alert alert-danger alert-dismissible fade show"
+												role="alert">
+												${ message }
+												<button type="button" class="btn-close"
+													data-bs-dismiss="alert" aria-label="Close"></button>
 											</div>
+										</c:if> 
+									<form:form method="post" action="/vacxin-system/register"
+										modelAttribute="newUser" class="row g-3 needs-validation">
+										<div class="col-6">
+											<form:label path="email" class="form-label">Email</form:label>
+											<form:input type="email" path="email" class="form-control" />
+											<form:errors path="email" cssClass="text-danger" />
 										</div>
 
 										<div class="col-6">
-											<form:label for="yourPassword" path="password"
-												class="form-label">Password</form:label>
+											<form:label path="username" class="form-label">Tên đăng nhập</form:label>
+											<form:input type="text" path="username" class="form-control" />
+											<form:errors path="username" cssClass="text-danger" />
+										</div>
+
+										<div class="col-6">
+											<form:label path="password" class="form-label">Mật khẩu</form:label>
 											<form:input type="password" path="password"
-												class="form-control" id="yourPassword" required="required" />
-											<div class="invalid-feedback">Please enter your
-												password!</div>
+												class="form-control" />
+											<form:errors path="password" cssClass="text-danger" />
 										</div>
 
 										<div class="col-6">
-											<form:label for="yourPhone" path="phone" class="form-label">Phone</form:label>
-											<form:input type="text" path="phone" class="form-control"
-												id="yourPhone" required="required" />
-											<div class="invalid-feedback">Please enter your phone!</div>
+											<form:label path="phone" class="form-label">Số điện thoại</form:label>
+											<form:input type="text" path="phone" class="form-control" />
+											<form:errors path="phone" cssClass="text-danger" />
 										</div>
 
 										<div class="col-6">
-											<form:label for="yourAddress" path="address"
-												class="form-label">Address</form:label>
-											<form:input type="text" path="address" class="form-control"
-												id="yourAddress" required="required" />
-											<div class="invalid-feedback">Please enter your
-												address!</div>
-										</div>						
+											<form:label path="address" class="form-label">Địa chỉ</form:label>
+											<form:input type="text" path="address" class="form-control" />
+											<form:errors path="address" cssClass="text-danger" />
+										</div>
 
 										<div class="col-6">
-											<form:label for="yourBirthday" path="birthday"
-												class="form-label">Birthday</form:label>
-											<form:input type="date" path="birthday" class="form-control"
-												id="yourBirthday" required="required" />
-											<div class="invalid-feedback">Please enter your
-												birthday!</div>
+											<form:label path="birthday" class="form-label">Ngày sinh</form:label>
+											<form:input type="date" path="birthday" class="form-control" />
+											<form:errors path="birthday" cssClass="text-danger" />											
 										</div>
-										
-							
 
 										<div class="col-12">
-											<button class="btn btn-primary w-100" type="submit">Create
-												Account</button>
+											<button class="btn btn-primary w-100" type="submit">Tạo tài khoản</button>
 										</div>
 										<div class="col-12">
 											<p class="small mb-0">
@@ -106,7 +93,6 @@
 											</p>
 										</div>
 									</form:form>
-
 								</div>
 							</div>
 

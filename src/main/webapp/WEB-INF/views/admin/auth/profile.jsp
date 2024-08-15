@@ -61,12 +61,7 @@
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Last Name</div>
 										<div class="col-lg-9 col-md-8">${ sessionScope.email }</div>
-									</div>
-
-									<div class="row">
-										<div class="col-lg-3 col-md-4 label">id</div>
-										<div class="col-lg-9 col-md-8">${ sessionScope.id }</div>
-									</div>
+									</div>						
 
 									<div class="row">
 										<div class="col-lg-3 col-md-4 label">Phone</div>
