@@ -24,8 +24,8 @@
 					<a class="navbar-brand d-none d-lg-block"
 						href="/vacxin-system/home"> <img
 						src="<c:url value='/resources/images/logo.png' />" width="60"
-						alt="eCommerce HTML Template"> <span style="color: #003399;">Tiêm
-							chủng Vacxin</span>
+						alt="eCommerce HTML Template"> <span style="color: #003399;">
+						Vacxin</span>
 					</a>
 					<div class="d-flex justify-content-between w-100 d-lg-none">
 						<a class="navbar-brand" href="#"> <img
@@ -874,71 +874,27 @@
 			<div class="row">
 				<div class="col-12 mb-6">
 
-					<h3 class="mb-0">Featured Categories</h3>
+					<h3 class="mb-0">DANH MỤC VACXIN</h3>
 
 				</div>
 			</div>
 			<div class="category-slider">
 
-				<div class="item">
-					<a href="pages/shop-grid.html"
-						class="text-decoration-none text-inherit">
-						<div class="card card-product mb-4">
-							<div class="card-body text-center py-8">
-								<img
-									src="<c:url value='/resources/assets/images/category/category-tea-coffee-drinks.jpg'/>"
-									alt="Grocery Ecommerce Template" class="mb-3">
-								<div>Tea, Coffee & Drinks</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="item">
-					<a href="pages/shop-grid.html"
-						class="text-decoration-none text-inherit">
-						<div class="card card-product mb-4">
-							<div class="card-body text-center py-8">
-								<img
-									src="<c:url value='/resources/assets/images/category/category-atta-rice-dal.jpg'/>"
-									alt="Grocery Ecommerce Template" class="mb-3">
-								<div>Atta, Rice & Dal</div>
-							</div>
-						</div>
-					</a>
-				</div>			
-
-				
-				<div class="item">
-					<a href="pages/shop-grid.html"
-						class="text-decoration-none text-inherit">
-						<div class="card card-product mb-4">
-							<div class="card-body text-center py-8">
-								<img
-									src="<c:url value='/resources/assets/images/category/category-cleaning-essentials.jpg'/>"
-									alt="Grocery Ecommerce Template" class="mb-3"> 
-								<div>Cleaning Essentials</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
-				<div class="item">
-					<a href="pages/shop-grid.html"
-						class="text-decoration-none text-inherit">
-						<div class="card card-product mb-4">
-							<div class="card-body text-center py-8">
-								<img
-									src="<c:url value='/resources/assets/images/category/category-pet-care.jpg'/>"
-									alt="Grocery Ecommerce Template" class="mb-3">
-								<div>Pet Care</div>
-							</div>
-						</div>
-					</a>
-				</div>
-
+			<c:forEach var="user" items="${listVacxin}">
+			    <div class="item">
+			        <a href="#" class="text-decoration-none text-inherit">
+			            <div class="card card-product mb-4">
+			                <div class="card-body text-center py-8">
+			                    <img src="${user.image}"
+			                         class="mb-3" width="150">
+			                    <div>${user.name}</div>
+			                </div>
+			            </div>
+			        </a>
+			    </div>
+			</c:forEach>
+			
 			</div>
-
 
 		</div>
 	</section>
@@ -976,60 +932,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-	<section class="my-lg-14 my-8">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-3">
-					<div class="mb-8 mb-xl-0">
-						<div class="mb-6">
-							<img src="assets/images/icons/clock.svg" alt="">
-						</div>
-						<h3 class="h5 mb-3">10 minute grocery now</h3>
-						<p>Get your order delivered to your doorstep at the earliest
-							from FreshCart pickup stores near you.</p>
-					</div>
-				</div>
-				<div class="col-md-6  col-lg-3">
-					<div class="mb-8 mb-xl-0">
-						<div class="mb-6">
-							<img src="assets/images/icons/gift.svg" alt="">
-						</div>
-						<h3 class="h5 mb-3">Best Prices & Offers</h3>
-						<p>Cheaper prices than your local supermarket, great cashback
-							offers to top it off. Get best pricess & offers.</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="mb-8 mb-xl-0">
-						<div class="mb-6">
-							<img src="assets/images/icons/package.svg" alt="">
-						</div>
-						<h3 class="h5 mb-3">Wide Assortment</h3>
-						<p>Choose from 5000+ products across food, personal care,
-							household, bakery, veg and non-veg & other categories.</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="mb-8 mb-xl-0">
-						<div class="mb-6">
-							<img src="assets/images/icons/refresh-cw.svg" alt="">
-						</div>
-						<h3 class="h5 mb-3">Easy Returns</h3>
-						<p>
-							Not satisfied with a product? Return it at the doorstep & get a
-							refund within hours. No questions asked <a href="#!">policy</a>.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-
-
+	</section><br>
 
 	<!-- Modal -->
 	<div class="modal fade" id="quickViewModal" tabindex="-1"
@@ -1210,166 +1113,12 @@
 	</div>
 
 	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<footer class="row g-4 py-4">
-				<div class="col-12 col-md-12 col-lg-4">
-					<h6 class="mb-4">Categories</h6>
-					<div class="row">
-						<div class="col-6">
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Vegetables & Fruits</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Breakfast & instant food</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Bakery & Biscuits</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Atta, rice & dal</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Sauces & spreads</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Organic & gourmet</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Baby care</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Cleaning essentials</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Personal care</a></li>
-							</ul>
-						</div>
-						<div class="col-6">
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Dairy, bread & eggs</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Cold drinks & juices</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Tea, coffee & drinks</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Masala, oil & more</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Chicken, meat & fish</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Paan corner</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link"> Pharma & wellness</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Home & office</a></li>
-								<li class="nav-item mb-2"><a href="pages/shop-grid.html"
-									class="nav-link">Pet care</a></li>
-							</ul>
-						</div>
-					</div>
 
-				</div>
-				<div class="col-12 col-md-12 col-lg-8">
-					<div class="row g-4">
-						<div class="col-6 col-sm-6 col-md-3">
-							<h6 class="mb-4">Get to know us</h6>
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="pages/about.html"
-									class="nav-link">Company</a></li>
-								<li class="nav-item mb-2"><a href="pages/about.html"
-									class="nav-link">About</a></li>
-								<li class="nav-item mb-2"><a href="pages/blog.html"
-									class="nav-link">Blog</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Help
-										Center</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Our
-										Value</a></li>
-							</ul>
-						</div>
-
-						<div class="col-6 col-sm-6 col-md-3">
-							<h6 class="mb-4">For Consumers</h6>
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Payments</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Shipping</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Product
-										Returns</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">FAQ</a></li>
-								<li class="nav-item mb-2"><a
-									href="pages/shop-shop-checkout.html" class="nav-link">Shop
-										Checkout</a></li>
-							</ul>
-						</div>
-
-						<div class="col-6 col-sm-6 col-md-3">
-							<h6 class="mb-4">Become a Shopper</h6>
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Shopper
-										Opportunities</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Become
-										a Shopper</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Earnings</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Ideas
-										& Guides</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">New
-										Retailers</a></li>
-							</ul>
-						</div>
-						<div class="col-6 col-sm-6 col-md-3">
-							<h6 class="mb-4">Freshcart programs</h6>
-							<ul class="nav flex-column">
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Freshcart
-										programs</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Gift
-										Cards</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Promos
-										& Coupons</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Freshcart
-										Ads</a></li>
-								<li class="nav-item mb-2"><a href="#!" class="nav-link">Careers</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-			</footer>
-			<div class="border-top py-4">
-				<div class="row align-items-center">
-					<div class="col-lg-5 text-lg-start text-center mb-2 mb-lg-0">
-						<ul class="list-inline mb-0">
-							<li class="list-inline-item text-dark">Payment Partners</li>
-							<li class="list-inline-item"><a href="#!"><img
-									src="assets/images/payment/amazonpay.svg" alt=""></a></li>
-							<li class="list-inline-item"><a href="#!"><img
-									src="assets/images/payment/american-express.svg" alt=""></a>
-							</li>
-							<li class="list-inline-item"><a href="#!"><img
-									src="assets/images/payment/mastercard.svg" alt=""></a></li>
-							<li class="list-inline-item"><a href="#!"><img
-									src="assets/images/payment/paypal.svg" alt=""></a></li>
-							<li class="list-inline-item"><a href="#!"><img
-									src="assets/images/payment/visa.svg" alt=""></a></li>
-						</ul>
-					</div>
-					<div class="col-lg-7 mt-4 mt-md-0">
-						<ul class="list-inline mb-0 text-lg-end text-center">
-							<li class="list-inline-item mb-2 mb-md-0 text-dark">Get
-								deliveries with FreshCart</li>
-							<li class="list-inline-item ms-4"><a href="#!"> <img
-									src="assets/images/appbutton/appstore-btn.svg" alt=""
-									style="width: 140px;"></a></li>
-							<li class="list-inline-item"><a href="#!"> <img
-									src="assets/images/appbutton/googleplay-btn.svg" alt=""
-									style="width: 140px;"></a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
 			<div class="border-top py-4">
 				<div class="row align-items-center">
 					<div class="col-md-6">
-						<span class="small text-muted">Copyright 2023 © FreshCart
-							eCommerce HTML Template. All rights reserved. Powered by
-							Codescandy.</span>
+						<span class="small text-muted">Copyright 2023 © Powered by
+							LEHIEU.</span>
 					</div>
 					<div class="col-md-6">
 						<ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
