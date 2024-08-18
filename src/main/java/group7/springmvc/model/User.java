@@ -1,6 +1,5 @@
 package group7.springmvc.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -55,6 +54,8 @@ public class User {
 
 	String fullName;
 	String gender;
+	
+	byte status;
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")

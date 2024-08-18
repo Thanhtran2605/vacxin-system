@@ -15,6 +15,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import group7.springmvc.model.Doctor;
+import group7.springmvc.model.Employee;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
@@ -23,4 +24,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
 	@Query("SELECT r FROM Doctor r WHERE r.employee.user.fullName LIKE %:name%")
 	List<Doctor> findByName(@Param("name") String name);
+	
+	Doctor findByEmployee(Employee employee);
 }

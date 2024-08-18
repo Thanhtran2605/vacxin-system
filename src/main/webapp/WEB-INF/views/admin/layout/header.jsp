@@ -10,7 +10,7 @@
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
 
-	<div class="search-bar">
+	<!-- <div class="search-bar">
 		<form class="search-form d-flex align-items-center" method="POST"
 			action="#">
 			<input type="text" name="query" placeholder="Search"
@@ -19,7 +19,7 @@
 				<i class="bi bi-search"></i>
 			</button>
 		</form>
-	</div>
+	</div> -->
 
 	<nav class="header-nav ms-auto">
 		<ul class="d-flex align-items-center">
@@ -34,7 +34,7 @@
 				data-bs-toggle="dropdown"> <img
 					src="<c:url value="/resources/images/user-default.jpg" />"
 					alt="Profile" class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">ADMIN</span>
+					class="d-none d-md-block dropdown-toggle ps-2">${ sessionScope.username }</span>
 			</a>
 
 				<ul

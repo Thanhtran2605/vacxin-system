@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import group7.springmvc.model.Employee;
+import group7.springmvc.model.User;
 import group7.springmvc.repository.EmployeeRepository;
 
 @Service
@@ -28,5 +29,9 @@ public class EmployeeService {
 
 	public void deleteById(Long id) {
 		employeeRepository.deleteById(id);
+	}
+	
+	public Employee findByUser(User user) {
+		return employeeRepository.findByUser(user);
 	}
 }

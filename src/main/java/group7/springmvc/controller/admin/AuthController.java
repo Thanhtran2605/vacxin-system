@@ -87,6 +87,7 @@ public class AuthController {
 		String hassPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(hassPassword);
 		user.setRole(roleService.findByValue("PATIENT"));
+		user.setStatus((byte)0);
 		userService.save(user);
 		return "redirect:/login";
 	}

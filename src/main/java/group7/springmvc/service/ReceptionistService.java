@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import group7.springmvc.model.Employee;
 import group7.springmvc.model.Receptionist;
 import group7.springmvc.repository.ReceptionistRepository;
 
@@ -44,4 +45,10 @@ public class ReceptionistService {
 		}
 		return receptionists;
 	}
+
+	public Receptionist findByEmployee(Employee employee) {
+		return receptionistRepository.findByEmployee(employee);
+	}
+	
+	
 }

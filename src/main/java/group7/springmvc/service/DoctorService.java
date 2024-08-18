@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import group7.springmvc.model.Doctor;
+import group7.springmvc.model.Employee;
 import group7.springmvc.repository.DoctorRepository;
 
 @Service
@@ -50,4 +51,10 @@ public class DoctorService {
 		}
 		return receptionists;
 	}
+
+	public Doctor findByEmployee(Employee employee) {
+		return doctorRepository.findByEmployee(employee);
+	}
+	
+	
 }

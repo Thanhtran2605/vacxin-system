@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -33,19 +34,21 @@ public class Vaccine {
 	@NotBlank(message = "Tên vaccine không được trống")
     private String name;
 
-    @NotNull(message = "Giá is không được trống")
+    @NotNull(message = "Giá không được trống")
     private Double price;
 
-    @NotBlank(message = "Nơi sản xuất is không được trống")
+    @NotBlank(message = "Nơi sản xuất không được trống")
     private String country;
 
-    @NotBlank(message = "Bệnh is không được trống")
+    @NotBlank(message = "Bệnh không được trống")
     private String disease;
 
-    @NotBlank(message = "Mô tả is không được trống")
+    @NotBlank(message = "Mô tả không được trống")
     private String description;
 
-    @NotBlank(message = "URL Hình ảnh is không được trống")
+    @NotBlank(message = "URL Hình ảnh không được trống")
     private String image;
-
+    
+    @Min(value = 1, message = "Số lượng không được nhỏ hơn 1")
+    private int quantity;
 }

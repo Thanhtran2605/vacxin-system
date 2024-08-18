@@ -53,11 +53,6 @@
               <i class="bi bi-circle"></i><span>Danh sách địa điểm tiêm</span>
             </a>
           </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
        
         </ul>
       </li><!-- End Forms Nav -->

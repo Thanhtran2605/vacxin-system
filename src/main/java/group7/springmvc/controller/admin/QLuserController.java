@@ -62,7 +62,7 @@ public class QLuserController {
             @RequestParam("phone") String phone,
             @RequestParam("address") String address,
             @RequestParam("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
-            @RequestParam("role") Long roleId,
+            @RequestParam("role") byte roleId,
             RedirectAttributes redirectAttributes) {
     	
     	// Kiểm tra ngày sinh

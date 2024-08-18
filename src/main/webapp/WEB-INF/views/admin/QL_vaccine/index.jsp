@@ -66,17 +66,26 @@
 							<thead>
 								<tr>
 									<th scope="col">Sắp Xếp [<a
-										href="?page=1&sort=id,${param.sort eq 'id,asc' ? 'desc' : 'asc'}${queryString}">ID</a>]</th>
+										href="?page=1&sort=id,${param.sort eq 'id,asc' ? 'desc' : 'asc'}${queryString}">ID</a>]
+									</th>
 									<th scope="col">Hình ảnh</th>
 									<th scope="col">Sắp Xếp [<a
-										href="?page=1&sort=name,${param.sort eq 'name,asc' ? 'desc' : 'asc'}${queryString}">Tên</a>]</th>
+										href="?page=1&sort=name,${param.sort eq 'name,asc' ? 'desc' : 'asc'}${queryString}">Tên</a>]
+									</th>
 									<th scope="col">Sắp Xếp [<a
-										href="?page=1&sort=price,${param.sort eq 'price,asc' ? 'desc' : 'asc'}${queryString}">Giá</a>]</th>
+										href="?page=1&sort=price,${param.sort eq 'price,asc' ? 'desc' : 'asc'}${queryString}">Giá</a>]
+									</th>
 									<th scope="col">Sắp Xếp [<a
-										href="?page=1&sort=disease,${param.sort eq 'disease,asc' ? 'desc' : 'asc'}${queryString}">Bệnh</a>]</th>
+										href="?page=1&sort=disease,${param.sort eq 'disease,asc' ? 'desc' : 'asc'}${queryString}">Bệnh</a>]
+									</th>
 									<th scope="col">Sắp Xếp [<a
 										href="?page=1&sort=country,${param.sort eq 'country,asc' ? 'desc' : 'asc'}${queryString}">Sản
-											xuất</a>]</th>
+											xuất</a>]
+									</th>
+									<th scope="col">Sắp Xếp [<a
+										href="?page=1&sort=quantity,${param.sort eq 'quantity,asc' ? 'desc' : 'asc'}${queryString}">Số
+											lượng</a>]
+									</th>
 									<th scope="col">Mô tả</th>
 									<th scope="col">Sửa</th>
 									<th scope="col">Xóa</th>
@@ -91,8 +100,9 @@
 											<td><img src="${vaccine.image}" width="150px" /></td>
 											<td class="shorten-text">${vaccine.name}</td>
 											<td>${vaccine.price}00đ</td>
-											<td>${vaccine.disease}</td>
+											<td class="shorten-text">${vaccine.disease}</td>
 											<td>${vaccine.country}</td>
+											<td>${vaccine.quantity} liều</td>
 											<td class="shorten-text">${vaccine.description}</td>
 											<td><a
 												href="/vacxin-system/admin/vaccines/edit/${vaccine.id}"

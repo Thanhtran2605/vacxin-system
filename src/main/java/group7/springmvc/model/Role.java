@@ -2,6 +2,7 @@ package group7.springmvc.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,14 @@ public class Role {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
-	String value;
+	@Column(columnDefinition = "TINYINT")
+    byte id;
+	
+    @Column(length = 15, nullable = false, unique = true)
+    String value;
 	
 	@ToString.Exclude
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
 	List<User> users;
 }
+
