@@ -23,15 +23,20 @@ public class EmployeeService {
 		return employeeRepository.findAll();
 	}
 
-	public Optional<Employee> findById(Long id) {
-		return employeeRepository.findById(id);
+	public Employee findById(Long id) {
+		return employeeRepository.findById(id).orElse(null);
 	}
 
 	public void deleteById(Long id) {
 		employeeRepository.deleteById(id);
 	}
-	
+
 	public Employee findByUser(User user) {
 		return employeeRepository.findByUser(user);
 	}
+
+	public Optional<Employee> findByUserId(Long userId) {
+		return employeeRepository.findByUserId(userId);
+	}
+
 }

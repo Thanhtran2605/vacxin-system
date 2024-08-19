@@ -24,8 +24,9 @@
 
 	<main id="main" class="main">
 
-		<div class="pagetitle">
+        <div class="pagetitle d-flex justify-content-between align-items-center mb-3">
             <h1>Danh sách Bác sĩ</h1>
+            <a href="/vacxin-system/admin/doctor/add" class="btn btn-primary">Thêm mới</a>
         </div>
 
 		<section class="section">

@@ -13,5 +13,4 @@ import group7.springmvc.model.Patient;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
-	
 }

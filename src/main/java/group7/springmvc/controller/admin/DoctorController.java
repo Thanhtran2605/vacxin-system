@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group7.springmvc.model.Doctor;
+import group7.springmvc.model.Employee;
+import group7.springmvc.model.User;
 import group7.springmvc.service.DoctorService;
 import group7.springmvc.service.EmployeeService;
 import group7.springmvc.service.UserService;
@@ -88,10 +91,45 @@ public class DoctorController {
 		return "redirect:/admin/doctor";
 	}
 
-//	@GetMapping("/add")
-//	public String showAddDoctorForm(ModelMap model) {
-//		model.addAttribute("doctor", new Doctor());
-//		return "admin/QL_doctor/add";
-//	}
+	@PostMapping("/add")
+	public String addDoctor(@RequestParam Long userId, @RequestParam double salary, @RequestParam String department,
+			@RequestParam String specialization, @RequestParam String licenseNumber,
+			@RequestParam int yearsOfExperience, RedirectAttributes redirectAttributes) {
+
+		// Kiểm tra xem userId đã tồn tại trong bảng Employee chưa
+		if (employeeService.findByUserId(userId).isPresent()) {
+			redirectAttributes.addFlashAttribute("error", "User ID already exists in Employee table.");
+			return "redirect:/admin/doctor/add";
+		}
+
+		// Fetch user details
+		User user = userService.findById(userId).orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+
+		// Add employee
+		Employee employee = new Employee();
+		employee.setUser(user);
+		employee.setSalary(salary);
+		employee.setDepartment(department);
+		employeeService.save(employee);
+
+		// Add doctor
+		Doctor doctor = new Doctor();
+		doctor.setEmployee(employee);
+		doctor.setSpecialization(specialization);
+		doctor.setLicenseNumber(licenseNumber);
+		doctor.setYearsOfExperience(yearsOfExperience);
+		doctorService.save(doctor);
+
+		redirectAttributes.addFlashAttribute("message", "Doctor added successfully");
+		return "redirect:/admin/doctor";
+	}
+
+	@GetMapping("/add")
+	public String showAddDoctorForm(Model model) {
+		byte roleId = 3; // role_id là 3
+		List<User> users = userService.findUsersByRoleId(roleId);
+		model.addAttribute("users", users);
+		return "admin/QL_doctor/add";
+	}
 
 }

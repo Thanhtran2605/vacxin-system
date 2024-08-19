@@ -103,7 +103,13 @@
             <a href="#">
               <i class="bi bi-circle"></i><span>Chart.js</span>
             </a>
-          </li>
+          </li> 
+        
+        <li>
+        	<a href="/vacxin-system/admin/statistic/statistic-by-vaccine">
+			    <i class="bi bi-circle"></i><span>Thống kê Vaccine</span>
+			</a>
+        </li>
           <li>
             <a href="charts-apexcharts.html">
               <i class="bi bi-circle"></i><span>ApexCharts</span>

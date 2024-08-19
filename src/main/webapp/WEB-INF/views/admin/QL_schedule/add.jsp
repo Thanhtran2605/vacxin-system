@@ -86,69 +86,69 @@ h1 {
 	<jsp:include page="../layout/sidebar.jsp" />
 
 	<main id="main" class="main">
-
 		<div class="pagetitle">
 			<h1>Quản lý tiêm chủng</h1>
 		</div>
 
 		<section class="section">
 			<div class="row">
-
 				<div class="card">
 					<div class="card-body">
 						<div class="form-container">
 							<h1>Thêm mới lịch tiêm chủng</h1>
 							<form action="<c:url value='/admin/schedules/add'/>"
 								method="post">
-
 								<label for="doctorId">Bác sĩ:</label> <select id="doctorId"
-									name="doctor.id">
-									<!-- Thay đổi theo dữ liệu từ bác sĩ -->
-									<option value="" disabled selected>-- Chọn bác sĩ</option>
+									name="doctor.id" class="form-control">
+									<option value="" disabled selected>-- Chọn bác sĩ --</option>
 									<c:forEach var="doctor" items="${doctors}">
 										<option value="${doctor.id}">${doctor.employee.user.fullName}</option>
 									</c:forEach>
-
 								</select> <br /> <label for="patientId">Bệnh nhân:</label> <select
-									id="patientId" name="patient.id">
-									<!-- Thay đổi theo dữ liệu từ bệnh nhân -->
-									<option value="" disabled selected>-- Chọn bệnh nhân</option>
+									id="patientId" name="patient.id" class="form-control">
+									<option value="" disabled selected>-- Chọn bệnh nhân
+										--</option>
 									<c:forEach var="patient" items="${patients}">
 										<option value="${patient.id}">${patient.user.fullName}</option>
 									</c:forEach>
-
-								</select> <br /> <label for="date">Ngày tiêm:</label> <input type="date"
-									id="date" name="vaccinationDate" /> <br /> <label
+								</select> <br /> <label for="vaccinationDate">Ngày tiêm:</label> <input
+									type="date" id="vaccinationDate" name="vaccinationDate"
+									class="form-control" /> <br /> <label for="vaccinationTime">Giờ
+									tiêm:</label> <input type="time" id="vaccinationTime"
+									name="vaccinationTime" class="form-control" /> <br /> <label
 									for="vaccineId">Vaccine:</label> <select id="vaccineId"
-									name="vaccine.id">
-									<!-- Thay đổi theo dữ liệu từ vaccine -->
-									<option value="" disabled selected>-- Chọn vaccine</option>
+									name="vaccine.id" class="form-control">
+									<option value="" disabled selected>-- Chọn vaccine --</option>
 									<c:forEach var="vaccine" items="${vaccines}">
 										<option value="${vaccine.id}">${vaccine.name}</option>
 									</c:forEach>
-
 								</select> <br /> <label for="locationId">Địa điểm tiêm:</label> <select
-									id="locationId" name="location.id">
+									id="locationId" name="location.id" class="form-control">
 									<option value="" disabled selected>-- Chọn địa điểm
-										tiêm</option>
+										tiêm --</option>
 									<c:forEach var="location" items="${locations}">
 										<option value="${location.id}">${location.address}</option>
 									</c:forEach>
+								</select> <br /> <label for="status">Trạng thái:</label> <select
+									id="status" name="status" class="form-control">
+									<option value="NOT_DUE" selected>Chưa tới lịch hẹn</option>
+									<option value="COMPLETED">Đã tiêm</option>
+									<option value="CANCELLED">Hủy tiêm</option>
+									<option value="LATE">Trễ hẹn</option>
 								</select> <br />
-
-								<button type="submit">Thêm mới</button>
+								<button type="submit" class="btn btn-primary">Thêm mới</button>
 							</form>
-							<a class="btn btn-primary text-white"
+							<a class="btn btn-secondary text-white"
 								style="text-decoration: none;"
 								href="<c:url value='/admin/schedules/'/>">Quay lại danh sách</a>
+
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</section>
-
 	</main>
+
 
 	<!-- ======= JS ======= -->
 	<jsp:include page="../layout/jsLink.jsp" />

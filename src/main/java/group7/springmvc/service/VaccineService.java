@@ -1,7 +1,9 @@
 package group7.springmvc.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.criteria.Predicate;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import group7.springmvc.model.Vaccine;
 import group7.springmvc.repository.VaccineRepository;
 
@@ -25,29 +28,29 @@ public class VaccineService {
 	public List<Vaccine> findAll() {
 		return vaccineRepository.findAll();
 	}
-	
+
 	public Page<Vaccine> findAll(Pageable pageable) {
 		return vaccineRepository.findAll(pageable);
 	}
-	
+
 	public Page<Vaccine> findAllByCriteria(String name, String type, String country, Pageable pageable) {
-	    return vaccineRepository.findAll((root, query, criteriaBuilder) -> {
-	        List<Predicate> predicates = new ArrayList<>();
+		return vaccineRepository.findAll((root, query, criteriaBuilder) -> {
+			List<Predicate> predicates = new ArrayList<>();
 
-	        if (name != null && !name.isEmpty()) {
-	            predicates.add(criteriaBuilder.like(root.get("name"), "%" + name + "%"));
-	        }
+			if (name != null && !name.isEmpty()) {
+				predicates.add(criteriaBuilder.like(root.get("name"), "%" + name + "%"));
+			}
 
-	        if (type != null && !type.isEmpty()) {
-	            predicates.add(criteriaBuilder.like(root.get("disease"), "%" + type + "%"));
-	        }
+			if (type != null && !type.isEmpty()) {
+				predicates.add(criteriaBuilder.like(root.get("disease"), "%" + type + "%"));
+			}
 
-	        if (country != null && !country.isEmpty()) {
-	            predicates.add(criteriaBuilder.like(root.get("country"), "%" + country + "%"));
-	        }
+			if (country != null && !country.isEmpty()) {
+				predicates.add(criteriaBuilder.like(root.get("country"), "%" + country + "%"));
+			}
 
-	        return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-	    }, pageable);
+			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+		}, pageable);
 	}
 
 	public Optional<Vaccine> findById(Long id) {
@@ -58,5 +61,15 @@ public class VaccineService {
 		vaccineRepository.deleteById(id);
 	}
 
-	
+	public Map<String, Long> getCountPatientsByVaccine() {
+		List<Object[]> results = vaccineRepository.countPatientsByVaccine();
+		Map<String, Long> vaccineStats = new HashMap<>();
+		for (Object[] result : results) {
+			String vaccineName = (String) result[0];
+			Long count = (Long) result[1];
+			vaccineStats.put(vaccineName, count);
+		}
+		return vaccineStats;
+	}
+
 }

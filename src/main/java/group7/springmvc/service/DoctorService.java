@@ -44,7 +44,7 @@ public class DoctorService {
 			Long id = Long.parseLong(searchTerm);
 			// Tìm theo ID
 			receptionists = doctorRepository.findById(id).map(receptionist -> List.of(receptionist))
-					.orElseGet(List::of); // Trả về danh sách rỗng nếu không tìm thấy
+					.orElseGet(List::of);
 		} catch (NumberFormatException e) {
 			// Nếu không phải ID, tìm kiếm theo tên
 			receptionists = doctorRepository.findByName(searchTerm);

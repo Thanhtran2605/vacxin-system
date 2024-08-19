@@ -8,6 +8,7 @@ package group7.springmvc.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,10 @@ public class ScheduleService {
 
 	public List<VaccineSchedule> findByVaccineName(String vaccineName) {
 		return scheduleRepository.findByVaccineName(vaccineName);
+	}
+
+	public List<Map<String, Object>> findVaccineStatistics(Long vaccineId) {
+		return scheduleRepository.findVaccineStatistics(vaccineId);
 	}
 
 }

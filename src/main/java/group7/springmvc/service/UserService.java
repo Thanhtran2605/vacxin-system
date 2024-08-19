@@ -5,13 +5,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import group7.springmvc.model.User;
+import group7.springmvc.repository.RoleRepository;
 import group7.springmvc.repository.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	RoleRepository roleRepository;
 
 	public User save(User user) {
 		return userRepository.save(user);
@@ -32,32 +37,36 @@ public class UserService {
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
-	
+
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
-	
-	public User updateUser(Long id, User updatedUser) {
-        Optional<User> existingUserOptional = userRepository.findById(id);
-        if (existingUserOptional.isPresent()) {
-            User existingUser = existingUserOptional.get();
-            // Cập nhật thông tin của người dùng
-            existingUser.setUsername(updatedUser.getUsername());
-            existingUser.setEmail(updatedUser.getEmail());
-//            existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setPhone(updatedUser.getPhone());
-            existingUser.setAddress(updatedUser.getAddress());
-            existingUser.setBirthday(updatedUser.getBirthday());
-            existingUser.setRole(updatedUser.getRole());
 
-            // Lưu lại người dùng đã được cập nhật
-            return userRepository.save(existingUser);
-        }
-        return null;
+	public List<User> findUsersByRoleId(byte roleId) {
+		return userRepository.findByRole_Id(roleId);
 	}
-	
+
+	public User updateUser(Long id, User updatedUser) {
+		Optional<User> existingUserOptional = userRepository.findById(id);
+		if (existingUserOptional.isPresent()) {
+			User existingUser = existingUserOptional.get();
+			// Cập nhật thông tin của người dùng
+			existingUser.setUsername(updatedUser.getUsername());
+			existingUser.setEmail(updatedUser.getEmail());
+//            existingUser.setPassword(updatedUser.getPassword());
+			existingUser.setPhone(updatedUser.getPhone());
+			existingUser.setAddress(updatedUser.getAddress());
+			existingUser.setBirthday(updatedUser.getBirthday());
+			existingUser.setRole(updatedUser.getRole());
+
+			// Lưu lại người dùng đã được cập nhật
+			return userRepository.save(existingUser);
+		}
+		return null;
+	}
+
 	public List<User> findByUsernameContaining(String keyword) {
-        return userRepository.findByUsernameContaining(keyword);
-    }
-	
+		return userRepository.findByUsernameContaining(keyword);
+	}
+
 }

@@ -22,11 +22,11 @@ h1 {
 }
 
 .form-container {
-	max-width: 1200px; 
-	margin: 0 auto; 
-	padding: 20px; 
-	border: 1px solid #ddd; 
-	border-radius: 8px; 
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
 }
 
 .form-container form {
@@ -86,14 +86,12 @@ h1 {
 	<jsp:include page="../layout/sidebar.jsp" />
 
 	<main id="main" class="main">
-
 		<div class="pagetitle">
 			<h1>Quản lý tiêm chủng</h1>
 		</div>
 
 		<section class="section">
 			<div class="row">
-
 				<div class="card">
 					<div class="card-body">
 						<div class="form-container">
@@ -102,48 +100,69 @@ h1 {
 								method="post">
 								<input type="hidden" name="id" value="${schedule.id}" /> <label
 									for="doctorId">Bác sĩ:</label> <select id="doctorId"
-									name="doctor.id">
+									name="doctor.id" class="form-control">
+									<option value="" disabled>-- Chọn bác sĩ --</option>
 									<c:forEach var="doctor" items="${doctors}">
 										<option value="${doctor.id}"
 											<c:if test="${doctor.id == schedule.doctor.id}">selected</c:if>>${doctor.employee.user.fullName}</option>
 									</c:forEach>
 								</select> <br /> <label for="patientId">Bệnh nhân:</label> <select
-									id="patientId" name="patient.id">
+									id="patientId" name="patient.id" class="form-control">
+									<option value="" disabled>-- Chọn bệnh nhân --</option>
 									<c:forEach var="patient" items="${patients}">
 										<option value="${patient.id}"
 											<c:if test="${patient.id == schedule.patient.id}">selected</c:if>>${patient.user.fullName}</option>
 									</c:forEach>
 								</select> <br /> <label for="vaccinationDate">Ngày tiêm:</label> <input
 									type="date" id="vaccinationDate" name="vaccinationDate"
-									value="${schedule.vaccinationDate}" /> <br /> <label
-									for="vaccineId">Vaccine:</label> <select id="vaccineId"
-									name="vaccine.id">
+									class="form-control" value="${schedule.vaccinationDate}" /> <br />
+
+								<label for="vaccinationTime">Giờ tiêm:</label> <input
+									type="time" id="vaccinationTime" name="vaccinationTime"
+									class="form-control" value="${schedule.vaccinationTime}" /> <br />
+
+								<label for="vaccineId">Vaccine:</label> <select id="vaccineId"
+									name="vaccine.id" class="form-control">
+									<option value="" disabled>-- Chọn vaccine --</option>
 									<c:forEach var="vaccine" items="${vaccines}">
 										<option value="${vaccine.id}"
 											<c:if test="${vaccine.id == schedule.vaccine.id}">selected</c:if>>${vaccine.name}</option>
 									</c:forEach>
 								</select> <br /> <label for="locationId">Địa điểm tiêm:</label> <select
-									id="locationId" name="location.id">
+									id="locationId" name="location.id" class="form-control">
+									<option value="" disabled>-- Chọn địa điểm tiêm --</option>
 									<c:forEach var="location" items="${locations}">
 										<option value="${location.id}"
 											<c:if test="${location.id == schedule.location.id}">selected</c:if>>${location.address}</option>
 									</c:forEach>
+								</select> <br /> <label for="status">Trạng thái:</label> <select
+									id="status" name="status" class="form-control">
+									<option value="NOT_DUE"
+										<c:if test="${schedule.status == 'NOT_DUE'}">selected</c:if>>Chưa
+										tới lịch hẹn</option>
+									<option value="COMPLETED"
+										<c:if test="${schedule.status == 'COMPLETED'}">selected</c:if>>Đã
+										tiêm</option>
+									<option value="CANCELLED"
+										<c:if test="${schedule.status == 'CANCELLED'}">selected</c:if>>Hủy
+										tiêm</option>
+									<option value="LATE"
+										<c:if test="${schedule.status == 'LATE'}">selected</c:if>>Trễ
+										hẹn</option>
 								</select> <br />
 
 								<button type="submit" class="btn btn-primary">Cập nhật</button>
 							</form>
-
-							<a class="btn btn-primary text-white"
+							<a class="btn btn-secondary text-white"
 								style="text-decoration: none;"
 								href="<c:url value='/admin/schedules/'/>">Quay lại danh sách</a>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</section>
-
 	</main>
+
 
 	<!-- ======= JS ======= -->
 	<jsp:include page="../layout/jsLink.jsp" />
