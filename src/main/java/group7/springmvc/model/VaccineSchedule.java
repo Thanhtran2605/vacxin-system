@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import group7.springmvc.model.VaccineSchedule.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

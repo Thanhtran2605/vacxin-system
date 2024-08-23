@@ -6,6 +6,7 @@
 */
 package group7.springmvc.controller.admin;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import group7.springmvc.model.Vaccine;
 import group7.springmvc.model.VaccineSchedule;
 import group7.springmvc.service.DoctorService;
 import group7.springmvc.service.PatientService;
@@ -50,8 +52,23 @@ public class ScheduleController {
 
 	@GetMapping("")
 	public String listSchedules(Model model) {
-		List<VaccineSchedule> schedules = scheduleService.getAllSchedules();
-		model.addAttribute("schedules", schedules);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		Date startOfDay = calendar.getTime();
+
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		Date endOfDay = calendar.getTime();
+
+		List<VaccineSchedule> todaySchedules = scheduleService.getSchedulesByDateRange(startOfDay, endOfDay);
+		model.addAttribute("todaySchedules", todaySchedules);
+
+		List<VaccineSchedule> allSchedules = scheduleService.getAllSchedulesAfterToday();
+		model.addAttribute("allSchedules", allSchedules);
+
 		return "admin/QL_schedule/list";
 	}
 
@@ -69,9 +86,30 @@ public class ScheduleController {
 
 	@PostMapping("/add")
 	public String addSchedule(@ModelAttribute VaccineSchedule schedule, BindingResult result) {
-		scheduleService.addSchedule(schedule);
-		return "redirect:/admin/schedules/";
+		if (result.hasErrors()) {
+			return "admin/QL_schedule/add";
+		}
 
+		scheduleService.addSchedule(schedule);
+
+		Optional<Vaccine> optionalVaccine = vaccineService.findById(schedule.getVaccine().getId());
+
+		if (optionalVaccine.isPresent()) {
+			Vaccine vaccine = optionalVaccine.get();
+
+			if (vaccine.getQuantity() > 0) {
+				vaccine.setQuantity(vaccine.getQuantity() - 1);
+				vaccineService.save(vaccine);
+			} else {
+				result.rejectValue("vaccine", "error.vaccine", "Số lượng vaccine không đủ.");
+				return "admin/QL_schedule/add";
+			}
+		} else {
+			result.reject("error", "Vaccine không tồn tại.");
+			return "admin/QL_schedule/add";
+		}
+
+		return "redirect:/admin/schedules/";
 	}
 
 	@GetMapping("/view/{id}")
@@ -96,14 +134,14 @@ public class ScheduleController {
 			model.addAttribute("locations", vaccineLocationService.findAll());
 			return "admin/QL_schedule/edit";
 		} else {
-			return "redirect:/admin/schedules";
+			return "redirect:/admin/schedules/";
 		}
 	}
 
 	@PostMapping("/edit")
 	public String updateSchedule(@ModelAttribute VaccineSchedule schedule) {
 		scheduleService.updateSchedule(schedule);
-		return "redirect:/admin/schedules";
+		return "redirect:/admin/schedules/";
 	}
 
 	@PostMapping("/delete/{id}")
@@ -112,41 +150,26 @@ public class ScheduleController {
 		return "redirect:/admin/schedules";
 	}
 
-	/*
-	 * @PostMapping("/search") public String searchSchedules(@RequestParam(required
-	 * = false) String searchType,
-	 * 
-	 * @RequestParam(required = false) Long doctorId, @RequestParam(required =
-	 * false) Long patientId,
-	 * 
-	 * @RequestParam(required = false) @DateTimeFormat(iso =
-	 * DateTimeFormat.ISO.DATE) Date vaccinationDate,
-	 * 
-	 * @RequestParam(required = false) Long vaccineId, Model model) {
-	 * 
-	 * List<VaccineSchedule> schedules;
-	 * 
-	 * if (searchType == null || searchType.isEmpty()) { schedules =
-	 * scheduleService.getAllSchedules(); } else { switch (searchType) { case
-	 * "doctor": schedules = scheduleService.searchSchedulesByDoctor(doctorId);
-	 * break; case "patient": schedules =
-	 * scheduleService.searchSchedulesByPatient(patientId); break; case "date":
-	 * schedules = scheduleService.findSchedulesByDate(vaccinationDate); break; case
-	 * "vaccine": schedules = scheduleService.findSchedulesByVaccine(vaccineId);
-	 * break; default: schedules = scheduleService.getAllSchedules(); break; } }
-	 * 
-	 * model.addAttribute("schedules", schedules); return
-	 * "admin/QL_schedule/schedule/list"; }
-	 */
-
 	@PostMapping("/search")
 	public String searchSchedules(@RequestParam(required = false) String searchType,
 			@RequestParam(required = false) Long doctorId, @RequestParam(required = false) Long patientId,
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date vaccinationDate,
 			@RequestParam(required = false) Long vaccineId, @RequestParam(required = false) String doctorName,
 			@RequestParam(required = false) String patientName, @RequestParam(required = false) String vaccineName,
-			Model model) {
+			@RequestParam(required = false) VaccineSchedule.Status status, Model model) {
 
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		Date startOfDay = calendar.getTime();
+
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		Date endOfDay = calendar.getTime();
+
+		List<VaccineSchedule> todaySchedules = scheduleService.getSchedulesByDateRange(startOfDay, endOfDay);
 		List<VaccineSchedule> schedules;
 
 		if (searchType == null || searchType.isEmpty()) {
@@ -187,13 +210,22 @@ public class ScheduleController {
 					schedules = scheduleService.getAllSchedules();
 				}
 				break;
+			case "status":
+				if (status != null) {
+					schedules = scheduleService.findByStatus(status);
+				} else {
+					schedules = scheduleService.getAllSchedules();
+				}
+				break;
 			default:
 				schedules = scheduleService.getAllSchedules();
 				break;
 			}
 		}
 
-		model.addAttribute("schedules", schedules);
+		model.addAttribute("allSchedules", schedules);
+		model.addAttribute("todaySchedules", todaySchedules);
+
 		return "admin/QL_schedule/list";
 	}
 

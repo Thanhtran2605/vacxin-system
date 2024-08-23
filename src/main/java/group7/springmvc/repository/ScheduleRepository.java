@@ -37,6 +37,12 @@ public interface ScheduleRepository extends JpaRepository<VaccineSchedule, Long>
 	@Query("SELECT vs FROM VaccineSchedule vs WHERE vs.vaccine.name LIKE %:vaccineName%")
 	List<VaccineSchedule> findByVaccineName(@Param("vaccineName") String vaccineName);
 
+	@Query("SELECT vs FROM VaccineSchedule vs WHERE vs.status = :status")
+	List<VaccineSchedule> findByStatus(@Param("status") VaccineSchedule.Status status);
+
+	@Query("SELECT vs FROM VaccineSchedule vs ORDER BY vs.vaccinationDate DESC")
+	List<VaccineSchedule> findAllSchedulesAfterToday(@Param("today") Date today);
+
 	@Query("SELECT vl.nameLocation AS locationName, COUNT(vs.id) AS count " + "FROM VaccineSchedule vs "
 			+ "JOIN vs.location vl " + "WHERE vs.status = 'COMPLETED' " + "GROUP BY vl.nameLocation")
 	List<Object[]> countVaccinationsByLocation();
@@ -53,5 +59,31 @@ public interface ScheduleRepository extends JpaRepository<VaccineSchedule, Long>
 			+ "JOIN user u ON p.user_id = u.id " + "WHERE v.id = :vaccineId AND vs.status = 'COMPLETED' "
 			+ "GROUP BY v.name, age_group " + "ORDER BY age_group", nativeQuery = true)
 	List<Map<String, Object>> findVaccineStatistics(@Param("vaccineId") long vaccineId);
+
+	@Query("SELECT FUNCTION('hour', vs.vaccinationTime) AS hour, COUNT(vs) AS count " + "FROM VaccineSchedule vs "
+			+ "GROUP BY FUNCTION('hour', vs.vaccinationTime)")
+	List<Object[]> countByHour();
+
+	@Query("SELECT FUNCTION('DATE', v.vaccinationDate) AS date, COUNT(v) AS count " + "FROM VaccineSchedule v "
+			+ "WHERE FUNCTION('DATE', v.vaccinationDate) = :date " + "GROUP BY FUNCTION('DATE', v.vaccinationDate) "
+			+ "ORDER BY date")
+	List<Object[]> findStatisticsByDay(@Param("date") Date date);
+
+	@Query("SELECT DATE_FORMAT(v.vaccinationDate, '%d') AS day, COUNT(v) AS count " + "FROM VaccineSchedule v "
+			+ "WHERE EXTRACT(YEAR FROM v.vaccinationDate) = :year "
+			+ "AND EXTRACT(MONTH FROM v.vaccinationDate) = :month " + "GROUP BY DATE_FORMAT(v.vaccinationDate, '%d') "
+			+ "ORDER BY day")
+	List<Object[]> findStatisticsByDayInMonth(@Param("year") int year, @Param("month") int month);
+
+	@Query("SELECT FUNCTION('MONTH', v.vaccinationDate) AS month, COUNT(v) AS count " + "FROM VaccineSchedule v "
+			+ "WHERE EXTRACT(YEAR FROM v.vaccinationDate) = :year " + "GROUP BY FUNCTION('MONTH', v.vaccinationDate) "
+			+ "ORDER BY month")
+	List<Object[]> findStatisticsByMonthInYear(@Param("year") int year);
+
+	@Query("SELECT v.status, COUNT(v) * 100.0 / (SELECT COUNT(vs) FROM VaccineSchedule vs) AS percentage "
+			+ "FROM VaccineSchedule v " + "GROUP BY v.status")
+	List<Object[]> findStatusPercentage();
+
+	List<VaccineSchedule> findByVaccinationDateBetween(Date startDate, Date endDate);
 
 }

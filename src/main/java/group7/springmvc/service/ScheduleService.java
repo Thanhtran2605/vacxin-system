@@ -54,6 +54,11 @@ public class ScheduleService {
 		return scheduleRepository.findByVaccinationDate(vaccinationDate);
 	}
 
+	/*
+	 * public List<VaccineSchedule> getSchedulesByDate(Date date) { return
+	 * scheduleRepository.findByVaccinationDate(date); }
+	 */
+
 	public List<VaccineSchedule> findSchedulesByVaccine(Long vaccineId) {
 		return scheduleRepository.findByVaccineId(vaccineId);
 	}
@@ -70,8 +75,41 @@ public class ScheduleService {
 		return scheduleRepository.findByVaccineName(vaccineName);
 	}
 
+	public List<VaccineSchedule> findByStatus(VaccineSchedule.Status status) {
+		return scheduleRepository.findByStatus(status);
+	}
+
 	public List<Map<String, Object>> findVaccineStatistics(Long vaccineId) {
 		return scheduleRepository.findVaccineStatistics(vaccineId);
+	}
+
+	public List<VaccineSchedule> getAllSchedulesAfterToday() {
+		Date today = new Date();
+		return scheduleRepository.findAllSchedulesAfterToday(today);
+	}
+
+	public List<VaccineSchedule> getSchedulesByDateRange(Date startDate, Date endDate) {
+		return scheduleRepository.findByVaccinationDateBetween(startDate, endDate);
+	}
+
+	public List<Object[]> getStatisticsByHour() {
+		return scheduleRepository.countByHour();
+	}
+
+	public List<Object[]> getStatisticsByDay(Date date) {
+		return scheduleRepository.findStatisticsByDay(date);
+	}
+
+	public List<Object[]> getStatisticsByMonth(int year, int month) {
+		return scheduleRepository.findStatisticsByDayInMonth(year, month);
+	}
+
+	public List<Object[]> getStatisticsByYear(int year) {
+		return scheduleRepository.findStatisticsByMonthInYear(year);
+	}
+
+	public List<Object[]> getStatusPercentage() {
+		return scheduleRepository.findStatusPercentage();
 	}
 
 }

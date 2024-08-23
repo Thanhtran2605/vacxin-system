@@ -13,6 +13,12 @@
 <!-- ======= CSS ======= -->
 <jsp:include page="../layout/cssLink.jsp" />
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+
 <style>
 h1 {
 	text-align: center;
@@ -22,7 +28,6 @@ h1 {
 }
 
 .form-container {
-	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
 	border: 1px solid #ddd;
@@ -74,6 +79,39 @@ h1 {
 .form-container a:hover {
 	text-decoration: underline;
 }
+
+.form-container select {
+	padding: 12px 20px;
+	margin-bottom: 20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 18px;
+	height: 50px;
+	background-color: #f8f9fa;
+	color: #333;
+}
+
+.form-container select:hover, .form-container select:focus {
+	border-color: #007bff;
+}
+
+.select2-container .select2-selection--single {
+	height: 50px;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered
+	{
+	line-height: 28px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow
+	{
+	height: 50px;
+}
 </style>
 </head>
 <body>
@@ -111,7 +149,7 @@ h1 {
 									<option value="" disabled>-- Chọn bệnh nhân --</option>
 									<c:forEach var="patient" items="${patients}">
 										<option value="${patient.id}"
-											<c:if test="${patient.id == schedule.patient.id}">selected</c:if>>${patient.user.fullName}</option>
+											<c:if test="${patient.id == schedule.patient.id}">selected</c:if>>${patient.idCard}</option>
 									</c:forEach>
 								</select> <br /> <label for="vaccinationDate">Ngày tiêm:</label> <input
 									type="date" id="vaccinationDate" name="vaccinationDate"
@@ -163,10 +201,39 @@ h1 {
 		</section>
 	</main>
 
+	<script
+		src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#doctorId').select2({
+				placeholder : "-- Chọn bác sĩ --",
+				allowClear : true
+			});
+			$('#patientId').select2({
+				placeholder : "-- Chọn bệnh nhân --",
+				allowClear : true
+			});
+			$('#vaccineId').select2({
+				placeholder : "-- Chọn vaccine --",
+				allowClear : true
+			});
+			$('#locationId').select2({
+				placeholder : "-- Chọn địa điểm tiêm --",
+				allowClear : true
+			});
+			$('#status').select2({
+				placeholder : "-- Chọn trạng thái --",
+				allowClear : true,
+				minimumResultsForSearch : Infinity
+			});
+		});
+	</script>
 
 	<!-- ======= JS ======= -->
 	<jsp:include page="../layout/jsLink.jsp" />
 
 	<jsp:include page="../layout/footer.jsp" />
+
 </body>
 </html>

@@ -34,11 +34,8 @@
 					<div class="card-body">
 						<h1 style="font-size: 20px; padding: 10px; color: #022b59;">Chi
 							tiết lịch tiêm chủng</h1>
-
+						<c:set var="count" value="0" />
 						<div class="details">
-							<p>
-								<strong>ID:</strong> ${schedule.id}
-							</p>
 							<p>
 								<strong>Bác sĩ:</strong>
 								${schedule.doctor.employee.user.fullName}
