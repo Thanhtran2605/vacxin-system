@@ -25,18 +25,21 @@
 	<!-- ======= Main ======= -->
 	<main id="main" class="main">
 		<section class="section dashboard">
+		
 			<div class="row">
 				<c:if test="${errorMessage == true}">
-					<div class="alert alert-danger" role="alert">Mật khẩu cũ không đúng.</div>
+					<div class="alert alert-danger" role="alert">Mật khẩu cũ
+						không đúng.</div>
 				</c:if>
 				<c:if test="${successMessage == true}">
-					<div class="alert alert-success" role="alert">Mật khẩu đã được thay đổi thành công.</div>
+					<div class="alert alert-success" role="alert">Mật khẩu đã
+						được thay đổi thành công.</div>
 				</c:if>
 				<section class="section profile">
 
 					<div class="card">
 						<div class="card-body pt-3">
-
+							
 							<ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
 
 								<li class="nav-item" role="presentation">
@@ -57,7 +60,7 @@
 								<div class="tab-pane fade show active profile-overview"
 									id="profile-overview" role="tabpanel">
 									<h5 class="card-title">Thông tin người dùng</h5>
-									<c:if test="${ currentUser.role.value == 'ADMIN' }">
+									<c:if test="${ currentUser.role.value == 'ADMIN' }">								
 										<div class="row">
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label ">Tên đăng nhập</div>
@@ -225,6 +228,7 @@
 					</div>
 				</section>
 			</div>
+				
 		</section>
 	</main>
 	<a href="#"

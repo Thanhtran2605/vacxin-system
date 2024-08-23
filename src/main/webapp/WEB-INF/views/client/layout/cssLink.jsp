@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- Favicon icon-->
+  <!-- Favicon icon-->
   <link rel="shortcut icon" type="image/x-icon" href="<c:url value='/resources/images/logo.png' />" />
 
   <!-- Libs CSS -->
@@ -19,3 +19,13 @@
   <!-- Theme CSS -->
   <link rel="stylesheet" href="<c:url value='/resources/assets/css/theme.min.css' />" />
  
+ 
+  <style>
+ 	.shorten-text {
+        text-align: left; /* Align text to the left for specific columns */
+        white-space: nowrap; /* Prevent text from wrapping */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
+        max-width: 150px; /* Set a maximum width */
+    } 
+  </style>

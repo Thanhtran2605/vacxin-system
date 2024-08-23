@@ -76,4 +76,9 @@
 	<tx:annotation-driven
 		transaction-manager="transactionManager" />
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- Maximum upload size -->
+    <property name="maxUploadSize" value="5242880"/> <!-- 5MB -->
+</bean>
+	
 </beans>

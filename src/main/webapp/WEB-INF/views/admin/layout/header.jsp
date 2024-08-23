@@ -51,7 +51,7 @@
 						<form action="/vacxin-system/logout" method="post">
 							<button class="dropdown-item d-flex align-items-center"
 								type="submit">
-								<i class="bi bi-box-arrow-right"></i> Sign Out
+								<i class="bi bi-box-arrow-right"></i> Logout
 							</button>
 						</form>
 					</li>

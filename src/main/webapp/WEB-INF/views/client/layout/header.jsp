@@ -2,76 +2,84 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-	<!-- Container wrapper -->
+
+
+
+<nav class="navbar navbar-light py-lg-5 pt-3 px-0 pb-0">
 	<div class="container">
-		<!-- Toggle button -->
-		<button data-mdb-collapse-init class="navbar-toggler" type="button"
-			data-mdb-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<i class="fas fa-bars"></i>
-		</button>
-
-		<!-- Collapsible wrapper -->
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<!-- Navbar brand -->
-			<a class="navbar-brand mt-2 mt-lg-0" href="/vacxin-system/"> 
-			<img src="<c:url value="/resources/images/logo.png" />" alt="" width="40">
-			<span class="d-none d-lg-block">Vacxin</span>
-			</a>
-			<!-- Left links -->
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link" href="/vacxin-system/">Home</a>
-				</li>
-				<li class="nav-item"><a class="nav-link"
-					href="/vacxin-system/about">About</a></li>
-				<li class="nav-item"><a class="nav-link"
-					href="/vacxin-system/contact">Contact</a></li>
-			</ul>
-			<!-- Left links -->
-		</div>
-		<!-- Collapsible wrapper -->
-
-		<!-- Right elements -->
-		<div class="d-flex align-items-center">
-					
-			<!-- Avatar -->
-			<div class="dropdown">
-				<c:choose>
-					<c:when test="${not empty sessionScope.username}">
-						<a data-mdb-dropdown-init
-							class="dropdown-toggle d-flex align-items-center hidden-arrow"
-							href="#" id="navbarDropdownMenuAvatar" role="button"
-							aria-expanded="false"> <img
-							src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-							class="rounded-circle" height="25"
-							alt="Black and White Portrait of a Man" />
-						</a>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="navbarDropdownMenuAvatar">
-							<li><a class="dropdown-item" href="info">My profile</a></li>
-							<li><a class="dropdown-item" href="#">Settings</a></li>
-							<li>
-								<form action="/vacxin-system/logout" method="post">
-									<button class="dropdown-item d-flex align-items-center"
-										type="submit">
-										<i class="bi bi-box-arrow-right"></i> Sign Out
-									</button>
-								</form>
-							</li>
-						</ul>
-					</c:when>
-					<c:otherwise>
-						<a class="btn btn-primary" href="/vacxin-system/login">Login</a>
-						<a class="btn btn-primary" href="/vacxin-system/register">Register</a>
-					</c:otherwise>
-				</c:choose>
+		<div class="row w-100 align-items-center g-3">
+			<div class="col-xxl-2 col-lg-3">
+				<a class="navbar-brand d-none d-lg-block" href="index.html"> <img
+					src="<c:url value='/resources/images/logo.png' />" width="60"
+					alt="eCommerce HTML Template">
+				</a>
 			</div>
+			<div class="col-xxl-6 col-lg-5 d-none d-lg-block">
+				<form action="#" class="search-header">
+					<div class="input-group">
+						<input type="text" class="form-control border-end-0"
+							placeholder="Search for products.."
+							aria-label="Search for products.."
+							aria-describedby="basic-addon2"> <span
+							class="input-group-text bg-transparent" id="basic-addon2">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+								viewBox="0 0 24 24" fill="none" stroke="currentColor"
+								stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+								class="feather feather-search">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-2 col-xxl-3 d-none d-lg-block">
+				<!-- Button trigger modal -->
+				<button type="button" class="btn  btn-outline-gray-400 text-muted"
+					data-bs-toggle="modal" data-bs-target="#locationModal">
+					<i class="feather-icon icon-map-pin me-2"></i>Location
+				</button>
+
+
+			</div>
+
+			<c:choose>
+				<c:when test="${not empty sessionScope.username}">
+					<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
+						<div class="list-inline">
+							<div class="list-inline-item">
+								<div class="dropdown">
+									<a data-bs-toggle="dropdown" aria-expanded="false"> <svg
+											xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+											viewBox="0 0 24 24" fill="none" stroke="currentColor"
+											stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><i class="bi bi-box-person"></i>Profile</a></li>
+										<li>
+											<form action="/vacxin-system/logout" method="post">
+												<button class="dropdown-item d-flex align-items-center"
+													type="submit">
+													Logout
+												</button>
+											</form></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col-md-2 col-xxl-1 d-flex">
+						<a class="btn btn-primary mx-2" href="/vacxin-system/login">Login</a>
+						<a class="btn btn-primary" href="/vacxin-system/register">Register</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
-		<!-- Right elements -->
 	</div>
-	<!-- Container wrapper -->
 </nav>
-<!-- Navbar -->
