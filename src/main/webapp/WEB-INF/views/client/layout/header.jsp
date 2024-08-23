@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="row w-100 align-items-center g-3">
 			<div class="col-xxl-2 col-lg-3">
-				<a class="navbar-brand d-none d-lg-block" href="index.html"> <img
+				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home"> <img
 					src="<c:url value='/resources/images/logo.png' />" width="60"
 					alt="eCommerce HTML Template">
 				</a>

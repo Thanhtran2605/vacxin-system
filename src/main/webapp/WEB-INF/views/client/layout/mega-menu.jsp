@@ -85,58 +85,11 @@
 					<li class="nav-item "><a class="nav-link"
 						href="docs/index.html"> Tin tức </a></li>
 					<li class="nav-item "><a class="nav-link"
-						href="docs/index.html"> Đặt ký lịch tiêm </a>
+						href="/vacxin-system/dangkytiem"> Đăng ký lịch tiêm </a>
 					<li class="nav-item "><a class="nav-link"
 						href="docs/index.html"> Tìm trung tâm VNVC </a></li>
 					</li>
 
-
-
-
-					<li class="nav-item dropdown dropdown-fullwidth"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Mega menu </a>
-						<div class=" dropdown-menu pb-0">
-
-							<div class="row p-2 p-lg-4">
-								<div class="col-lg-3 col-6 mb-4 mb-lg-0">
-									<h6 class="text-primary ps-3">Dairy, Bread & Eggs</h6>
-									<a class="dropdown-item" href="pages/shop-grid.html">Butter</a>
-
-
-								</div>
-								<div class="col-lg-3 col-6 mb-4 mb-lg-0">
-									<h6 class="text-primary ps-3">Breakfast & Instant Food</h6>
-									<a class="dropdown-item" href="pages/shop-grid.html">Breakfast
-										Cereal</a>
-
-								</div>
-								<div class="col-lg-3 col-12 mb-4 mb-lg-0">
-									<h6 class="text-primary ps-3">Cold Drinks & Juices</h6>
-									<a class="dropdown-item" href="pages/shop-grid.html">Soft
-										Drinks</a>
-
-
-
-								</div>
-								<div class="col-lg-3 col-12 mb-4 mb-lg-0">
-									<div class="card border-0">
-										<img
-											src="<c:url value='/resources/assets/images/banner/menu-banner.jpg' />"
-											alt="eCommerce HTML Template" class="img-fluid rounded-3">
-										<div class="position-absolute ps-6 mt-8">
-											<h5 class=" mb-0 ">
-												Dont miss this <br>offer today.
-											</h5>
-											<a href="#" class="btn btn-primary btn-sm mt-3">Shop Now</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+					
 
 </nav>
