@@ -41,55 +41,13 @@
 				<ul class="navbar-nav ">
 					<li class="nav-item"><a class="nav-link"
 						href="/vacxin-system/home" role="button"> Trang chủ </a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Vacxin Trẻ em
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="pages/shop-grid.html">Lịch
-									tiêm chủng cho trẻ em</a></li>
-							<li><a class="dropdown-item"
-								href="pages/shop-grid-3-column.html">Những điều cần biết</a></li>
-							<li><a class="dropdown-item" href="pages/shop-list.html">Quy
-									trình</a></li>
-							<li><a class="dropdown-item" href="pages/shop-filter.html">Bảng
-									Giá</a></li>
 
-						</ul></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Vacxin người
-							lớn </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="pages/store-list.html">Vì
-									sao cần tiêm</a></li>
-							<li><a class="dropdown-item" href="pages/store-grid.html">Gói
-									vacxin</a></li>
-							<li><a class="dropdown-item" href="pages/store-single.html">Quy
-									trình</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/vacxin-system/store" role="button"> Kho vaccine </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 
-						</ul></li>
-
-
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Bảng giá </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="pages/blog.html">1 củ</a></li>
-							<li><a class="dropdown-item" href="pages/blog-single.html">2
-									củ</a></li>
-
-						</ul></li>
-					<li class="nav-item "><a class="nav-link"
-						href="docs/index.html"> Bệnh học</a></li>
-					<li class="nav-item "><a class="nav-link"
-						href="docs/index.html"> Tin tức </a></li>
-					<li class="nav-item "><a class="nav-link"
-						href="/vacxin-system/dangkytiem"> Đăng ký lịch tiêm </a>
-					<li class="nav-item "><a class="nav-link"
-						href="docs/index.html"> Tìm trung tâm VNVC </a></li>
-					</li>
-
-					
 
 </nav>

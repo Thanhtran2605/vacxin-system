@@ -44,9 +44,9 @@ public class VaccineController {
 		String queryString = request.getQueryString();
 		if(queryString != null && !queryString.isBlank())
 		{
-			queryString = queryString.replace("page=" + page, "").replaceAll("&sort=[^&]*", "");
+			queryString = queryString.replace("page=" + page, "");
 		}
-		Page<Vaccine> vaccine = vaccineService.findAllByCriteria(name, type, country, pageable);
+		Page<Vaccine> vaccine = vaccineService.findAll(name, type, country, pageable);
 		model.addAttribute("danhsachVaccine", vaccine.getContent().size() > 0 ? vaccine.getContent() : new ArrayList<Vaccine>());
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", vaccine.getTotalPages());

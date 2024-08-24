@@ -24,8 +24,10 @@ import group7.springmvc.service.UserService;
 public class QLuserController {
     @Autowired
     private UserService userService; 
-    @Autowired RoleService roleService;
-
+    @Autowired 
+    private RoleService roleService;
+    
+    
     @GetMapping("")
     public String QLuser(@RequestParam(value = "username", required = false) String username, ModelMap model) {
         List<User> users;
