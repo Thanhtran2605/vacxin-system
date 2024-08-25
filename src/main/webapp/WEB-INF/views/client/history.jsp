@@ -39,6 +39,10 @@
 								<th>Bệnh nhân</th>
 								<th>Vacxin</th>
 								<th>Status</th>
+								<c:forEach var="schedule" items="${schedules}">
+								<c:if test="${schedule.status == 'NOT_DUE'}">
+                <th>Hủy lịch</th>
+            </c:if> </c:forEach>
 							</tr>
 						</thead>
 						<tbody>
@@ -59,6 +63,16 @@
                                         schedule.status == 'NOT_DUE' ? 'bg-warning' : 
                                         'bg-secondary'}">
 											${schedule.status} </span></td>
+											
+									 <td class="align-middle">
+                    <!-- Thêm nút Cancel nếu trạng thái là NOT_DUE -->
+                    <c:if test="${schedule.status == 'NOT_DUE'}">
+                        <form action="${pageContext.request.contextPath}/lichsutiem/cancel" method="post" style="display:inline;">
+                            <input type="hidden" name="scheduleId" value="${schedule.id}" />
+                            <button type="submit" class="btn btn-secondary">Hủy lịch</button>
+                        </form>
+                    </c:if>
+                </td>
 								</tr>
 								<!-- Cập nhật biến đếm -->
 								<c:set var="counter" value="${counter + 1}" />

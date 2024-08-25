@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import group7.springmvc.model.Doctor;
 import group7.springmvc.model.Employee;
@@ -74,5 +76,14 @@ public class HistoryController {
             model.addAttribute("schedules", schedules);
         }
         return "client/history";
+    }
+    @PostMapping("/lichsutiem/cancel")
+    public String cancelSchedule(@RequestParam("scheduleId") Long scheduleId, HttpSession session) {
+        VaccineSchedule schedule = scheduleService.getScheduleById(scheduleId).orElse(null);
+        if (schedule != null && schedule.getStatus() == VaccineSchedule.Status.NOT_DUE) {
+            schedule.setStatus(VaccineSchedule.Status.CANCELLED);
+            scheduleService.updateSchedule(schedule);
+        }
+        return "redirect:/lichsutiem";
     }
 }
