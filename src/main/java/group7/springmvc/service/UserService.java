@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import group7.springmvc.model.Patient;
 import group7.springmvc.model.User;
+import group7.springmvc.repository.PatientRepository;
 import group7.springmvc.repository.RoleRepository;
 import group7.springmvc.repository.UserRepository;
 
@@ -17,6 +19,9 @@ public class UserService {
 
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	PatientRepository patientRepository;
+	
 
 	public User save(User user) {
 		return userRepository.save(user);
@@ -68,5 +73,7 @@ public class UserService {
 	public List<User> findByUsernameContaining(String keyword) {
 		return userRepository.findByUsernameContaining(keyword);
 	}
+	
+	
 
 }
