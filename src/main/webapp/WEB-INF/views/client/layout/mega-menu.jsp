@@ -44,10 +44,12 @@
 
 					<li class="nav-item"><a class="nav-link"
 						href="/vacxin-system/store" role="button"> Kho vaccine </a></li>
-						<li class="nav-item "><a class="nav-link"
-							href="/vacxin-system/news"> Tin tức </a></li>
-						<li class="nav-item "><a class="nav-link"
-							href="/vacxin-system/lichsutiem"> Lịch sử tiêm  </a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/news"> Tin tức </a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/lichsutiem"> Lịch sử tiêm </a></li>
+					<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/camnang"> Cẩm nang </a></li>
 				</ul>
 			</div>
 		</div>

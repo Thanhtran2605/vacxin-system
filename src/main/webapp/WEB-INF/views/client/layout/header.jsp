@@ -32,10 +32,10 @@
 			</div>
 			<div class="col-md-2 col-lg-3 d-none d-lg-block">
 				<!-- Button trigger modal -->
-				<button type="button" class="btn  btn-outline-gray-400 text-muted"
-					data-bs-toggle="modal" data-bs-target="#locationModal">
-					<i class="feather-icon icon-map-pin me-2"></i>Location
-				</button>
+				<a href="/vacxin-system/location"
+					class="btn btn-outline-gray-400 text-muted"> <i
+					class="feather-icon icon-map-pin me-2"></i>Location
+				</a>
 
 
 			</div>
@@ -56,9 +56,9 @@
                   </svg>
 									</a>
 									<ul class="dropdown-menu">
-									
-										<li><a class="dropdown-item" href="/vacxin-system/profile"><i
-												class="bi bi-box-person"></i>Profile</a></li>
+
+										<li><a class="dropdown-item"
+											href="/vacxin-system/profile"><i class="bi bi-box-person"></i>Profile</a></li>
 										<li>
 											<form action="/vacxin-system/logout" method="post">
 												<button class="dropdown-item d-flex align-items-center"
@@ -68,12 +68,12 @@
 									</ul>
 								</div>
 							</div>
-							<div class="list-inline-item">			
-						
-						<span class="d-none d-md-block dropdown-toggle ps-2">${ sessionScope.username }</span> 
-								
+							<div class="list-inline-item">
+
+								<span class="d-none d-md-block dropdown-toggle ps-2">${ sessionScope.username }</span>
+
 							</div>
-							
+
 						</div>
 					</div>
 				</c:when>

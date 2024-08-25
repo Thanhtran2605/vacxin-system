@@ -33,13 +33,13 @@ public class DashboardController {
 
 	@Autowired
 	ScheduleService scheduleService;
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@Autowired
 	DoctorService doctorService;
-	
+
 	@Autowired
 	ReceptionistService receptionistService;
 
@@ -76,22 +76,28 @@ public class DashboardController {
 
 	@GetMapping("/profile")
 	public String profile(Model model, HttpSession session) {
-		String loginUserName = (String)session.getAttribute("username");
+		String loginUserName = (String) session.getAttribute("username");
 		User currentUser = userService.findByUsername(loginUserName);
 		Employee currentEmployee = employeeService.findByUser(currentUser);
 		Doctor currentDoctor = doctorService.findByEmployee(currentEmployee);
 		Receptionist currentReceptionist = receptionistService.findByEmployee(currentEmployee);
-		if(currentEmployee != null) {
-			if(currentDoctor != null) {
+		if (currentEmployee != null) {
+			if (currentDoctor != null) {
 				model.addAttribute("currentEmployee", currentDoctor);
 				return "admin/auth/profile";
-			} else if(currentReceptionist != null) {
+			} else if (currentReceptionist != null) {
 				model.addAttribute("currentEmployee", currentReceptionist);
 				return "admin/auth/profile";
 			}
 		}
 		model.addAttribute("currentUser", currentUser);
 		return "admin/auth/profile";
+	}
+
+	@GetMapping("/contact")
+	public String contact() {
+
+		return "admin/Contact/index";
 	}
 
 }
