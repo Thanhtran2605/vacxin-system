@@ -14,4 +14,6 @@ public interface VaccineRepository extends JpaRepository<Vaccine, Long>, JpaSpec
 	@Query("SELECT vs.vaccine.name, COUNT(vs.patient.id) FROM VaccineSchedule vs WHERE vs.status = 'COMPLETED' GROUP BY vs.vaccine.id")
 	List<Object[]> countPatientsByVaccine();
 
+	@Query("SELECT DISTINCT v.country FROM Vaccine v")
+	List<String> findDistinctCountries();
 }

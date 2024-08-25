@@ -2,19 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
-
 <nav class="navbar navbar-light py-lg-5 pt-3 px-0 pb-0">
 	<div class="container">
 		<div class="row w-100 align-items-center g-3">
-			<div class="col-xxl-2 col-lg-3">
-				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home"> <img
-					src="<c:url value='/resources/images/logo.png' />" width="60"
+			<div class="col-md-2 col-lg-3">
+				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home">
+					<img src="<c:url value='/resources/images/logo.png' />" width="60"
 					alt="eCommerce HTML Template">
 				</a>
 			</div>
-			<div class="col-xxl-6 col-lg-5 d-none d-lg-block">
+			<div class="col-md-6 col-lg-5 d-none d-lg-block">
 				<form action="#" class="search-header">
 					<div class="input-group">
 						<input type="text" class="form-control border-end-0"
@@ -33,7 +30,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-md-2 col-xxl-3 d-none d-lg-block">
+			<div class="col-md-2 col-lg-3 d-none d-lg-block">
 				<!-- Button trigger modal -->
 				<button type="button" class="btn  btn-outline-gray-400 text-muted"
 					data-bs-toggle="modal" data-bs-target="#locationModal">
@@ -45,7 +42,7 @@
 
 			<c:choose>
 				<c:when test="${not empty sessionScope.username}">
-					<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
+					<div class="col-md-2 col-lg-1 text-end d-none d-lg-block">
 						<div class="list-inline">
 							<div class="list-inline-item">
 								<div class="dropdown">
@@ -59,22 +56,29 @@
                   </svg>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#"><i class="bi bi-box-person"></i>Profile</a></li>
+									
+										<li><a class="dropdown-item" href="/vacxin-system/profile"><i
+												class="bi bi-box-person"></i>Profile</a></li>
 										<li>
 											<form action="/vacxin-system/logout" method="post">
 												<button class="dropdown-item d-flex align-items-center"
-													type="submit">
-													Logout
-												</button>
-											</form></li>
+													type="submit">Logout</button>
+											</form>
+										</li>
 									</ul>
 								</div>
 							</div>
+							<div class="list-inline-item">			
+						
+						<span class="d-none d-md-block dropdown-toggle ps-2">${ sessionScope.username }</span> 
+								
+							</div>
+							
 						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="col-md-2 col-xxl-1 d-flex">
+					<div class="col-md-2 col-lg-1 d-flex">
 						<a class="btn btn-primary mx-2" href="/vacxin-system/login">Login</a>
 						<a class="btn btn-primary" href="/vacxin-system/register">Register</a>
 					</div>

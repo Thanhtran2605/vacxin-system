@@ -1,14 +1,13 @@
-/*
- *	(C) Copyright 2024. All Rights Reserved.
- *	@author DELL
- * 	@date Aug 9, 2024
- *	@version 1.0
-*/
-package group7.springmvc.model;
 
+package group7.springmvc.model;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,21 +36,58 @@ public class Payment {
 	Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "patient_id")
-	@ToString.Exclude
-	Patient patient;
+	@JoinColumn(name = "schedule_id")
+	@ToString.Include
+	VaccineSchedule schedule;
 
 	@ManyToOne
 	@JoinColumn(name = "receptionist_id")
-	@ToString.Exclude
+	@ToString.Include
 	Receptionist receptionist;
 
-	int quantity;
-
-	double unitPrice;
-
 	double totalAmount;
+	
+	String numberBank;
+	String bankName;
+	LocalDateTime paymentDate;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+	Status status;
+	
+	public enum Status {
+		PAYMENT, NON_PAYMENT;
 
-	@Temporal(TemporalType.DATE)
-	Date paymentDate;
+		@Override
+		public String toString() {
+			switch (this) {
+			case PAYMENT:
+				return "Đã thanh toán";
+			case NON_PAYMENT:
+				return "Chưa thanh toán";
+			default:
+				throw new IllegalArgumentException();
+			}
+		}
+	}
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "payment_method")
+	PaymentMethod payment_method;
+
+	public enum PaymentMethod {
+		ATM, CASH;
+
+		@Override
+		public String toString() {
+			switch (this) {
+			case ATM:
+				return "Tiền mặt";
+			case CASH:
+				return "ATM";
+			default:
+				throw new IllegalArgumentException();
+			}
+		}
+	}
 }

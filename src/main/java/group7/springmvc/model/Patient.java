@@ -31,6 +31,6 @@ public class Patient {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@ToString.Exclude
+	@ToString.Include
 	User user;
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="<c:url value='/resources/assets/libs/jquery/dist/jquery.min.js'/>"></script>
 <script src="<c:url value='/resources/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js'/>"></script>
 <script src="<c:url value='/resources/assets/libs/jquery-countdown/dist/jquery.countdown.min.js'/>"></script>
@@ -19,3 +19,4 @@
 
 <!-- Theme JS -->
 <script src="<c:url value='/resources/assets/js/theme.min.js'/>"></script>
+<script src="<c:url value='/resources/assets/js/app.js'/>"></script>

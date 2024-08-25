@@ -10,7 +10,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import group7.springmvc.model.Patient;
+import group7.springmvc.model.User;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
+		Patient findByUser(User user);
 }
