@@ -268,7 +268,10 @@
 					<ul class="navbar-nav ">
 						<li class="nav-item"><a class="nav-link"
 							href="/vacxin-system/home" role="button"> Trang chủ </a></li>
-						<li class="nav-item dropdown"><a
+								<li class="nav-item "><a class="nav-link"
+							href="docs/index.html"> Giới Thiệu </a></li>
+						<li class="nav-item dropdown">
+						<a
 							class="nav-link dropdown-toggle" href="#" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Vacxin Trẻ
 								em </a>

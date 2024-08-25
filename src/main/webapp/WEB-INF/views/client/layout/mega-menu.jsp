@@ -41,6 +41,9 @@
 				<ul class="navbar-nav ">
 					<li class="nav-item"><a class="nav-link"
 						href="/vacxin-system/home" role="button"> Trang chủ </a></li>
+			<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/GioiThieu"> Giới thiệu </a></li>
+						
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Vacxin Trẻ em
@@ -85,7 +88,7 @@
 					<li class="nav-item "><a class="nav-link"
 						href="docs/index.html"> Tin tức </a></li>
 					<li class="nav-item "><a class="nav-link"
-						href="/vacxin-system/dangkytiem"> Đăng ký lịch tiêm </a>
+						href="/vacxin-system/dangkytiem"> Đăng ký lịch tiêm </a></li>
 					<li class="nav-item "><a class="nav-link"
 						href="docs/index.html"> Tìm trung tâm VNVC </a></li>
 					</li>
