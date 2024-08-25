@@ -22,6 +22,6 @@ public class PatientController {
 	public String info(HttpSession session, Model model) {
 		User user = userService.findByUsername(session.getAttribute("username").toString());
 		System.out.println(user.toString());
-		return "client/profile";
+		return "client/infoUser";
 	}
 }

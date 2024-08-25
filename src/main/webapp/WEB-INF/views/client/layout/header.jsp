@@ -5,13 +5,13 @@
 <nav class="navbar navbar-light py-lg-5 pt-3 px-0 pb-0">
 	<div class="container">
 		<div class="row w-100 align-items-center g-3">
-			<div class="col-xxl-2 col-lg-3">
-				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home"> <img
-					src="<c:url value='/resources/images/logo.png' />" width="60"
+			<div class="col-md-2 col-lg-3">
+				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home">
+					<img src="<c:url value='/resources/images/logo.png' />" width="60"
 					alt="eCommerce HTML Template">
 				</a>
 			</div>
-			<div class="col-xxl-6 col-lg-5 d-none d-lg-block">
+			<div class="col-md-6 col-lg-5 d-none d-lg-block">
 				<form action="#" class="search-header">
 					<div class="input-group">
 						<input type="text" class="form-control border-end-0"
@@ -30,7 +30,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-md-2 col-xxl-3 d-none d-lg-block">
+			<div class="col-md-2 col-lg-3 d-none d-lg-block">
 				<!-- Button trigger modal -->
 				<button type="button" class="btn  btn-outline-gray-400 text-muted"
 					data-bs-toggle="modal" data-bs-target="#locationModal">
@@ -42,7 +42,7 @@
 
 			<c:choose>
 				<c:when test="${not empty sessionScope.username}">
-					<div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
+					<div class="col-md-2 col-lg-1 text-end d-none d-lg-block">
 						<div class="list-inline">
 							<div class="list-inline-item">
 								<div class="dropdown">
@@ -56,22 +56,44 @@
                   </svg>
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#"><i class="bi bi-box-person"></i>Profile</a></li>
+										<li><a class="dropdown-item" href="/vacxin-system/info"><i
+												class="bi bi-box-person"></i>Profile</a></li>
 										<li>
 											<form action="/vacxin-system/logout" method="post">
 												<button class="dropdown-item d-flex align-items-center"
-													type="submit">
-													Logout
-												</button>
-											</form></li>
+													type="submit">Logout</button>
+											</form>
+										</li>
 									</ul>
 								</div>
 							</div>
+							<div class="list-inline-item">
+
+								<a class="text-muted position-relative "
+									data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+									href="#offcanvasExample" role="button"
+									aria-controls="offcanvasRight"> <svg
+										xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-shopping-bag">
+                  <path
+											d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg> <span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+										1 <span class="visually-hidden">unread messages</span>
+								</span>
+								</a>
+
+							</div>
+							
 						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="col-md-2 col-xxl-1 d-flex">
+					<div class="col-md-2 col-lg-1 d-flex">
 						<a class="btn btn-primary mx-2" href="/vacxin-system/login">Login</a>
 						<a class="btn btn-primary" href="/vacxin-system/register">Register</a>
 					</div>

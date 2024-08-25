@@ -36,6 +36,6 @@ public class Employee {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@ToString.Exclude
+	@ToString.Include
 	User user;
 }

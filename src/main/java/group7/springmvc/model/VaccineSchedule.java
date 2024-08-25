@@ -38,12 +38,12 @@ public class VaccineSchedule {
 
 	@ManyToOne
 	@JoinColumn(name = "doctor_id")
-	@ToString.Exclude
+	@ToString.Include
 	Doctor doctor;
 
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
-	@ToString.Exclude
+	@ToString.Include
 	Patient patient;
 
 	@Temporal(TemporalType.DATE)
@@ -56,12 +56,12 @@ public class VaccineSchedule {
 
 	@ManyToOne
 	@JoinColumn(name = "location_id")
-	@ToString.Exclude
+	@ToString.Include
 	VaccineLocation location;
 
 	@ManyToOne
 	@JoinColumn(name = "vaccine_id")
-	@ToString.Exclude
+	@ToString.Include
 	Vaccine vaccine;
 
 	@Enumerated(EnumType.STRING)

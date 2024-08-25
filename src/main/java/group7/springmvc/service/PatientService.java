@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import group7.springmvc.model.Patient;
+import group7.springmvc.model.User;
 import group7.springmvc.repository.PatientRepository;
 
 @Service
@@ -26,5 +27,9 @@ public class PatientService {
 
     public Patient getPatientById(Long id) {
         return patientRepository.findById(id).orElse(null);
+    }
+    
+    public Patient findByUser(User user) {
+        return patientRepository.findByUser(user);
     }
 }

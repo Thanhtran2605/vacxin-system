@@ -5,174 +5,204 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Vacxin System</title>
-    <!-- ======= CSS và Bootstrap ======= -->
-    <jsp:include page="../layout/cssLink.jsp" />
-    <style>
-        .form-container {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 900px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            background-color: #f8f9fa;
-        }
+<meta charset="UTF-8" />
+<title>Vacxin System</title>
+<!-- ======= CSS và Bootstrap ======= -->
+<jsp:include page="../layout/cssLink.jsp" />
+<style>
+.form-container {
+	padding: 20px;
+	margin: 20px auto;
+	max-width: 900px;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	background-color: #f8f9fa;
+}
 
-        .form-title {
-            color: #28a745;
-            margin-bottom: 20px;
-        }
+.form-title {
+	color: #28a745;
+	margin-bottom: 20px;
+}
 
-        .form-section {
-            margin-bottom: 30px;
-        }
+.form-section {
+	margin-bottom: 30px;
+}
 
-        .form-label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.form-label {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
 
-        .form-check-inline {
-            margin-right: 15px;
-        }
-    </style>
+.form-check-inline {
+	margin-right: 15px;
+}
+</style>
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
-    <div class="border-bottom pb-5">
-        <jsp:include page="../layout/header.jsp" />
-        <jsp:include page="../layout/mega-menu.jsp" />
-    </div>
+	<!-- ======= Header ======= -->
+	<div class="border-bottom pb-5">
+		<jsp:include page="../layout/header.jsp" />
+		<jsp:include page="../layout/mega-menu.jsp" />
+	</div>
+	<form action="/vacxin-system/xacnhantiem" method="post">
+		<div class="row" style="margin: 0 100px">
+			<h1 class="mt-5">Xác nhận đơn tiêm chủng</h1>
+			<div class="col-md-8">
+				<section class="mt-5 form-container">
+					<h3 class="form-title">Thông tin người tiêm</h3>
+					<div class="row form-section">
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Họ tên người tiêm</label> <input
+								type="text" name="" class="form-control"
+								value="${ patient.user.fullName }" disabled="disabled">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Email</label> <input type="text"
+								name="" class="form-control" value="${ patient.user.email }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-4 mb-3">
+							<label class="form-label">Số điện thoại</label> <input
+								type="text" name="" class="form-control"
+								value="${ patient.user.phone }" disabled="disabled">
+						</div>
+						<div class="col-md-4 mb-3">
+							<label class="form-label">Giới tính</label> <input type="text"
+								name="" class="form-control" value="${ patient.user.gender }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-4 mb-3">
+							<label class="form-label">Ngày sinh</label> <input type="date"
+								class="form-control" value="${ patient.user.birthday }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Địa chỉ</label> <input type="text"
+								name="" class="form-control" value="${ patient.user.address }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Mã bệnh nhân</label> <input type="text"
+								name="" class="form-control" value="${ patient.idCard }"
+								disabled="disabled">
+						</div>
+					</div>
+					<h3 class="form-title">Thời gian đặt buổi tiêm</h3>
 
-    <section class="mt-5">
-        <div class="container form-container">
-            <!-- Thông tin người tiêm -->
-            <h3 class="form-title">Thông tin người tiêm</h3>
-            <div class="row form-section">
-                <!-- Họ tên người tiêm và Ngày sinh người tiêm trên cùng một hàng -->
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Họ tên người tiêm" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="date" class="form-control" placeholder="Ngày sinh người tiêm">
-                </div>
+					<input type="hidden" name="patient.id" value="${ patient.id }" />
+					<input type="hidden" name="vaccine.id" value="${ vaccine.id }" />
+					<div class="row form-section">
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Ngày tiêm</label> <input type="date"
+								name="vaccinationDate" class="form-control">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Giờ giấc tiêm</label> <input
+								type="time" name="vaccinationTime" class="form-control">
+						</div>
+						<div class="col-md-12 mb-3">
+							<select class="form-control" name="location.id">
+								<c:forEach var="location" items="${locations}">
+									<option value="${location.id}">${location.address}</option>
+								</c:forEach>
+							</select>
+						</div>
 
-                <!-- Giới tính và Mã khách hàng VNVC trên cùng một hàng -->
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Giới tính:</label>
-                    <div class="d-flex align-items-center">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
-                            <label class="form-check-label" for="male">Nam</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
-                            <label class="form-check-label" for="female">Nữ</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Mã khách hàng VNVC (nếu có)">
-                </div>
+					</div>
+					<div class="row">
+						<div class="col-12 text-end">
+							<button class="btn btn-primary" type="submit">Xác nhận
+								tiêm chủng</button>
+						</div>
+					</div>
 
-                <!-- Tỉnh thành, Quận huyện, và Phường xã trên cùng một hàng -->
-                <div class="col-md-4 mb-3">
-                    <select class="form-select">
-                        <option selected>--Tỉnh Thành--</option>
-                        <option value="1">Quảng Nam</option>
-                        <option value="2">Đà Nẵng</option>
-                        <option value="3">Huế</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <select class="form-select">
-                        <option selected>--Quận huyện--</option>
-                        <option value="1">Thăng Bình</option>
-                        <option value="2">Lạt Đà</option>
-                        <option value="3">Huế Mộng Mơ</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <select class="form-select">
-                        <option selected>--Phường xã--</option>
-                        <option value="1">Xã 1</option>
-                        <option value="2">Long Châu</option>
-                        <option value="3">Huế Mộng Mơ</option>
-                    </select>
-                </div>
+				</section>
 
-                <!-- Số nhà, tên đường -->
-                <div class="col-12 mb-3">
-                    <input type="text" class="form-control" placeholder="Số nhà, tên đường">
-                </div>
-            </div>
 
-            <!-- Thông tin liên hệ -->
-            <h3 class="form-title">Thông tin liên hệ</h3>
-            <div class="row form-section">
-                <!-- Họ tên người liên hệ và Mối quan hệ với người tiêm trên cùng một hàng -->
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Họ tên người liên hệ">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <select class="form-select">
-                        <option selected>--Mối quan hệ với người tiêm--</option>
-                        <option value="1">Bố mẹ</option>
-                        <option value="2">Anh chị em</option>
-                        <option value="3">Người thân</option>
-                    </select>
-                </div>
+			</div>
+			<div class="col-md-4">
+				<section class="mt-5 form-container">
+					<h3 class="form-title">Thông tin vaccine</h3>
+					<div class="row form-section">
 
-                <!-- Số điện thoại người liên hệ -->
-                <div class="col-12 mb-3">
-                    <input type="text" class="form-control" placeholder="Số điện thoại người liên hệ">
-                </div>
-            </div>
+						<div class="col-md-12 mb-3">
+							<label class="form-label">Tên vaccine</label> <input type="text"
+								name="" class="form-control" value="${ vaccine.name }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-12 mb-3">
+							<label class="form-label">Bệnh</label> <input type="text" name=""
+								class="form-control" value="${ vaccine.disease }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-12 mb-3">
+							<label class="form-label">Xuất sứ</label> <input type="text"
+								name="" class="form-control" value="${ vaccine.country }"
+								disabled="disabled">
+						</div>
+						<div class="col-md-12 mb-3">
+							<label class="form-label">Giá tiền</label> <input type="text"
+								name="" class="form-control" value="${ vaccine.price }"
+								disabled="disabled">
+						</div>
+					</div>
+					<h3 class="form-title">Thanh toán</h3>
+					<div class="row form-section">
+						<div class="py-4">
+							<h5 class="mb-3">Phương thức thanh toán</h5>
+							<div class="form-group">
+								<select id="payment" name="paymentMethod" class="form-control">
+									<option value="default">Vui lòng chọn phương thức
+										thanh toán</option>
+									<option value="PAY-LATER">Thanh toán sau khi tiêm</option>
+									<option value="PAY_ONLINE">Thanh toán qua tài khoản
+										ngân hàng</option>
+								</select>
+							</div>
 
-            <!-- Thông tin dịch vụ -->
-            <h3 class="form-title">Thông tin dịch vụ</h3>
-            <div class="row form-section">
-                <!-- Loại vắc xin muốn đăng ký và Trung tâm VNVC mong muốn tiêm trên cùng một hàng -->
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Loại vắc xin muốn đăng ký:</label>
-                    <div class="d-flex align-items-center">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="vaccineType" id="package" value="package" required>
-                            <label class="form-check-label" for="package">Vacxin gói</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="vaccineType" id="single" value="single" required>
-                            <label class="form-check-label" for="single">Vacxin lẻ</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Trung tâm VNVC mong muốn tiêm">
-                </div>
+							<div id="payment-form row"
+								style="display: none; margin-top: 15px">
+								<label for="numberBank">Nhập số tài khoản ngân hàng</label>
+								<input type="text" id="numberBank" name="numberBank"
+									class="form-control mt-3"
+									placeholder="Thông tin số tài khoản ngân hàng"> <label
+									for="bankName" class="mt-3">Chọn ngân hàng</label> <select
+									id="bankName" name="bankName" class="form-control mt-3">
+									<option value="default">Vui lòng chọn ngân hàng</option>
+									<option value="MB_BANK">MB Bank</option>
+									<option value="VIET_BANK">VietinBank</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</section>
 
-                <!-- Ngày mong muốn tiêm -->
-                <div class="col-12 mb-3">
-                    <input type="date" class="form-control" placeholder="Ngày mong muốn tiêm">
-                </div>
-            </div>
 
-            <!-- Nút Đăng ký -->
-            <div class="row">
-                <div class="col-12 text-end">
-                    <button type="button" class="btn btn-outline-secondary me-2">Cancel</button>
-                    <button class="btn btn-primary" type="button">Đăng ký tiêm chủng</button>
-                </div>
-            </div>
-        </div>
-    </section>
+			</div>
+		</div>
+	</form>
+	<script type="text/javascript">
+		document.getElementById('payment').addEventListener(
+				'change',
+				function() {
+					var paymentForm = document
+							.getElementById('payment-form row');
+					if (this.value === 'PAY_ONLINE') {
+						paymentForm.style.display = 'block';
+					} else {
+						paymentForm.style.display = 'none';
+					}
+				});
+	</script>
 
-    <!-- ======= FOOTER ======= -->
-    <jsp:include page="../layout/footer.jsp" />
+	<!-- ======= FOOTER ======= -->
+	<jsp:include page="../layout/footer.jsp" />
 
-    <!-- ======= JS ======= -->
-    <jsp:include page="../layout/jsLink.jsp" />
+	<!-- ======= JS ======= -->
+	<jsp:include page="../layout/jsLink.jsp" />
+
+
 </body>
 
 </html>

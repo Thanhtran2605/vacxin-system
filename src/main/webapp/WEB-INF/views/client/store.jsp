@@ -29,27 +29,29 @@
 					<div class="py-4" id="countryFilter">
 						<!-- title -->
 						<h5 class="mb-3">Nơi sản xuất</h5>
-						<c:forEach var="quocgia" items="${ danhsachQuocgia }">						
-						<!-- form check -->
-						<div class="form-check mb-2">
-							<!-- input -->
-							<input class="form-check-input" type="checkbox" value="${ quocgia }"
-								id="${ quocgia }" name="country"> <label
-								class="form-check-label" for="${ quocgia }"> ${ quocgia } </label>
-						</div>
+						<c:forEach var="quocgia" items="${ danhsachQuocgia }">
+							<!-- form check -->
+							<div class="form-check mb-2">
+								<!-- input -->
+								<input class="form-check-input" type="checkbox"
+									value="${ quocgia }" id="${ quocgia }" name="country">
+								<label class="form-check-label" for="${ quocgia }"> ${ quocgia }
+								</label>
+							</div>
 						</c:forEach>
 					</div>
 					<div class="py-4" id="diseaseFilter">
 						<!-- title -->
 						<h5 class="mb-3">Loại bệnh</h5>
-						<c:forEach var="loaibenh" items="${ danhsachLoaibenh }">						
-						<!-- form check -->
-						<div class="form-check mb-2">
-							<!-- input -->
-							<input class="form-check-input" type="checkbox" value="${ loaibenh }"
-								id="${ loaibenh }" name="disease"> <label
-								class="form-check-label" for="${ loaibenh }"> ${ loaibenh } </label>
-						</div>
+						<c:forEach var="loaibenh" items="${ danhsachLoaibenh }">
+							<!-- form check -->
+							<div class="form-check mb-2">
+								<!-- input -->
+								<input class="form-check-input" type="checkbox"
+									value="${ loaibenh }" id="${ loaibenh }" name="disease">
+								<label class="form-check-label" for="${ loaibenh }"> ${ loaibenh }
+								</label>
+							</div>
 						</c:forEach>
 					</div>
 					<div class="py-4">
@@ -59,8 +61,7 @@
 						<div class="form-check mb-2">
 							<input class="form-check-input" type="radio" name="sort-price"
 								value="price,default" id="price,default"> <label
-								class="form-check-label" for="price,default"> Mặc định
-							</label>
+								class="form-check-label" for="price,default"> Mặc định </label>
 						</div>
 						<!-- form check -->
 						<div class="form-check mb-2">
@@ -110,18 +111,7 @@
 											</div>
 											<a href="#!"> <!-- img --> <img src="${ vaccine.image }"
 												alt="${ vaccine.name }" class="mb-3 img-fluid"></a>
-											<!-- action btn -->
-											<div class="card-product-action">
-												<a href="#!" class="btn-action" data-bs-toggle="modal"
-													data-bs-target="#quickViewModal"><i class="bi bi-eye"
-													data-bs-toggle="tooltip" data-bs-html="true"
-													title="Quick View"></i></a> <a href="shop-wishlist.html"
-													class="btn-action" data-bs-toggle="tooltip"
-													data-bs-html="true" title="Wishlist"><i
-													class="bi bi-heart"></i></a> <a href="#!" class="btn-action"
-													data-bs-toggle="tooltip" data-bs-html="true"
-													title="Compare"><i class="bi bi-arrow-left-right"></i></a>
-											</div>
+
 										</div>
 										<!-- heading -->
 										<div class="text-small mb-1">
@@ -141,14 +131,14 @@
 											</div>
 											<!-- btn -->
 											<div>
-												<a href="#!" class="btn btn-primary btn-sm"> <svg
+												<a href="dangkytiem/${ vaccine.id }" class="btn btn-primary btn-sm"> <svg
 														xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
 														stroke-width="2" stroke-linecap="round"
 														stroke-linejoin="round" class="feather feather-plus">
                           <line x1="12" y1="5" x2="12" y2="19"></line>
                           <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg> Chọn
+                        </svg> Đăng ký tiêm
 												</a>
 											</div>
 										</div>
