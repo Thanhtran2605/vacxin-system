@@ -15,6 +15,8 @@
   <link href="<c:url value='/resources/assets/libs/tiny-slider/dist/tiny-slider.css' />" rel="stylesheet" />
   <link href="<c:url value='/resources/assets/libs/dropzone/dist/min/dropzone.min.css' />" rel="stylesheet" />
   <link href="<c:url value='/resources/assets/libs/prismjs/themes/prism-okaidia.min.css' />" rel="stylesheet" />
+  
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Theme CSS -->
   <link rel="stylesheet" href="<c:url value='/resources/assets/css/theme.min.css' />" />
