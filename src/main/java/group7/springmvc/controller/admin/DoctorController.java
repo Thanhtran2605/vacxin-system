@@ -131,5 +131,7 @@ public class DoctorController {
 		model.addAttribute("users", users);
 		return "admin/QL_doctor/add";
 	}
+	
+	
 
 }

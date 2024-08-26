@@ -27,6 +27,9 @@ public interface ScheduleRepository extends JpaRepository<VaccineSchedule, Long>
 	List<VaccineSchedule> findByVaccinationDate(Date vaccinationDate);
 
 	List<VaccineSchedule> findByVaccineId(Long vaccineId);
+	
+	@Query("SELECT vs FROM VaccineSchedule vs WHERE vs.patient.idCard LIKE %:idCard%")
+	List<VaccineSchedule> findByPatientIdCard(@Param("idCard") String idCard);
 
 	@Query("SELECT vs FROM VaccineSchedule vs WHERE vs.doctor.employee.user.fullName LIKE %:doctorName%")
 	List<VaccineSchedule> findByDoctorName(@Param("doctorName") String doctorName);
@@ -86,4 +89,6 @@ public interface ScheduleRepository extends JpaRepository<VaccineSchedule, Long>
 
 	List<VaccineSchedule> findByVaccinationDateBetween(Date startDate, Date endDate);
 
+	@Query("SELECT vs, p FROM VaccineSchedule vs LEFT JOIN Payment p ON vs.id = p.schedule.id WHERE vs.doctor IS NULL")
+	List<Object[]> findSchedulesWithoutDoctor();
 }

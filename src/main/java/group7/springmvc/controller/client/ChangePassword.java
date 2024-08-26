@@ -23,13 +23,11 @@ public class ChangePassword {
         String username = principal.getName();
 
         if (!passwordService.checkIfValidOldPassword(username, oldPassword)) {
-//            redirectAttributes.addFlashAttribute("errorMessage", "Mật khẩu cũ không đúng.");
         	redirectAttributes.addFlashAttribute("errorMessage", true);
             return "redirect:/profile";
         }
 
         passwordService.changeUserPassword(username, newPassword);
-//        redirectAttributes.addFlashAttribute("successMessage", "Mật khẩu đã được thay đổi thành công.");
         redirectAttributes.addFlashAttribute("successMessage", true);
         return "redirect:/profile";
     }

@@ -133,10 +133,10 @@
 								<!-- Patient Fields -->
 								<div id="patientFields" class="search-fields form-group"
 									style="display: none;">
-									<label for="patientId">Bệnh nhân: </label> <input
-										type="checkbox" id="searchByPatientId"
-										name="searchByPatientId"> Tìm theo ID <input
-										type="number" id="patientId" name="patientId"
+									<label for="patientIdCard">Bệnh nhân: </label> <input
+										type="checkbox" id="searchByPatientIdCard"
+										name="searchByPatientIdCard"> Tìm theo ID <input
+										type="number" id="patientIdCard" name="patientIdCard"
 										class="form-control" style="display: none;" /> <input
 										type="checkbox" id="searchByPatientName"
 										name="searchByPatientName"> Tìm theo tên <input
@@ -183,8 +183,57 @@
 						</div>
 					</div>
 
-					<!-- Danh sách tiêm chủng -->
+					<!-- Lịch tiêm chủng hôm nay -->
+					<div class="col-12">
+						<h5 class="card-title"
+							style="color: #ffffff; background-color: #76b5c5; padding: 19px; border-radius: 5px;">
+							Bác sĩ và phương thức thanh toán</h5>
+						<div class="card">
+							<div class="card-body">
+								<div id="todaySchedules">
+									<c:if test="${not empty schedulesWithoutDoctor}">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th class="text-center">STT</th>
+													<th class="text-center">Mã bệnh nhân</th>
+													<th class="text-center">Tên bệnh nhân</th>
+													<th class="text-center">Tên bác sĩ</th>
+													<th class="text-center">Ngày tiêm</th>
+													<th class="text-center">Giờ tiêm</th>
+													<th class="text-center">Vaccine</th>
+													<th class="text-center">Địa điểm tiêm</th>
+													<th class="text-center">Tên Receptionist</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="item" items="${schedulesWithoutDoctor}"
+													varStatus="status">
+													<tr>
+														<td class="text-center">${status.index + 1}</td>
+														<td class="text-center">${item[0].patient.idCard}</td>
+														<td class="text-center">${item[0].patient.user.fullName}</td>
+														<td class="text-center">${item[0].doctor != null ? item[0].doctor.employee.user.fullName : 'Chưa có bác sĩ'}</td>
+														<td class="text-center">${item[0].vaccinationDate}</td>
+														<td class="text-center">${item[0].vaccinationTime}</td>
+														<td class="text-center">${item[0].vaccine.name}</td>
+														<td class="text-center">${item[0].location.address}</td>
+														<td class="text-center">${item[1] != null ? item[1].receptionist.employee.user.fullName : 'N/A'}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</c:if>
+									<c:if test="${empty schedulesWithoutDoctor}">
+										<p>Không có lịch tiêm chủng hôm nay.</p>
+									</c:if>
+								</div>
+							</div>
+						</div>
+					</div>
 
+
+					<!-- Danh sách tiêm chủng -->
 					<div class="card mt-4">
 						<h5 class="card-title"
 							style="color: #ffffff; background-color: #00b8e6; padding: 19px; border-radius: 5px;">
@@ -302,9 +351,10 @@
 	        toggleInputFields('searchByDoctorName', 'doctorName');
 	    });
 
-	    document.getElementById('searchByPatientId').addEventListener('change', function() {
-	        toggleInputFields('searchByPatientId', 'patientId');
+	    document.getElementById('searchByPatientIdCard').addEventListener('change', function() {
+	        document.getElementById('patientIdCard').style.display = this.checked ? 'block' : 'none';
 	    });
+	    
 	    document.getElementById('searchByPatientName').addEventListener('change', function() {
 	        toggleInputFields('searchByPatientName', 'patientName');
 	    });

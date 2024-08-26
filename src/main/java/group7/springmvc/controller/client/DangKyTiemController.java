@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group7.springmvc.model.Payment;
 import group7.springmvc.model.Receptionist;
@@ -51,8 +52,9 @@ public class DangKyTiemController {
 	private ReceptionistService receptionistService;
 
 	@GetMapping("/dangkytiem/{id}")
-	public String dangkytiem(@PathVariable("id") long id, Model model, HttpSession session) {
+	public String dangkytiem(@PathVariable("id") long id, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		if(!session.getAttribute("role").toString().equals("PATIENT")) {
+			redirectAttributes.addFlashAttribute("message", "Chỉ có bệnh nhân mới đăng ký lịch tiêm!");
 			return "redirect:/access-dine";
 		}
 		User user = userService.findByUsername(session.getAttribute("username").toString());
