@@ -4,21 +4,24 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import group7.springmvc.model.Vaccine;
 import group7.springmvc.service.VaccineService;
 
+
 @Controller
 public class HomeController {
 	@Autowired
-	VaccineService vacxinService;
+	VaccineService vaccineService;
 
 	@GetMapping("/home")
-	public String home(ModelMap model) {
+	public String home(Model model) {
 		List<Vaccine> vacxins;
-		vacxins = vacxinService.findAll();
+		vacxins = vaccineService.findAll();
 		model.addAttribute("listVacxin", vacxins);
 		return "client/home";
 	}
@@ -51,5 +54,4 @@ public class HomeController {
 	public String index() {
 	      return "client/GioiThieu/index";
 	}
-	
 }
