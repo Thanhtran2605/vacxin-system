@@ -9,4 +9,4 @@ public class CamNangController {
 	public String index() {
 		return "client/camnang/index";
 	}
-}
+}	
