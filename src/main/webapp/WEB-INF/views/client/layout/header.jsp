@@ -15,7 +15,7 @@
 				<form action="#" class="search-header">
 					<div class="input-group">
 						<input type="text" class="form-control border-end-0"
-							placeholder="Search for products.."
+							placeholder="Tìm kiếm sản phẩm..."
 							aria-label="Search for products.."
 							aria-describedby="basic-addon2"> <span
 							class="input-group-text bg-transparent" id="basic-addon2">
@@ -34,7 +34,7 @@
 				<!-- Button trigger modal -->
 				<a href="/vacxin-system/location"
 					class="btn btn-outline-gray-400 text-muted"> <i
-					class="feather-icon icon-map-pin me-2"></i>Location
+					class="feather-icon icon-map-pin me-2"></i>Vị trí nơi tiêm chủng
 				</a>
 
 
@@ -47,9 +47,9 @@
 							<div class="list-inline-item">
 								<div class="dropdown">
 									<a data-bs-toggle="dropdown" aria-expanded="false"> <svg
-											xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+											xmlns="http://www.w3.org/2000/svg" width="30" height="30"
 											viewBox="0 0 24 24" fill="none" stroke="currentColor"
-											stroke-width="2" stroke-linecap="round"
+											stroke-width="2" stroke-linecap="round" 
 											stroke-linejoin="round" class="feather feather-user">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
@@ -58,21 +58,20 @@
 									<ul class="dropdown-menu">
 
 										<li><a class="dropdown-item"
-											href="/vacxin-system/profile"><i class="bi bi-box-person"></i>Profile</a></li>
+											href="/vacxin-system/profile"><i class="bi bi-box-person"></i>Hồ sơ</a></li>
+										<li>	
+										<li><a class="dropdown-item"
+											href="/vacxin-system/lichsutiem"><i class="bi bi-box-hospital"></i>Lịch sử tiêm</a></li>
 										<li>
 											<form action="/vacxin-system/logout" method="post">
 												<button class="dropdown-item d-flex align-items-center"
-													type="submit">Logout</button>
+													type="submit">Đăng xuất</button>
 											</form>
 										</li>
 									</ul>
 								</div>
 							</div>
-							<div class="list-inline-item">
-
-								<span class="d-none d-md-block dropdown-toggle ps-2">${ sessionScope.username }</span>
-
-							</div>
+							
 
 						</div>
 					</div>

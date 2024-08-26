@@ -47,6 +47,9 @@ public class HomeController {
 	public String news_details() {
 		return "client/news_details";
 	}
-	
+	@GetMapping("/gioithieu")
+	public String index() {
+	      return "client/GioiThieu/index";
+	}
 	
 }

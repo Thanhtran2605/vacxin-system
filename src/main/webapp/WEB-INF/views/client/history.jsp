@@ -39,10 +39,8 @@
 								<th>Bệnh nhân</th>
 								<th>Vacxin</th>
 								<th>Status</th>
-								<c:forEach var="schedule" items="${schedules}">
-								<c:if test="${schedule.status == 'NOT_DUE'}">
+								
                 <th>Hủy lịch</th>
-            </c:if> </c:forEach>
 							</tr>
 						</thead>
 						<tbody>

@@ -179,11 +179,11 @@
 
                                 <!-- Tab thay đổi mật khẩu -->
                                 <div class="tab-pane fade" id="profile-edit" role="tabpanel" aria-labelledby="profile-edit-tab">
-                                    <form action="changePassword" method="post">
+                                    <form action="change-password" method="post">
                                         <div class="row mb-3">
                                             <label for="current-password" class="col-md-4 col-form-label">Mật khẩu hiện tại</label>
                                             <div class="col-md-8">
-                                                <input type="password" name="currentPassword" class="form-control" id="current-password" required />
+                                                <input type="password" name="oldPassword" class="form-control" id="current-password" required />
                                             </div>
                                         </div>
                                         <div class="row mb-3">

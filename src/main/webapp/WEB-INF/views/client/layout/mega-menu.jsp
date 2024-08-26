@@ -5,11 +5,11 @@
 <nav
 	class="navbar navbar-expand-lg navbar-light navbar-default pt-0 pb-0">
 	<div class="container px-0 px-md-3">
-
+ 
 		<div class="dropdown me-3 d-none d-lg-block">
-			<button class="btn btn-primary px-6 " type="button"
-				id="dropdownMenuButton1" data-bs-toggle="dropdown"
-				aria-expanded="false">
+			<a href="/vacxin-system/store" class="btn btn-primary px-6 " 
+				id="dropdownMenuButton1" data-bs-toggle=""
+				aria-expanded="">
 				<span class="me-1"> <svg xmlns="http://www.w3.org/2000/svg"
 						width="16" height="16" viewBox="0 0 24 24" fill="none"
 						stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
@@ -18,13 +18,9 @@
                 <rect x="14" y="3" width="7" height="7"></rect>
                 <rect x="14" y="14" width="7" height="7"></rect>
                 <rect x="3" y="14" width="7" height="7"></rect>
-              </svg></span> All Departments
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-				<li><a class="dropdown-item" href="pages/shop-grid.html">Dairy,
-						Bread & Eggs</a></li>
-
-			</ul>
+              </svg></span> Kho vắc xin
+			</a>
+			
 		</div>
 
 
@@ -41,13 +37,14 @@
 				<ul class="navbar-nav ">
 					<li class="nav-item"><a class="nav-link"
 						href="/vacxin-system/home" role="button"> Trang chủ </a></li>
-
-					<li class="nav-item"><a class="nav-link"
-						href="/vacxin-system/store" role="button"> Kho vaccine </a></li>
+<li class="nav-item"><a class="nav-link"
+						href="/vacxin-system/gioithieu" role="button"> Giới thiệu </a></li>
 						<li class="nav-item "><a class="nav-link"
-							href="/vacxin-system/news"> Tin tức </a></li>				
+							href="/vacxin-system/news"> Tin tức </a></li>
+					
 						<li class="nav-item "><a class="nav-link"
 						href="/vacxin-system/price_list" role="button"> Bảng giá </a></li>
+						
 
 				</ul>
 			</div>
