@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(requests -> requests
                 		// được phép truy cập bởi bất kỳ ai mà không cần xác thực (public).
-                        .antMatchers("/", "/home", "/register", "/store").permitAll()                         
+                        .antMatchers("/", "/home", "/register", "/store", "/news").permitAll()                         
                         // chỉ cho phép người dùng có vai trò (role) ADMIN truy cập
                         .antMatchers("/admin/", "/admin/profile", "/admin/schedules/**", "/admin/statistic/statistic-by-vaccine").hasAnyRole("ADMIN", "DOCTOR", "RECEPTIONIST")
                         .antMatchers("/admin/**").hasRole("ADMIN")

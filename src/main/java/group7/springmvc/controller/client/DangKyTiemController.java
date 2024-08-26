@@ -90,6 +90,7 @@ public class DangKyTiemController {
 				payment.setBankName(bankName);
 				payment.setStatus(Payment.Status.PAYMENT);
 		} else {
+			payment.setPayment_method(Payment.PaymentMethod.CASH);
 			payment.setStatus(Payment.Status.NON_PAYMENT);
 		}
 		payment.setPaymentDate(LocalDateTime.now());

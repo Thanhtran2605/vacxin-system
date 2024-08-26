@@ -155,7 +155,7 @@ h1 {
 									<option value="" disabled selected>-- Chọn mã bệnh
 										nhân --</option>
 									<c:forEach var="patient" items="${patients}">
-										<option value="${patient.id}">${patient.idCard}</option>
+										<option value="${patient.id}">${patient.idCard} - ${patient.user.fullName}</option>
 									</c:forEach>
 								</select> <br /> <label for="vaccinationDate">Ngày tiêm:</label> <input
 									type="date" id="vaccinationDate" name="vaccinationDate"
@@ -167,7 +167,7 @@ h1 {
 									required>
 									<option value="" disabled selected>-- Chọn vaccine --</option>
 									<c:forEach var="vaccine" items="${vaccines}">
-										<option value="${vaccine.id}">${vaccine.name}</option>
+										<option value="${vaccine.id}">${vaccine.name} - Số lượng : ${vaccine.quantity}</option>
 									</c:forEach>
 								</select> <br /> <label for="locationId">Địa điểm tiêm:</label> <select
 									id="locationId" name="location.id" class="form-control"
@@ -177,12 +177,6 @@ h1 {
 									<c:forEach var="location" items="${locations}">
 										<option value="${location.id}">${location.address}</option>
 									</c:forEach>
-								</select> <br /> <label for="status">Trạng thái:</label> <select
-									id="status" name="status" class="form-control" required>
-									<option value="NOT_DUE" selected>Chưa tới lịch hẹn</option>
-									<option value="COMPLETED">Đã tiêm</option>
-									<option value="CANCELLED">Hủy tiêm</option>
-									<option value="LATE">Trễ hẹn</option>
 								</select> <br />
 								<button type="submit" class="btn btn-primary">Thêm mới</button>
 							</form>

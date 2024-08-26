@@ -74,9 +74,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="location" items="${listVaccineLocation}">
+								<c:forEach var="location" items="${listVaccineLocation}" varStatus="status">
+							
 									<tr>
-										<th scope="row">${location.id}</th>
+										<th scope="row">${status.index + 1}</th>
 										<td>${location.nameLocation}</td>
 										<td>${location.address}</td>
 										<td>${location.phone}</td>

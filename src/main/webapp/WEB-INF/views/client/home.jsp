@@ -26,46 +26,35 @@
 		<jsp:include page="layout/mega-menu.jsp" />
 	</div>
 
-	<section class="mt-8">
-		<div class="container">
-			<div class="hero-slider ">
-				<div
-					style="background: url(<c:url value="/resources/assets/images/banner/banner1.png" />)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
-					<div
-						class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
-						<span class="badge text-bg-warning">Opening Sale Discount
-							50%</span>
-
-						<h2 class="text-dark display-5 fw-bold mt-4">
-							SuperMarket Daily <br> Fresh Grocery
-						</h2>
-						<p class="lead">Introduced a new model for online grocery
-							shopping and convenient home delivery.</p>
-						<a href="#!" class="btn btn-dark mt-3">Shop Now <i
-							class="feather-icon icon-arrow-right ms-1"></i></a>
-					</div>
-
-				</div>
-				<div
-					style="background: url(<c:url value="/resources/assets/images/banner/banner2.png" />)no-repeat; background-size: cover; border-radius: .5rem; background-position: center;">
-					<div
-						class="ps-lg-12 py-lg-16 col-xxl-5 col-md-7 py-14 px-8 text-xs-center">
-						<span class="badge text-bg-warning">Free Shipping - orders
-							over $100</span>
-						<h2 class="text-dark display-5 fw-bold mt-4">
-							Free Shipping on <br> orders over <span class="text-primary">$100</span>
-						</h2>
-						<p class="lead">Free Shipping to First-Time Customers Only,
-							After promotions and discounts are applied.</p>
-						<a href="#!" class="btn btn-dark mt-3">Shop Now <i
-							class="feather-icon icon-arrow-right ms-1"></i></a>
-					</div>
-
-				</div>
-
+	<div id="carouselExampleIndicators" class="container carousel slide">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleIndicators"
+				data-bs-slide-to="0" class="active" aria-current="true"
+				aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators"
+				data-bs-slide-to="1" aria-label="Slide 2"></button>
+			
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="<c:url value="/resources/assets/images/banner/banner2.png" />" class="d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="<c:url value="/resources/assets/images/banner/banner1.png" />" class="d-block w-100" alt="...">
 			</div>
 		</div>
-	</section>
+		<button class="carousel-control-prev" type="button"
+			data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button"
+			data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Next</span>
+		</button>
+	</div>
+	
 
 	<!-- Category Section Start-->
 	<section class="mb-lg-10 mt-lg-14 my-8">
@@ -73,7 +62,7 @@
 			<div class="row">
 				<div class="col-12 mb-6">
 
-					<h3 class="mb-0">Featured Categories</h3>
+					<h3 class="mb-0">Danh Mục</h3>
 
 				</div>
 			</div>
@@ -99,6 +88,10 @@
 
 	<!-- ======= JS ======= -->
 	<jsp:include page="layout/jsLink.jsp" />
-
+	<!--Start of Fchat.vn-->
+	<script type="text/javascript"
+		src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66c8ada9f388e47b452b4a72"
+		async="async"></script>
+	<!--End of Fchat.vn-->
 </body>
 </html>

@@ -6,10 +6,13 @@
 */
 package group7.springmvc.controller.admin;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,11 +26,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import group7.springmvc.model.Payment;
+import group7.springmvc.model.Receptionist;
 import group7.springmvc.model.Vaccine;
 import group7.springmvc.model.VaccineSchedule;
 import group7.springmvc.service.DoctorService;
+import group7.springmvc.service.EmployeeService;
 import group7.springmvc.service.PatientService;
+import group7.springmvc.service.PaymentService;
+import group7.springmvc.service.ReceptionistService;
 import group7.springmvc.service.ScheduleService;
+import group7.springmvc.service.UserService;
 import group7.springmvc.service.VaccineLocationService;
 import group7.springmvc.service.VaccineService;
 
@@ -35,6 +44,9 @@ import group7.springmvc.service.VaccineService;
 @RequestMapping("/admin/schedules")
 public class ScheduleController {
 
+	@Autowired
+	UserService userService;
+	
 	@Autowired
 	ScheduleService scheduleService;
 
@@ -49,6 +61,15 @@ public class ScheduleController {
 
 	@Autowired
 	VaccineLocationService vaccineLocationService;
+	
+	@Autowired
+	PaymentService paymentService;
+	
+	@Autowired
+	EmployeeService employeeService;
+	
+	@Autowired
+	ReceptionistService receptionistService;
 
 	@GetMapping("")
 	public String listSchedules(Model model) {
@@ -85,13 +106,12 @@ public class ScheduleController {
 	}
 
 	@PostMapping("/add")
-	public String addSchedule(@ModelAttribute VaccineSchedule schedule, BindingResult result) {
+	public String addSchedule(@ModelAttribute VaccineSchedule schedule, BindingResult result, HttpSession session) {
 		if (result.hasErrors()) {
 			return "admin/QL_schedule/add";
 		}
 
-		scheduleService.addSchedule(schedule);
-
+		
 		Optional<Vaccine> optionalVaccine = vaccineService.findById(schedule.getVaccine().getId());
 
 		if (optionalVaccine.isPresent()) {
@@ -108,6 +128,19 @@ public class ScheduleController {
 			result.reject("error", "Vaccine không tồn tại.");
 			return "admin/QL_schedule/add";
 		}
+		
+		schedule.setStatus(VaccineSchedule.Status.NOT_DUE);
+		schedule = scheduleService.addSchedule(schedule);
+		
+		Payment payment = new Payment();
+		Receptionist receptionist = receptionistService.findByEmployee(employeeService.findByUser(userService.findByUsername((String)session.getAttribute("username"))));
+		payment.setReceptionist(receptionist);
+		payment.setSchedule(schedule);
+		payment.setTotalAmount(optionalVaccine.get().getPrice());
+		payment.setPaymentDate(LocalDateTime.now());
+		payment.setPayment_method(Payment.PaymentMethod.CASH);
+		payment.setStatus(Payment.Status.PAYMENT);
+		paymentService.save(payment);
 
 		return "redirect:/admin/schedules/";
 	}

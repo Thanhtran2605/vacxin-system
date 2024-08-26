@@ -1,6 +1,7 @@
 package group7.springmvc.controller.admin;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +27,15 @@ public class QLCoSoYTeController {
 	private VaccineLocationService vaccineLocationService;
 
 	@GetMapping("")
-	public String getAllVaccineLocations(Model model) {
-		model.addAttribute("listVaccineLocation", vaccineLocationService.findAll());
+	public String getAllVaccineLocations(Model model ,@RequestParam("nameLocation") Optional<String> nameLocation) {
+		List<VaccineLocation> listVaccineLocation= new ArrayList<>();
+		if(nameLocation.isPresent()) {
+			listVaccineLocation =  vaccineLocationService.findAll(nameLocation.get());
+		} else {
+			listVaccineLocation =  vaccineLocationService.findAll();
+		}
+		
+		model.addAttribute("listVaccineLocation", listVaccineLocation);
 		return "admin/QL_CoSoYTe/index";
 	}
 	
