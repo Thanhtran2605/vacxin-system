@@ -48,8 +48,5 @@ public class HomeController {
 		return "client/news_details";
 	}
 	
-	@GetMapping("/access-dine")
-    public String lock() {
-        return "/error/405";
-    }
+	
 }

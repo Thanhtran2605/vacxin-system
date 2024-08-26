@@ -11,8 +11,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +26,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group7.springmvc.model.Vaccine;
 import group7.springmvc.model.VaccineSchedule;
@@ -51,7 +57,13 @@ public class ScheduleController {
 	VaccineLocationService vaccineLocationService;
 
 	@GetMapping("")
-	public String listSchedules(Model model) {
+	public String listSchedules(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+		if(session.getAttribute("role").equals("DOCTOR")) {
+			
+			redirectAttributes.addFlashAttribute("message", "Bác sĩ không có quyền truy cập!");
+			return "redirect:/access-dine";
+		}
+		System.out.println();
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
@@ -69,11 +81,20 @@ public class ScheduleController {
 		List<VaccineSchedule> allSchedules = scheduleService.getAllSchedulesAfterToday();
 		model.addAttribute("allSchedules", allSchedules);
 
+		List<Object[]> schedulesWithoutDoctor = scheduleService.findAllScheduleWithoutDoctor();
+		model.addAttribute("schedulesWithoutDoctor", schedulesWithoutDoctor);
+
 		return "admin/QL_schedule/list";
 	}
 
 	@GetMapping("/add")
-	public String showAddForm(Model model) {
+	public String showAddForm(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+		
+		if(session.getAttribute("role").equals("DOCTOR")) {
+			
+			redirectAttributes.addFlashAttribute("message", "Bác sĩ không có quyền truy cập!");
+			return "redirect:/access-dine";
+		}
 		model.addAttribute("schedule", new VaccineSchedule());
 
 		model.addAttribute("patients", patientService.getAllPatients());
@@ -156,7 +177,8 @@ public class ScheduleController {
 			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date vaccinationDate,
 			@RequestParam(required = false) Long vaccineId, @RequestParam(required = false) String doctorName,
 			@RequestParam(required = false) String patientName, @RequestParam(required = false) String vaccineName,
-			@RequestParam(required = false) VaccineSchedule.Status status, Model model) {
+			@RequestParam(required = false) VaccineSchedule.Status status,
+			@RequestParam(required = false) String patientIdCard, Model model) {
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -188,6 +210,8 @@ public class ScheduleController {
 			case "patient":
 				if (patientId != null) {
 					schedules = scheduleService.searchSchedulesByPatient(patientId);
+				} else if (patientIdCard != null) {
+					schedules = scheduleService.findByPatientIdCard(patientIdCard);
 				} else if (patientName != null) {
 					schedules = scheduleService.findByPatientName(patientName);
 				} else {
@@ -228,5 +252,4 @@ public class ScheduleController {
 
 		return "admin/QL_schedule/list";
 	}
-
 }

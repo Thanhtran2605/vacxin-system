@@ -1,19 +1,26 @@
 package group7.springmvc.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import group7.springmvc.model.Doctor;
 import group7.springmvc.model.Employee;
 import group7.springmvc.model.Receptionist;
 import group7.springmvc.model.User;
+import group7.springmvc.model.VaccineSchedule;
 import group7.springmvc.service.DoctorService;
 import group7.springmvc.service.EmployeeService;
 import group7.springmvc.service.ReceptionistService;
@@ -33,13 +40,13 @@ public class DashboardController {
 
 	@Autowired
 	ScheduleService scheduleService;
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@Autowired
 	DoctorService doctorService;
-	
+
 	@Autowired
 	ReceptionistService receptionistService;
 
@@ -76,16 +83,16 @@ public class DashboardController {
 
 	@GetMapping("/profile")
 	public String profile(Model model, HttpSession session) {
-		String loginUserName = (String)session.getAttribute("username");
+		String loginUserName = (String) session.getAttribute("username");
 		User currentUser = userService.findByUsername(loginUserName);
 		Employee currentEmployee = employeeService.findByUser(currentUser);
 		Doctor currentDoctor = doctorService.findByEmployee(currentEmployee);
 		Receptionist currentReceptionist = receptionistService.findByEmployee(currentEmployee);
-		if(currentEmployee != null) {
-			if(currentDoctor != null) {
+		if (currentEmployee != null) {
+			if (currentDoctor != null) {
 				model.addAttribute("currentEmployee", currentDoctor);
 				return "admin/auth/profile";
-			} else if(currentReceptionist != null) {
+			} else if (currentReceptionist != null) {
 				model.addAttribute("currentEmployee", currentReceptionist);
 				return "admin/auth/profile";
 			}
@@ -93,5 +100,45 @@ public class DashboardController {
 		model.addAttribute("currentUser", currentUser);
 		return "admin/auth/profile";
 	}
+
+	@GetMapping("/my-schedule")
+	public String viewMySchedule(Model model, HttpSession session) {
+
+		String loginUserName = (String) session.getAttribute("username");
+		User currentUser = userService.findByUsername(loginUserName);
+		Employee currentEmployee = employeeService.findByUser(currentUser);
+		Doctor currentDoctor = doctorService.findByEmployee(currentEmployee);
+
+		if (currentDoctor != null) {
+			model.addAttribute("currentEmployee", currentDoctor);
+			List<VaccineSchedule> schedules = scheduleService.searchSchedulesByDoctor(currentDoctor.getId());
+			model.addAttribute("schedules", schedules);
+		} else {
+			// Xử lý khi không tìm thấy bác sĩ (nếu cần)
+			model.addAttribute("schedules", new ArrayList<>());
+		}
+
+		model.addAttribute("currentUser", currentUser);
+		List<VaccineSchedule> allSchedules = scheduleService.getAllSchedulesAfterToday();
+		model.addAttribute("allSchedules", allSchedules);
+
+		return "admin/QL_schedule/my-schedule";
+
+	}
+	
+
+	@PostMapping("/my-schedule")
+	@ResponseBody
+	public ResponseEntity<String> updateScheduleStatus(@RequestParam("id") long id,
+			@RequestParam("status") VaccineSchedule.Status status) {
+		try {
+			scheduleService.updateScheduleStatus(id, status);
+			return ResponseEntity.ok("Trạng thái đã được cập nhật thành công.");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Có lỗi xảy ra khi cập nhật trạng thái.");
+		}
+	}
+
 
 }

@@ -67,6 +67,10 @@ public class ScheduleService {
 		return scheduleRepository.findByDoctorName(doctorName);
 	}
 
+	public List<VaccineSchedule> findByPatientIdCard(String idCard) {
+		return scheduleRepository.findByPatientIdCard(idCard);
+	}
+
 	public List<VaccineSchedule> findByPatientName(String patientName) {
 		return scheduleRepository.findByPatientName(patientName);
 	}
@@ -112,4 +116,14 @@ public class ScheduleService {
 		return scheduleRepository.findStatusPercentage();
 	}
 
+	public List<Object[]> findAllScheduleWithoutDoctor() {
+		return scheduleRepository.findSchedulesWithoutDoctor();
+	}
+
+	public void updateScheduleStatus(long id, VaccineSchedule.Status status) {
+		VaccineSchedule schedule = scheduleRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Không tìm thấy lịch tiêm với ID: " + id));
+		schedule.setStatus(status);
+		scheduleRepository.save(schedule);
+	}
 }

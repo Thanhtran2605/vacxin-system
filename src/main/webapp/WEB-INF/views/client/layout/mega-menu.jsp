@@ -45,7 +45,10 @@
 					<li class="nav-item"><a class="nav-link"
 						href="/vacxin-system/store" role="button"> Kho vaccine </a></li>
 						<li class="nav-item "><a class="nav-link"
-							href="/vacxin-system/news"> Tin tức </a></li>
+							href="/vacxin-system/news"> Tin tức </a></li>				
+						<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/price_list" role="button"> Bảng giá </a></li>
+
 				</ul>
 			</div>
 		</div>
