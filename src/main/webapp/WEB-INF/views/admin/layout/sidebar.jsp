@@ -113,7 +113,7 @@
 		</a></li>
 		<!-- End Profile Page Nav -->
 
-		<li class="nav-item"><a class="nav-link collapsed" href="#">
+		<li class="nav-item"><a class="nav-link collapsed" href="/vacxin-system/admin/contact">
 				<i class="bi bi-envelope"></i> <span>Liên hệ</span>
 		</a></li>
 		<!-- End Contact Page Nav -->
