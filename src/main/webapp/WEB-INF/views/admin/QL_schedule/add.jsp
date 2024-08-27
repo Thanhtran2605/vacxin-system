@@ -126,13 +126,13 @@ h1 {
 
 	<main id="main" class="main">
 		<div class="pagetitle">
-			<h1>Quản lý tiêm chủng</h1>
+			<h1>Thêm mới lịch tiêm chủng</h1>
 		</div>
 
 		<section class="section">
 			<div class="row">
-				<div class="card">
-					<div class="card-body">
+				<div class="card"> 
+					<div class="card-body"> <br>
 						<div id="notification"
 							style="display: none; color: #fff; background-color: #f44336; padding: 15px; border-radius: 5px; position: absolute; top: 20px; right: 20px; z-index: 1000;">
 							<span id="notification-message"></span>
@@ -141,7 +141,7 @@ h1 {
 								style="background: none; border: none; color: #fff; font-size: 16px; cursor: pointer;">&times;</button>
 						</div>
 						<div class="form-container">
-							<h1>Thêm mới lịch tiêm chủng</h1>
+							
 							<form action="<c:url value='/admin/schedules/add'/>"
 								method="post" class="form">
 								<label for="doctorId">Bác sĩ:</label> <select id="doctorId"

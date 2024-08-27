@@ -7,8 +7,8 @@
     <div class="container">
       <div class="border-top py-2">
         <div class="row align-items-center">
-          <div class="col-md-6"><span class="small text-muted">Copyright 2023 © FreshCart eCommerce HTML Template. All
-              rights reserved. Powered by Codescandy.</span></div>
+          <div class="col-md-6"><span class="small text-muted">Copyright 2023 © Vacxin 2024. All
+              rights reserved. Powered by LEHIEU.</span></div>
           <div class="col-md-6">
             <ul class="list-inline text-md-end mb-0 small mt-3 mt-md-0">
               <li class="list-inline-item text-muted">Follow us on</li>

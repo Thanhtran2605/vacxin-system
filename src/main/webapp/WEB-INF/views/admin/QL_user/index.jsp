@@ -38,7 +38,7 @@
 			<div class="row">
 
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body table-responsive">
 						<br>
 						<!-- Form tìm kiếm chỉ theo Username -->
 						<form action="/vacxin-system/admin/qluser" method="get"

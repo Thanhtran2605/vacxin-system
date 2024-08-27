@@ -76,9 +76,9 @@
 			<div class="row">
 
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body table-responsive">
 
-						<table class="table table-striped ">
+						<table class="table table-striped">
 							<thead>
 								<tr>
 									<th scope="col">Sắp Xếp [<a
