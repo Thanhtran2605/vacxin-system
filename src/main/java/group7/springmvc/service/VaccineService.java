@@ -34,7 +34,7 @@ public class VaccineService {
 		return vaccineRepository.findAll(pageable);
 	}
 
-	public Page<Vaccine> findAll(String name, String type, String country, Pageable pageable) {
+	public Page<Vaccine> findAll(String name, String disease, String country, Pageable pageable) {
 		return vaccineRepository.findAll((root, query, criteriaBuilder) -> {
 			List<Predicate> predicates = new ArrayList<>();
 
@@ -42,8 +42,8 @@ public class VaccineService {
 				predicates.add(criteriaBuilder.like(root.get("name"), "%" + name + "%"));
 			}
 
-			if (type != null && !type.isEmpty()) {
-				predicates.add(criteriaBuilder.like(root.get("disease"), "%" + type + "%"));
+			if (disease != null && !disease.isEmpty()) {
+				predicates.add(criteriaBuilder.like(root.get("disease"), "%" + disease + "%"));
 			}
 
 			if (country != null && !country.isEmpty()) {

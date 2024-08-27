@@ -141,14 +141,6 @@ ul li strong {
 	list-style: none;
 }
 
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
 /* Button Styling */
 .button {
 	background-color: #007bff;

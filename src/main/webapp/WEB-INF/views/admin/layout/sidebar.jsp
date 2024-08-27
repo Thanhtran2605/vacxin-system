@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <aside id="sidebar" class="sidebar">
 
 	<ul class="sidebar-nav" id="sidebar-nav">
@@ -17,7 +17,7 @@
 		</a>
 			<ul id="components-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
-				<li><a href="/vacxin-system/admin/qluser"> <i
+				<li><a href="/vacxin-system/admin/qluser/"> <i
 						class="bi bi-circle"></i><span>Quản lý người dùng</span>
 				</a></li>
 			</ul></li>
@@ -46,7 +46,7 @@
 		</a>
 			<ul id="forms-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
-				<li><a href="/vacxin-system/admin/qlvaccinelocation"> <i
+				<li><a href="/vacxin-system/admin/qlvaccinelocation/"> <i
 						class="bi bi-circle"></i><span>Danh sách địa điểm tiêm</span>
 				</a></li>
 
@@ -60,7 +60,7 @@
 		</a>
 			<ul id="tables-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
-				<li><a href="/vacxin-system/admin/vaccines"> <i
+				<li><a href="/vacxin-system/admin/vaccines/"> <i
 						class="bi bi-circle"></i><span>Danh Sách Vaccine</span>
 				</a></li>
 				<li><a href="/vacxin-system/admin/vaccines/create"> <i
@@ -76,13 +76,21 @@
 		</a>
 			<ul id="icons-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
+				<c:if test="${ sessionScope.role == 'RECEPTIONIST' || sessionScope.role == 'ADMIN' }">
 				<li><a href="/vacxin-system/admin/schedules"> <i
 						class="bi bi-circle"></i><span>Danh sách lịch tiêm</span>
 				</a></li>
 				<li><a href="/vacxin-system/admin/schedules/add"> <i
 						class="bi bi-circle"></i><span>Thêm lịch tiêm chủng</span>
 				</a></li>
-
+				</c:if>
+				<c:if test="${ sessionScope.role == 'DOCTOR' || sessionScope.role == 'ADMIN' }">
+					<li>
+						<a class="dropdown-item d-flex align-items-center"
+							href="/vacxin-system/admin/my-schedule"> <i class="bi bi-circle"></i> <span>Lịch tiêm của tôi</span>
+						</a>
+					</li>
+				</c:if>
 			</ul></li>
 		<!-- End Icons Nav -->
 
@@ -93,7 +101,7 @@
 		</a>
 			<ul id="charts-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
-				<li><a href="/vacxin-system/admin/api/statistic/by-hour"> <i
+				<li><a href="/vacxin-system/admin/statistic/by-hour"> <i
 						class="bi bi-circle"></i><span>Thống kê tiêm chủng</span>
 				</a></li>
 

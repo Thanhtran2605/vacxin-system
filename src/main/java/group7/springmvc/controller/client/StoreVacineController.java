@@ -47,7 +47,6 @@ public class StoreVacineController {
 		model.addAttribute("totalPages", vaccines.getTotalPages());
 		model.addAttribute("queryString", queryString);
 		model.addAttribute("currentSort", sort);
-//		model.addAttribute("danhsachQuocgia", vaccineService.getDistinctCountries());
 		List<String> commonKeywords = Arrays.asList(
 	            "Viêm gan", "Ung thư", "Sởi", "Uốn ván", "Bạch hầu", "Lao", "Cúm", "Dại", "Viêm não Nhật Bản"
 	        );

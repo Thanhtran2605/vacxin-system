@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import group7.springmvc.model.Payment;
-import group7.springmvc.model.Receptionist;
 import group7.springmvc.model.User;
 import group7.springmvc.model.Vaccine;
 import group7.springmvc.model.VaccineSchedule;
@@ -71,7 +70,6 @@ public class DangKyTiemController {
 			@RequestParam("numberBank") String numberBank,
 			@RequestParam("paymentMethod") String paymentMethod
 			) {
-		
 		
 		Vaccine vaccine  = vaccineService.findById(schedule.getVaccine().getId()).get();
 		vaccine.setQuantity(vaccine.getQuantity() - 1);

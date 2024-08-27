@@ -30,6 +30,56 @@
 
 		<section class="section">
 			<div class="row">
+			
+				<!-- Lịch tiêm chủng hôm nay -->
+					<div class="col-12">
+						<h5 class="card-title"
+							style="color: #ffffff; background-color: #76b5c5; padding: 19px; border-radius: 5px;">
+							Lịch tiêm chủng chưa có bác sĩ tiếp nhận</h5>
+						<div class="card">
+							<div class="card-body">
+								<div id="todaySchedules">
+									<c:if test="${not empty schedulesWithoutDoctor}">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th class="text-center">STT</th>
+													<th class="text-center">Mã bệnh nhân</th>
+													<th class="text-center">Tên bệnh nhân</th>
+													<th class="text-center">Tên bác sĩ</th>
+													<th class="text-center">Ngày tiêm</th>
+													<th class="text-center">Giờ tiêm</th>
+													<th class="text-center">Vaccine</th>
+													<th class="text-center">Địa điểm tiêm</th>
+													<th class="text-center">Tên Receptionist</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="item" items="${schedulesWithoutDoctor}"
+													varStatus="status">
+													<tr>
+														<td class="text-center">${status.index + 1}</td>
+														<td class="text-center">${item[0].patient.idCard}</td>
+														<td class="text-center">${item[0].patient.user.fullName}</td>
+														<td class="text-center">${item[0].doctor != null ? item[0].doctor.employee.user.fullName : 'Chưa có bác sĩ'}</td>
+														<td class="text-center">${item[0].vaccinationDate}</td>
+														<td class="text-center">${item[0].vaccinationTime}</td>
+														<td class="text-center">${item[0].vaccine.name}</td>
+														<td class="text-center">${item[0].location.address}</td>
+														<td class="text-center">${item[1].receptionist.employee.user.fullName}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</c:if>
+									<c:if test="${empty schedulesWithoutDoctor}">
+										<p>Không có lịch tiêm chủng hôm nay.</p>
+									</c:if>
+								</div>
+							</div>
+						</div>
+					</div>
+			
 				<!-- Lịch tiêm chủng hôm nay -->
 				<div class="col-12">
 					<h5 class="card-title"
@@ -65,23 +115,7 @@
 													<td class="text-center">${schedule.vaccinationTime}</td>
 													<td class="text-center">${schedule.vaccine.name}</td>
 													<td class="text-center">${schedule.location.address}</td>
-													<%-- <td class="text-center"><c:choose>
-															<c:when test="${schedule.status == 'COMPLETED'}">
-																<i class="fas fa-check-circle text-success"
-																	title="Đã tiêm"></i> Đã tiêm
-                                                </c:when>
-															<c:when test="${schedule.status == 'NOT_DUE'}">
-																<i class="fas fa-calendar-times text-warning"
-																	title="Chưa tới lịch hẹn"></i> Chưa tới lịch hẹn
-                                                </c:when>
-															<c:when test="${schedule.status == 'CANCELLED'}">
-																<i class="fas fa-times-circle text-danger"
-																	title="Hủy tiêm"></i> Hủy tiêm
-                                                </c:when>
-															<c:when test="${schedule.status == 'LATE'}">
-																<i class="fas fa-clock text-secondary" title="Trễ hẹn"></i> Trễ hẹn
-                                                </c:when>
-														</c:choose></td> --%>
+													
 												</tr>
 												<c:set var="count" value="${count + 1}" />
 											</c:forEach>
@@ -183,56 +217,6 @@
 						</div>
 					</div>
 
-					<!-- Lịch tiêm chủng hôm nay -->
-					<div class="col-12">
-						<h5 class="card-title"
-							style="color: #ffffff; background-color: #76b5c5; padding: 19px; border-radius: 5px;">
-							Bác sĩ và phương thức thanh toán</h5>
-						<div class="card">
-							<div class="card-body">
-								<div id="todaySchedules">
-									<c:if test="${not empty schedulesWithoutDoctor}">
-										<table class="table table-striped">
-											<thead>
-												<tr>
-													<th class="text-center">STT</th>
-													<th class="text-center">Mã bệnh nhân</th>
-													<th class="text-center">Tên bệnh nhân</th>
-													<th class="text-center">Tên bác sĩ</th>
-													<th class="text-center">Ngày tiêm</th>
-													<th class="text-center">Giờ tiêm</th>
-													<th class="text-center">Vaccine</th>
-													<th class="text-center">Địa điểm tiêm</th>
-													<th class="text-center">Tên Receptionist</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="item" items="${schedulesWithoutDoctor}"
-													varStatus="status">
-													<tr>
-														<td class="text-center">${status.index + 1}</td>
-														<td class="text-center">${item[0].patient.idCard}</td>
-														<td class="text-center">${item[0].patient.user.fullName}</td>
-														<td class="text-center">${item[0].doctor != null ? item[0].doctor.employee.user.fullName : 'Chưa có bác sĩ'}</td>
-														<td class="text-center">${item[0].vaccinationDate}</td>
-														<td class="text-center">${item[0].vaccinationTime}</td>
-														<td class="text-center">${item[0].vaccine.name}</td>
-														<td class="text-center">${item[0].location.address}</td>
-														<td class="text-center">${item[1] != null ? item[1].receptionist.employee.user.fullName : 'N/A'}</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</c:if>
-									<c:if test="${empty schedulesWithoutDoctor}">
-										<p>Không có lịch tiêm chủng hôm nay.</p>
-									</c:if>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
 					<!-- Danh sách tiêm chủng -->
 					<div class="card mt-4">
 						<h5 class="card-title"
@@ -260,7 +244,7 @@
 										<tr>
 											<td class="text-center"><c:out value="${count + 1}" /></td>
 
-											<td class="text-center">${schedule.doctor.employee.user.fullName}</td>
+											<td class="text-center">${schedule.doctor.employee.user.fullName }</td>
 											<td class="text-center">${schedule.patient.idCard}</td>
 											<td class="text-center">${schedule.patient.user.fullName}</td>
 											<td class="text-center">${schedule.vaccinationDate}</td>

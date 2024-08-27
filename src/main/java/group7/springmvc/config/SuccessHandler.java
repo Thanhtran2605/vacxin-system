@@ -64,6 +64,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
 		User user = userService.findByUsername(authentication.getName());
 
 		if (user != null) {
+			session.setAttribute("fullname", user.getFullName());
 			session.setAttribute("username", user.getUsername());
 			session.setAttribute("email", user.getEmail());
 			session.setAttribute("id", user.getId());

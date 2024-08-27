@@ -46,6 +46,9 @@ public class ProfileController {
 
     @GetMapping("profile")
     public String profile(Model model, HttpSession session) {
+    	if(!session.getAttribute("role").equals("PATIENT")) {
+    		return "redirect:/admin/profile";
+    	}
         String loginUserName = (String) session.getAttribute("username");
         User currentUser = userService.findByUsername(loginUserName);
         Employee currentEmployee = employeeService.findByUser(currentUser);

@@ -35,7 +35,7 @@
 					</ol>
 				</nav>
 			</div>
-			<a class="btn btn-sm btn-danger" href="/vacxin-system/admin/vaccines"><i
+			<a class="btn btn-sm btn-danger" href="/vacxin-system/admin/vaccines/"><i
 				class="bi bi-backspace"></i> Trở về</a>
 		</div>
 

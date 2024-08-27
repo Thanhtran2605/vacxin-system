@@ -51,6 +51,9 @@
 
 					<li class="nav-item "><a class="nav-link"
 						href="/vacxin-system/price_list" role="button"> Bảng giá </a></li>
+						<li class="nav-item "><a class="nav-link"
+						href="/vacxin-system/camnang" role="button"> Cẩm nang </a></li>
+						
 
 
 				</ul>

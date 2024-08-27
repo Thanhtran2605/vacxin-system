@@ -28,7 +28,7 @@ public class QLuserController {
     private RoleService roleService;
     
     
-    @GetMapping("")
+    @GetMapping("/")
     public String QLuser(@RequestParam(value = "username", required = false) String username, ModelMap model) {
         List<User> users;
         if (username != null && !username.isEmpty()) {

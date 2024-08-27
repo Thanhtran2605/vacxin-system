@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-// Đầu tiên là file SecurityConfig 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -27,39 +26,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new SuccessHandler();
 	}
 
-	// Hàm này giúp xử lý các yêu cầu HTTP và bảo mật ứng dụng web
-	// cấu hình các quy tắc phân quyền cho các đường dẫn URL
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests(requests -> requests
-				// được phép truy cập bởi bất kỳ ai mà không cần xác thực (public).
-				.antMatchers("/", "/home", "/register", "/store").permitAll()
-				// chỉ cho phép người dùng có vai trò (role) ADMIN truy cập
-				.antMatchers("/admin/", "/admin/profile", "/admin/schedules/**",
-						"/admin/statistic/statistic-by-vaccine", "/admin/my-schedule")
-				.hasAnyRole("ADMIN", "DOCTOR", "RECEPTIONIST").antMatchers("/admin/**").hasRole("ADMIN")
-				// .antMatchers("/admin/my-schedule").hasRole("DOCTOR")
-
-				// Mọi yêu cầu khác ngoài những cái trên đều yêu cầu người dùng phải xác thực
-				// (login)
+				
+				.antMatchers("/", "/home", "/register", "/store", "/gioithieu", "/news", "/news_details", "/price_list", "/camnang", "/location").permitAll()
+			    .antMatchers("/admin/schedules/**", "/admin/qlvaccinelocation/**").hasAnyRole("ADMIN", "RECEPTIONIST")
+			    .antMatchers("/admin/my-schedule/**", "/admin/vaccines/**").hasAnyRole("ADMIN", "DOCTOR")
+			    .antMatchers("/admin/profile", "/admin/", "/admin/contact", "/admin/statistic/**").hasAnyRole("ADMIN", "DOCTOR", "RECEPTIONIST")
+			    .antMatchers("/admin/**").hasRole("ADMIN")
+			    
 				.anyRequest().authenticated()).httpBasic(withDefaults())
-				.formLogin(login -> login.loginPage("/login").successHandler(authenticationSuccessHandler()) // Liên
-																												// quan
-																												// tới
-																												// file
-																												// SuccessHandler.java
+				.formLogin(login -> login.loginPage("/login").successHandler(authenticationSuccessHandler())
 						.failureUrl("/login?error=true").permitAll())
-
 				.csrf(csrf -> csrf.disable())
 				.logout(logout -> logout.logoutSuccessUrl("/login?logout=true").permitAll());
 	}
 
-	// Hàm này giúp thiết lập cách Spring Security sẽ lấy thông tin người dùng để
-	// xác thực.
 	@Override
 	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(customUserDetailService); // Liên quan tới file
-																					// CustomUserDetailService.java
+		authenticationManagerBuilder.userDetailsService(customUserDetailService);
 	}
 
 	@Override

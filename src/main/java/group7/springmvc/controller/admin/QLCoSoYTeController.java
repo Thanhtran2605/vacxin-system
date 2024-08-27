@@ -26,7 +26,7 @@ public class QLCoSoYTeController {
 	@Autowired
 	private VaccineLocationService vaccineLocationService;
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String getAllVaccineLocations(Model model ,@RequestParam("nameLocation") Optional<String> nameLocation) {
 		List<VaccineLocation> listVaccineLocation= new ArrayList<>();
 		if(nameLocation.isPresent()) {
@@ -82,7 +82,7 @@ public class QLCoSoYTeController {
             redirectAttributes.addFlashAttribute("error", "Failed to add new vaccine location!");
         }
 
-        return "redirect:/admin/qlvaccinelocation";
+        return "redirect:/admin/qlvaccinelocation/";
     }
     
 
@@ -94,7 +94,7 @@ public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
 			model.addAttribute("editLocation", location);
 			return "admin/QL_CoSoYTe/edit";
 		} else {
-			return "redirect:/admin/qlvaccinelocation";
+			return "redirect:/admin/qlvaccinelocation/";
 		}
 	}
 
@@ -138,7 +138,7 @@ public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
 			redirectAttributes.addFlashAttribute("error", "Vaccine location not found!");
 		}
 
-		return "redirect:/admin/qlvaccinelocation";
+		return "redirect:/admin/qlvaccinelocation/";
 	}
 
 	@PostMapping("/delete")
@@ -146,7 +146,7 @@ public String editVaccineLocation(@PathVariable("id") Long id, ModelMap model) {
 			RedirectAttributes redirectAttributes) {
 		vaccineLocationService.deleteById(locationId);
 		redirectAttributes.addFlashAttribute("message", "Vaccine location deleted successfully!");
-		return "redirect:/admin/qlvaccinelocation";
+		return "redirect:/admin/qlvaccinelocation/";
 	}
 	
 

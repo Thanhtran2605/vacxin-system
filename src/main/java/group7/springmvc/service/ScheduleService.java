@@ -54,11 +54,6 @@ public class ScheduleService {
 		return scheduleRepository.findByVaccinationDate(vaccinationDate);
 	}
 
-	/*
-	 * public List<VaccineSchedule> getSchedulesByDate(Date date) { return
-	 * scheduleRepository.findByVaccinationDate(date); }
-	 */
-
 	public List<VaccineSchedule> findSchedulesByVaccine(Long vaccineId) {
 		return scheduleRepository.findByVaccineId(vaccineId);
 	}
@@ -126,4 +121,10 @@ public class ScheduleService {
 		schedule.setStatus(status);
 		scheduleRepository.save(schedule);
 	}
+
+	public Optional<VaccineSchedule> findById(Long id) {
+		return scheduleRepository.findById(id);
+	}
+	
+	
 }

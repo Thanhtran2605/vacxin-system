@@ -37,20 +37,36 @@
 			<div class="d-flex gap-2 align-items-center">
 				<div class="search-bar">
 					<form class="search-form d-flex align-items-center" method="GET"
-						action="/vacxin-system/admin/vaccines">
+						action="/vacxin-system/admin/vaccines/">
 						<input name="page" value="1" type="hidden"> <input
 							type="text" name="name" class="mx-2"
-							placeholder="Nhập tên vaccine" value="${param.name}"> <input
-							type="text" name="type" class="mx-2" placeholder="Nhập loại bệnh"
-							value="${param.type}"> <input type="text" name="country"
-							class="mx-2" placeholder="Nơi sản xuất" value="${param.country}">
+							placeholder="Nhập tên vaccine" value="${param.name}"> <select
+							class="form-select mx-2" name="disease"
+							aria-label="Default select example">
+							<option value="" ${empty param.disease ? 'selected' : ''}>Chọn
+								loại bệnh</option>
+							<c:forEach items="${danhsachLoaibenh}" var="loaibenh">
+								<option value="${loaibenh}"
+									${param.disease == loaibenh ? 'selected' : ''}>${loaibenh}</option>
+							</c:forEach>
+						</select> <select class="form-select" name="country"
+							aria-label="Default select example">
+							<option value="" ${empty param.country ? 'selected' : ''}>Chọn
+								quốc gia</option>
+							<c:forEach items="${danhsachQuocgia}" var="quocgia">
+								<option value="${quocgia}"
+									${param.country == quocgia ? 'selected' : ''}>${quocgia}</option>
+							</c:forEach>
+						</select>
+
+
 						<button type="submit" class="btn btn-sm btn-success mx-2"
 							title="Search">
 							<i class="bi bi-search"></i>
 						</button>
 					</form>
 				</div>
-				<a class="btn btn-sm btn-success" href="vaccines/create"><i
+				<a class="btn btn-sm btn-success" href="/vacxin-system/admin/vaccines/create"><i
 					class="bi bi-plus"></i> Thêm mới</a>
 			</div>
 		</div>
@@ -102,7 +118,7 @@
 											<td>${vaccine.price}00đ</td>
 											<td class="shorten-text">${vaccine.disease}</td>
 											<td>${vaccine.country}</td>
-											<td>${vaccine.quantity} liều</td>
+											<td>${vaccine.quantity}liều</td>
 											<td class="shorten-text">${vaccine.description}</td>
 											<td><a
 												href="/vacxin-system/admin/vaccines/edit/${vaccine.id}"
@@ -130,7 +146,7 @@
 															<div class="modal-footer">
 																<button type="button" class="btn btn-secondary"
 																	data-bs-dismiss="modal">Close</button>
-																<a href="vaccines/delete/${ vaccine.id }"
+																<a href="/vacxin-system/admin/vaccines/delete/${ vaccine.id }"
 																	class="btn btn-primary">Delete</a>
 															</div>
 														</div>
@@ -142,7 +158,7 @@
 								</c:if>
 								<c:if test="${totalPages == 0}">
 									<tr>
-										<td colspan="9" class="text-center">
+										<td colspan="10" class="text-center">
 											<h3>Không tìm thấy loại vaccine nào</h3>
 										</td>
 									</tr>
@@ -155,18 +171,18 @@
 								<ul class="pagination">
 									<li class="page-item"><a
 										class="${1 eq currentPage ? 'disabled page-link' : 'page-link'}"
-										href="/vacxin-system/admin/vaccines?page=${currentPage - 1}${queryString}"
+										href="/vacxin-system/admin/vaccines/?page=${currentPage - 1}${queryString}"
 										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 									</a></li>
 									<c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
 										<li class="page-item"><a
 											class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
-											href="/vacxin-system/admin/vaccines?page=${loop.index + 1}${queryString}">
+											href="/vacxin-system/admin/vaccines/?page=${loop.index + 1}${queryString}">
 												${loop.index + 1} </a></li>
 									</c:forEach>
 									<li class="page-item"><a
 										class="${totalPages eq currentPage ? 'disabled page-link' : 'page-link'}"
-										href="/vacxin-system/admin/vaccines?page=${currentPage + 1}${queryString}"
+										href="/vacxin-system/admin/vaccines/?page=${currentPage + 1}${queryString}"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 									</a></li>
 

@@ -19,6 +19,8 @@ import group7.springmvc.model.Vaccine;
 import group7.springmvc.service.VaccineService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -29,10 +31,10 @@ public class VaccineController {
 	@Autowired
 	private VaccineService vaccineService;
 
-	@GetMapping("")
+	@GetMapping("/")
 	public String getAllVaccine(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "name", required = false) String name,
-            @RequestParam(name = "type", required = false) String type,
+            @RequestParam(name = "disease", required = false) String disease,
             @RequestParam(name = "country", required = false) String country,
             @RequestParam(name = "sort", defaultValue = "id,asc") String sort,
             HttpServletRequest request) {
@@ -46,12 +48,16 @@ public class VaccineController {
 		{
 			queryString = queryString.replace("page=" + page, "");
 		}
-		Page<Vaccine> vaccine = vaccineService.findAll(name, type, country, pageable);
+		Page<Vaccine> vaccine = vaccineService.findAll(name, disease, country, pageable);
 		model.addAttribute("danhsachVaccine", vaccine.getContent().size() > 0 ? vaccine.getContent() : new ArrayList<Vaccine>());
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", vaccine.getTotalPages());
 		model.addAttribute("queryString", queryString);
 		model.addAttribute("currentSort", sort);
+		List<String> commonKeywords = Arrays.asList(
+	            "Viêm gan", "Ung thư", "Sởi", "Uốn ván", "Bạch hầu", "Lao", "Cúm", "Dại", "Viêm não Nhật Bản"
+	        );
+		model.addAttribute("danhsachLoaibenh", commonKeywords);
 		return "admin/QL_vaccine/index";
 	}
 
@@ -67,7 +73,7 @@ public class VaccineController {
 	        return "admin/QL_vaccine/create";
 	    }
 		vaccineService.save(vaccine);
-		return "redirect:/admin/vaccines";
+		return "redirect:/admin/vaccines/";
 	}
 
 	@GetMapping("/edit/{id}")
@@ -82,13 +88,13 @@ public class VaccineController {
 	        return "redirect:edit/" + vaccine.getId();
 	    }
 		vaccineService.save(vaccine);
-		return "redirect:/admin/vaccines";
+		return "redirect:/admin/vaccines/";
 	}
 
 	@GetMapping("delete/{id}")
 	public String deleteVaccine(@PathVariable("id") long id) {
 		System.out.println("id : " + id);
 		vaccineService.deleteById(id);
-		return "redirect:/admin/vaccines";
+		return "redirect:/admin/vaccines/";
 	}
 }

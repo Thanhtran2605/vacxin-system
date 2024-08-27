@@ -88,10 +88,6 @@
 
 	<!-- ======= JS ======= -->
 	<jsp:include page="layout/jsLink.jsp" />
-	<!--Start of Fchat.vn-->
-	<script type="text/javascript"
-		src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66c8ada9f388e47b452b4a72"
-		async="async"></script>
-	<!--End of Fchat.vn-->
+	
 </body>
 </html>

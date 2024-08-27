@@ -6,20 +6,9 @@
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="/vacxin-system/admin/" class="logo d-flex align-items-center">
 			<img src="<c:url value="/resources/images/logo.png" />" alt="">
-			<span class="d-none d-lg-block">Vacxin</span>
+			<span class="d-none d-lg-block">Vaccine</span>
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
-
-	<!-- <div class="search-bar">
-		<form class="search-form d-flex align-items-center" method="POST"
-			action="#">
-			<input type="text" name="query" placeholder="Search"
-				title="Enter search keyword">
-			<button type="submit" title="Search">
-				<i class="bi bi-search"></i>
-			</button>
-		</form>
-	</div> -->
 
 	<nav class="header-nav ms-auto">
 		<ul class="d-flex align-items-center">
@@ -42,17 +31,10 @@
 
 					<li>
 						<a class="dropdown-item d-flex align-items-center"
-							href="profile"> <i class="bi bi-person"></i> <span>My
-									Profile</span>
+							href="/vacxin-system/admin/profile"> <i class="bi bi-person"></i> <span>Hồ sơ</span>
 						</a>
 					</li>
-					<c:if test="${ sessionScope.role == 'DOCTOR' }">
-					<li>
-						<a class="dropdown-item d-flex align-items-center"
-							href="/vacxin-system/admin/my-schedule"> <i class="bi bi-calendar"></i> <span>Lịch tiêm của tôi</span>
-						</a>
-					</li>
-					</c:if>
+					
 					
 					<li>
 						<hr class="dropdown-divider">
@@ -61,7 +43,7 @@
 						<form action="/vacxin-system/logout" method="post">
 							<button class="dropdown-item d-flex align-items-center"
 								type="submit">
-								<i class="bi bi-box-arrow-right"></i> Logout
+								<i class="bi bi-box-arrow-right"></i> Đăng xuất
 							</button>
 						</form>
 					</li>

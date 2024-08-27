@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,7 +115,6 @@ public class DashboardController {
 			List<VaccineSchedule> schedules = scheduleService.searchSchedulesByDoctor(currentDoctor.getId());
 			model.addAttribute("schedules", schedules);
 		} else {
-			// Xử lý khi không tìm thấy bác sĩ (nếu cần)
 			model.addAttribute("schedules", new ArrayList<>());
 		}
 
@@ -125,19 +125,23 @@ public class DashboardController {
 		return "admin/QL_schedule/my-schedule";
 
 	}
-	
 
-	@PostMapping("/my-schedule")
-	@ResponseBody
-	public ResponseEntity<String> updateScheduleStatus(@RequestParam("id") long id,
-			@RequestParam("status") VaccineSchedule.Status status) {
-		try {
-			scheduleService.updateScheduleStatus(id, status);
-			return ResponseEntity.ok("Trạng thái đã được cập nhật thành công.");
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Có lỗi xảy ra khi cập nhật trạng thái.");
+	@GetMapping("/my-schedule/{id}")
+	public String updatedatiem(@PathVariable("id") long id, @RequestParam("status") String status) {
+		VaccineSchedule schedule = scheduleService.findById(id).get();
+		if (status.equals("COMPLETED")) {
+			schedule.setStatus(VaccineSchedule.Status.COMPLETED);
 		}
-	}
+		if (status.equals("LATE")) {
+			schedule.setStatus(VaccineSchedule.Status.LATE);
+		}
+		scheduleService.addSchedule(schedule);
 
+		return "redirect:/admin/my-schedule";
+	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "admin/Contact/index";
+	}
 }

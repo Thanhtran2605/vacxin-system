@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import group7.springmvc.service.ScheduleService;
 
 @Controller
-@RequestMapping("admin/api/statistic")
+@RequestMapping("admin/statistic")
 public class StatisticController {
 
 	@Autowired

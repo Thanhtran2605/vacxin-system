@@ -56,7 +56,7 @@
 						<table class="table table-striped ">
 							<thead>
 								<tr>
-									<th scope="col">#</th>
+									<th scope="col">STT</th>
 									<th scope="col">Username</th>
 									<th scope="col">Phone</th>
 									<th scope="col">Email</th>
@@ -68,9 +68,9 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="user" items="${listUser}">
+								<c:forEach var="user" items="${listUser}" varStatus="status">
 									<tr>
-										<th scope="row">${user.id}</th>
+										<th scope="row">${status.index + 1}</th>
 										<td>${user.username}</td>
 										<td>${user.phone}</td>
 										<td>${user.email}</td>
