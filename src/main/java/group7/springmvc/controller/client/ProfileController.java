@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import group7.springmvc.model.Doctor;
 import group7.springmvc.model.Employee;
@@ -68,5 +70,37 @@ public class ProfileController {
         }
         
         return "client/profile";
+    }
+    
+    @PostMapping("update-user")
+    public String updateUser(
+            @RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("phone") String phone,
+            @RequestParam("fullName") String fullName,
+            @RequestParam("gender") String gender,
+            @RequestParam("address") String address,
+            HttpSession session,
+            Model model) {
+
+        String loginUserName = (String) session.getAttribute("username");
+        User currentUser = userService.findByUsername(loginUserName);
+
+        if (currentUser != null) {
+            currentUser.setUsername(username);
+            currentUser.setEmail(email);
+            currentUser.setPhone(phone);
+            currentUser.setFullName(fullName);
+            currentUser.setGender(gender);
+            currentUser.setAddress(address);
+
+            userService.save(currentUser);
+
+            model.addAttribute("successMessage", true);
+        } else {
+            model.addAttribute("errorMessage", true);
+        }
+
+        return "redirect:/profile";
     }
 }

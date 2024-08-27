@@ -82,7 +82,7 @@
                 <div class="row mb-3">
                    
                     
-                     <div class="col-sm-3">
+                     <div class="row">
                         <label for="imageLink" class="form-label">Link hình ảnh</label>
                         <input type="text" id="imageLink" class="form-control" name="imageLink">
                     </div>

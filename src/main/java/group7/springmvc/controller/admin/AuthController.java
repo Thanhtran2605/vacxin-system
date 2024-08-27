@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import group7.springmvc.model.Patient;
 import group7.springmvc.model.User;
+import group7.springmvc.service.PatientService;
 import group7.springmvc.service.RoleService;
 import group7.springmvc.service.UserService;
 
@@ -30,6 +32,9 @@ public class AuthController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	PatientService patientService;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -88,8 +93,10 @@ public class AuthController {
 		user.setPassword(hassPassword);
 		user.setRole(roleService.findByValue("PATIENT"));
 		user.setStatus((byte)0);
-		userService.save(user);
+		
+		Patient patient = new Patient();
+		patient.setUser(userService.save(user));
+		patientService.save(patient);
 		return "redirect:/login";
 	}
-
 }

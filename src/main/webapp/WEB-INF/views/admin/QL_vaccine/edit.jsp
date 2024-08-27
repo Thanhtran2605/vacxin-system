@@ -35,7 +35,7 @@
 					</ol>
 				</nav>
 			</div>
-			<a class="btn btn-sm btn-danger" href="/vacxin-system/admin/vaccines"><i
+			<a class="btn btn-sm btn-danger" href="/vacxin-system/admin/vaccines/"><i
 				class="bi bi-backspace"></i> Trở lại</a>
 		</div>
 
@@ -47,10 +47,16 @@
 						<form:form class="row g-3 mt-3" modelAttribute="editVaccine"
 							action="/vacxin-system/admin/vaccines/edit" method="post">
 							<form:input path="id" type="hidden" />
-							<div class="col-md-9">
+							<div class="col-md-6">
 								<form:label path="name" class="form-label">Tên vaccine</form:label>
 								<form:input type="text" path="name" class="form-control" />
 								<form:errors path="name" cssClass="text-danger" />
+							</div>
+							
+							<div class="col-md-3">
+								<form:label path="quantity" class="form-label">Số lượng</form:label>
+								<form:input type="number" path="quantity" class="form-control" />
+								<form:errors path="quantity" cssClass="text-danger" />
 							</div>
 
 							<div class="col-md-3">

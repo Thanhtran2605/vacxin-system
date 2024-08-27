@@ -66,6 +66,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="profile-edit-user-tab" data-bs-toggle="tab"
+                                        href="#profile-edit-user" role="tab" aria-controls="profile-edit-user" aria-selected="false">
+                                        Sửa người dùng
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="profile-edit-tab" data-bs-toggle="tab"
                                         href="#profile-edit" role="tab" aria-controls="profile-edit" aria-selected="false">
                                         Thay đổi mật khẩu
@@ -177,25 +183,74 @@
                                     </c:if>
                                 </div>
 
+                                <!-- Tab sửa người dùng -->
+                                <div class="tab-pane fade" id="profile-edit-user" role="tabpanel" aria-labelledby="profile-edit-user-tab">
+                                    <form action="update-user" method="post">
+                                        <div class="row mb-3">
+                                            <label for="username" class="col-md-4 col-form-label">Tên đăng nhập</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="username" class="form-control" id="username" value="${currentUser.username}" required />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="email" class="col-md-4 col-form-label">Email</label>
+                                            <div class="col-md-8">
+                                                <input type="email" name="email" class="form-control" id="email" value="${currentUser.email}" required />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="phone" class="col-md-4 col-form-label">Số điện thoại</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="phone" class="form-control" id="phone" value="${currentUser.phone}" required />
+                                            </div>
+                                        </div>
+                                         <div class="row mb-3">
+                                            <label for="gender" class="col-md-4 col-form-label">Giới tính</label>
+                                            <div class="col-md-8">
+                                                <select name="gender" class="form-select" id="gender" required>
+                                                    <option value="Nam" ${currentUser.gender == 'Nam' ? 'selected' : ''}>Nam</option>
+                                                    <option value="Nữ" ${currentUser.gender == 'Nữ' ? 'selected' : ''}>Nữ</option>                                             
+                                                </select>
+                                            </div> 
+                                        </div>
+                                        
+                                        <div class="row mb-3">
+                                            <label for="fullName" class="col-md-4 col-form-label">Họ tên</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="fullName" class="form-control" id="fullName" value="${currentUser.fullName}" required />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="address" class="col-md-4 col-form-label">Địa chỉ</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="address" class="form-control" id="address" value="${currentUser.address}" required />
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+                                        </div>
+                                    </form>
+                                </div>
+
                                 <!-- Tab thay đổi mật khẩu -->
                                 <div class="tab-pane fade" id="profile-edit" role="tabpanel" aria-labelledby="profile-edit-tab">
-                                    <form action="change-password" method="post">
+                                    <form action="update-password" method="post">
                                         <div class="row mb-3">
-                                            <label for="current-password" class="col-md-4 col-form-label">Mật khẩu hiện tại</label>
+                                            <label for="currentPassword" class="col-md-4 col-form-label">Mật khẩu hiện tại</label>
                                             <div class="col-md-8">
-                                                <input type="password" name="oldPassword" class="form-control" id="current-password" required />
+                                                <input type="password" name="currentPassword" class="form-control" id="currentPassword" required />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="new-password" class="col-md-4 col-form-label">Mật khẩu mới</label>
+                                            <label for="newPassword" class="col-md-4 col-form-label">Mật khẩu mới</label>
                                             <div class="col-md-8">
-                                                <input type="password" name="newPassword" class="form-control" id="new-password" required />
+                                                <input type="password" name="newPassword" class="form-control" id="newPassword" required />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="confirm-new-password" class="col-md-4 col-form-label">Xác nhận mật khẩu mới</label>
+                                            <label for="confirmPassword" class="col-md-4 col-form-label">Xác nhận mật khẩu mới</label>
                                             <div class="col-md-8">
-                                                <input type="password" name="confirmNewPassword" class="form-control" id="confirm-new-password" required />
+                                                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword" required />
                                             </div>
                                         </div>
                                         <div class="text-center">

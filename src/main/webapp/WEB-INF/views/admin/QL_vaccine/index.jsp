@@ -53,7 +53,7 @@
 							aria-label="Default select example">
 							<option value="" ${empty param.country ? 'selected' : ''}>Chọn
 								quốc gia</option>
-							<c:forEach items="${danhsachQuocgia}" var="quocgia">
+							<c:forEach items="${quocgias}" var="quocgia">
 								<option value="${quocgia}"
 									${param.country == quocgia ? 'selected' : ''}>${quocgia}</option>
 							</c:forEach>
@@ -76,14 +76,12 @@
 			<div class="row">
 
 				<div class="card">
-					<div class="card-body table-responsive">
+					<div class="card-body">
 
-						<table class="table table-striped">
+						<table class="table table-striped ">
 							<thead>
 								<tr>
-									<th scope="col">Sắp Xếp [<a
-										href="?page=1&sort=id,${param.sort eq 'id,asc' ? 'desc' : 'asc'}${queryString}">ID</a>]
-									</th>
+									<th scope="col">Số thứ tự</th>
 									<th scope="col">Hình ảnh</th>
 									<th scope="col">Sắp Xếp [<a
 										href="?page=1&sort=name,${param.sort eq 'name,asc' ? 'desc' : 'asc'}${queryString}">Tên</a>]
@@ -110,9 +108,9 @@
 							<tbody>
 
 								<c:if test="${totalPages > 0}">
-									<c:forEach var="vaccine" items="${danhsachVaccine}">
+									<c:forEach var="vaccine" items="${danhsachVaccine}" varStatus="status">
 										<tr>
-											<td>${vaccine.id}</td>
+											<th scope="row">${status.index + 1}</th>
 											<td><img src="${vaccine.image}" width="150px" /></td>
 											<td class="shorten-text">${vaccine.name}</td>
 											<td>${vaccine.price}00đ</td>
