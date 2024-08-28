@@ -32,7 +32,9 @@ public class PatientService {
     public Patient findByUser(User user) {
         return patientRepository.findByUser(user);
     }
-    public Patient save(Patient patient) {
+
+	public Patient save(Patient patient) {
 		return patientRepository.save(patient);
 	}
+
 }

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="vi_VN" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,10 +115,10 @@
 											<th scope="row">${status.index + 1}</th>
 											<td><img src="${vaccine.image}" width="150px" /></td>
 											<td class="shorten-text">${vaccine.name}</td>
-											<td>${vaccine.price}00đ</td>
+											<td><fmt:formatNumber value="${vaccine.price}" type="number" groupingUsed="true" /> đ</td>
 											<td class="shorten-text">${vaccine.disease}</td>
 											<td>${vaccine.country}</td>
-											<td>${vaccine.quantity}liều</td>
+											<td><span>${vaccine.quantity}</span> liều</td>
 											<td class="shorten-text">${vaccine.description}</td>
 											<td><a
 												href="/vacxin-system/admin/vaccines/edit/${vaccine.id}"

@@ -50,8 +50,7 @@ public class StoreVacineController {
 		List<String> commonKeywords = Arrays.asList(
 	            "Viêm gan", "Ung thư", "Sởi", "Uốn ván", "Bạch hầu", "Lao", "Cúm", "Dại", "Viêm não Nhật Bản"
 	        );
-		model.addAttribute("danhsachQuocgia", vaccineService.getCountPatientsByVaccine());
-		System.out.println(vaccineService.getCountPatientsByVaccine());
+		model.addAttribute("quocgias", vaccineService.getDistinctCountries());
 		model.addAttribute("danhsachLoaibenh", commonKeywords);
 		
       return "client/store";

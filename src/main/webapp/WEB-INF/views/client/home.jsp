@@ -26,7 +26,7 @@
     </div>
 
     <!-- Carousel Section Start -->
-    <div id="carouselExampleIndicators" class="container carousel slide">
+    <div id="carouselExampleIndicators" class="container carousel slide mt-5">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide-to="0" class="active" aria-current="true"
@@ -36,10 +36,10 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="<c:url value="/resources/assets/images/banner/banner2.png" />" class="d-block w-100" alt="...">
+                <img src="<c:url value="/resources/assets/images/banner/banner2.png" />" width="1200px" height="628px" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="<c:url value="/resources/assets/images/banner/banner1.png" />" class="d-block w-100" alt="...">
+                <img src="<c:url value="/resources/assets/images/banner/banner1.png" />" width="1200px" height="628px" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button"

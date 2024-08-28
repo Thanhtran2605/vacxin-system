@@ -7,21 +7,10 @@
 	<div class="container px-0 px-md-3">
 
 		<div class="me-3 d-none d-lg-block">
-			<a href="/vacxin-system/store" class="btn btn-primary px-6 "
-				> <span
-				class="me-1"> <svg xmlns="http://www.w3.org/2000/svg"
-						width="16" height="16" viewBox="0 0 24 24" fill="none"
-						stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
-						stroke-linejoin="round" class="feather feather-grid">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg></span> Kho vắc xin
+
+			<a href="/vacxin-system/store" class="btn btn-primary px-6 " > 
+			 Kho vắc xin
 			</a>
-
-
-			
 
 		</div>
 

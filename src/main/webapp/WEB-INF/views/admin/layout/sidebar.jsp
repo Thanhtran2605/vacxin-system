@@ -63,7 +63,7 @@
 				<li><a href="/vacxin-system/admin/vaccines/"> <i
 						class="bi bi-circle"></i><span>Danh Sách Vaccine</span>
 				</a></li>
-				<li><a href="/vacxin-system/admin/vaccines/create"> <i
+					<li><a href="/vacxin-system/admin/vaccines/create"> <i
 						class="bi bi-circle"></i><span>Thêm Vaccine</span>
 				</a></li>
 			</ul></li>

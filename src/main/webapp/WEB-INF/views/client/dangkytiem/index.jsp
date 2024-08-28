@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="vi_VN" />
 <!DOCTYPE html>
 <html>
 
@@ -118,7 +120,7 @@
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Giá tiền</label> <input type="text"
-								name="" class="form-control" value="${ vaccine.price }"
+								name="" class="form-control" value="<fmt:formatNumber value="${vaccine.price}" type="number" groupingUsed="true" /> đ"
 								disabled="disabled">
 						</div>
 						<h3 class="text-success mb-4">Thanh toán</h3>
@@ -139,7 +141,7 @@
 									<label for="numberBank">Nhập số tài khoản ngân hàng</label> <input
 										type="text" id="numberBank" name="numberBank"
 										class="form-control mt-3"
-										placeholder="Thông tin số tài khoản ngân hàng" required="required">
+										placeholder="Thông tin số tài khoản ngân hàng">
 								</div>
 								<div class="col-md-12">
 									<label for="bankName" class="mt-3">Chọn ngân hàng</label> <select
@@ -159,9 +161,7 @@
 	<script>
 		document
 				.addEventListener(
-						'DOMContentLoaded',
-						
-						
+						'DOMContentLoaded',											
 						function() {
 							var today = new Date();
 							var yyyy = today.getFullYear();
@@ -302,11 +302,12 @@
 								} else if (paymentSelect.value === "default") {
 									showAlert("Vui lòng chọn phương thức thanh toán.");
 									valid = false;
-								} else if (bankNameSelect.value === "default") {
-									showAlert("Vui lòng chọn ngân hàng thanh toán.");
-									valid = false;
+								} else if(paymentSelect.value === "PAY_ONLINE") {
+									if (bankNameSelect.value === "default") {
+										showAlert("Vui lòng chọn ngân hàng thanh toán.");
+										valid = false;
+									}
 								}
-
 								return valid;
 							}
 

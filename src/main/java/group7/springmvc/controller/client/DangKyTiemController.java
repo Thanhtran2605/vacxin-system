@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import group7.springmvc.model.Patient;
 import group7.springmvc.model.Payment;
 import group7.springmvc.model.User;
 import group7.springmvc.model.Vaccine;
@@ -56,10 +57,21 @@ public class DangKyTiemController {
 			redirectAttributes.addFlashAttribute("message", "Chỉ có bệnh nhân mới đăng ký lịch tiêm!");
 			return "redirect:/access-dine";
 		}
+		
+		
+		
 		User user = userService.findByUsername(session.getAttribute("username").toString());
 		model.addAttribute("locations", vaccineLocationService.findAll());
 		model.addAttribute("patient", patientService.findByUser(user));
-		model.addAttribute("vaccine", vaccineService.findById(id).get());
+		
+		Vaccine vaccine = vaccineService.findById(id).get();
+		if(vaccine.getQuantity() > 0) {
+			model.addAttribute("vaccine", vaccine);
+		} else {
+			 redirectAttributes.addFlashAttribute("message", "Loại vắc xin " + vaccine.getName() + " đã hết liều");
+			return "redirect:/store";
+		}
+		
 		
 		return "client/dangkytiem/index";
 	}
@@ -81,8 +93,6 @@ public class DangKyTiemController {
 		payment.setTotalAmount(vaccine.getPrice());
 		payment.setSchedule(schedule);
 		payment.setReceptionist(receptionistService.findById((long)1).get());
-		
-		
 		
 		if(paymentMethod.equals("PAY_ONLINE")) {
 				payment.setPayment_method(Payment.PaymentMethod.ATM);

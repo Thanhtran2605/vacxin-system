@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import group7.springmvc.model.Doctor;
 import group7.springmvc.model.Employee;
+import group7.springmvc.model.Payment;
 import group7.springmvc.model.Receptionist;
 import group7.springmvc.model.User;
 import group7.springmvc.model.VaccineSchedule;
 import group7.springmvc.service.DoctorService;
 import group7.springmvc.service.EmployeeService;
+import group7.springmvc.service.PaymentService;
 import group7.springmvc.service.ReceptionistService;
 import group7.springmvc.service.ScheduleService;
 import group7.springmvc.service.UserService;
@@ -50,6 +52,9 @@ public class DashboardController {
 
 	@Autowired
 	ReceptionistService receptionistService;
+	
+	@Autowired
+	PaymentService paymentService;
 
 	@GetMapping("/")
 	public String dashboard(Model model) {
@@ -129,8 +134,11 @@ public class DashboardController {
 	@GetMapping("/my-schedule/{id}")
 	public String updatedatiem(@PathVariable("id") long id, @RequestParam("status") String status) {
 		VaccineSchedule schedule = scheduleService.findById(id).get();
+		Payment payment = paymentService.findBySchedule(schedule);
 		if (status.equals("COMPLETED")) {
 			schedule.setStatus(VaccineSchedule.Status.COMPLETED);
+			payment.setStatus(Payment.Status.PAYMENT);
+			paymentService.save(payment);
 		}
 		if (status.equals("LATE")) {
 			schedule.setStatus(VaccineSchedule.Status.LATE);
