@@ -32,6 +32,8 @@
 					<li class="breadcrumb-item active">Users</li>
 				</ol>
 			</nav>
+			<a class="btn btn-sm btn-success" href="/vacxin-system/admin/qluser/add"><i
+					class="bi bi-plus"></i> Thêm mới</a>
 		</div>
 
 		<section class="section">
@@ -41,7 +43,7 @@
 					<div class="card-body table-responsive">
 						<br>
 						<!-- Form tìm kiếm chỉ theo Username -->
-						<form action="/vacxin-system/admin/qluser" method="get"
+						<form action="/vacxin-system/admin/qluser/" method="get"
 							class="row mb-3">
 							<div class="col-9 col-sm-10">
 								<input type="text" class="form-control" name="username"

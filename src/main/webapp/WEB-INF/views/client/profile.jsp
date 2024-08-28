@@ -112,6 +112,7 @@
                                                 <label class="form-label">Phân quyền:</label>
                                                 <div>${currentUser.role.value}</div>
                                             </div>
+                                             
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-md-6">
@@ -220,6 +221,14 @@
                                                 <input type="text" name="fullName" class="form-control" id="fullName" value="${currentUser.fullName}" required />
                                             </div>
                                         </div>
+                                        
+                                        <div class="row mb-3">
+                                            <label for="fullName" class="col-md-4 col-form-label">Số thẻ bệnh nhân:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" name="idCard" class="form-control" id="idCard" value="${currentPatient.idCard}" required />
+                                            </div>
+                                        </div>
+                                        
                                         <div class="row mb-3">
                                             <label for="address" class="col-md-4 col-form-label">Địa chỉ</label>
                                             <div class="col-md-8">

@@ -78,6 +78,7 @@ public class ProfileController {
             @RequestParam("email") String email,
             @RequestParam("phone") String phone,
             @RequestParam("fullName") String fullName,
+            @RequestParam("idCard") String idCard,
             @RequestParam("gender") String gender,
             @RequestParam("address") String address,
             HttpSession session,
@@ -85,16 +86,19 @@ public class ProfileController {
 
         String loginUserName = (String) session.getAttribute("username");
         User currentUser = userService.findByUsername(loginUserName);
+        Patient currentPatient = patientService.findByUser(currentUser);
 
         if (currentUser != null) {
             currentUser.setUsername(username);
             currentUser.setEmail(email);
             currentUser.setPhone(phone);
             currentUser.setFullName(fullName);
+            currentPatient.setIdCard(idCard); // Set the idCard field
             currentUser.setGender(gender);
             currentUser.setAddress(address);
 
             userService.save(currentUser);
+            patientService.save(currentPatient);
 
             model.addAttribute("successMessage", true);
         } else {
@@ -103,4 +107,5 @@ public class ProfileController {
 
         return "redirect:/profile";
     }
+
 }
