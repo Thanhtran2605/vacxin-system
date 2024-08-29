@@ -211,6 +211,10 @@ public class ScheduleController {
 			@RequestParam(required = false) VaccineSchedule.Status status,
 			@RequestParam(required = false) String patientIdCard, Model model) {
 
+		
+		List<Object[]> schedulesWithoutDoctor = scheduleService.findAllScheduleWithoutDoctor();
+		model.addAttribute("schedulesWithoutDoctor", schedulesWithoutDoctor);
+		
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, 0);
 		calendar.set(Calendar.MINUTE, 0);
