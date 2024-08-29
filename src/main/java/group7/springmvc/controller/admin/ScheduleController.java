@@ -239,11 +239,12 @@ public class ScheduleController {
 				}
 				break;
 			case "patient":
+				System.out.println(patientName);
 				if (patientId != null) {
 					schedules = scheduleService.searchSchedulesByPatient(patientId);
-				} else if (patientIdCard != null) {
+				} else if (patientIdCard != null && !patientIdCard.isEmpty()) {
 					schedules = scheduleService.findByPatientIdCard(patientIdCard);
-				} else if (patientName != null) {
+				} else if (patientName != null && !patientName.isEmpty()) {
 					schedules = scheduleService.findByPatientName(patientName);
 				} else {
 					schedules = scheduleService.getAllSchedules();

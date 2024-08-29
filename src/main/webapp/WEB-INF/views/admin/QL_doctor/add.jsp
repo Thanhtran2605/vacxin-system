@@ -45,12 +45,12 @@
                             </c:if>
                             <form  action="/vacxin-system/admin/doctor/add" method="post" style="padding-top: 20px;">
                                 <div class="row mb-3">
-                                    <label for="userId" class="col-sm-2 col-form-label">Chọn User</label>
+                                    <label for="userId" class="col-sm-2 col-form-label">Chọn bác sĩ</label>
                                     <div class="col-sm-10">
                                         <select id="userId" name="userId" class="form-control" onchange="loadUserDetails(this.value)">
-                                            <option value="" disabled selected>-- Chọn User --</option>
+                                            <option value="" disabled selected>-- Chọn bác sĩ --</option>
                                             <c:forEach var="user" items="${users}">
-                                                <option value="${user.id}">${user.username}</option>
+                                                <option value="${user.id}">${user.fullName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
