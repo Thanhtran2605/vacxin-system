@@ -225,7 +225,7 @@ span{
             <div class="category-slider">
                 <c:forEach var="item" items="${listVacxin}">
                     <div class="item">
-                        <a href="#" class="text-decoration-none text-inherit">
+                        <a href="/vacxin-system/store" class="text-decoration-none text-inherit">
                             <div class="card card-product mb-4">
                                 <div class="card-body text-center py-8">
                                     <img src="${item.image}" class="mb-3" width="150">

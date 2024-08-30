@@ -43,7 +43,7 @@
 				class="btn btn-primary">Thêm Cơ Sở Y Tế</a><br>
 						<br>
 						<!-- Form tìm kiếm chỉ theo Name Location -->
-						<form action="/vacxin-system/admin/qlvaccinelocation" method="get"
+						<form action="/vacxin-system/admin/qlvaccinelocation/" method="get"
 							class="row mb-3">
 							<div class="col-9 col-sm-10">
 								<input type="text" class="form-control" name="nameLocation"

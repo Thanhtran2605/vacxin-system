@@ -131,8 +131,9 @@ h1 {
 
 		<section class="section">
 			<div class="row">
-				<div class="card"> 
-					<div class="card-body"> <br>
+				<div class="card">
+					<div class="card-body">
+						<br>
 						<div id="notification"
 							style="display: none; color: #fff; background-color: #f44336; padding: 15px; border-radius: 5px; position: absolute; top: 20px; right: 20px; z-index: 1000;">
 							<span id="notification-message"></span>
@@ -141,7 +142,7 @@ h1 {
 								style="background: none; border: none; color: #fff; font-size: 16px; cursor: pointer;">&times;</button>
 						</div>
 						<div class="form-container">
-							
+
 							<form action="<c:url value='/admin/schedules/add'/>"
 								method="post" class="form">
 								<label for="doctorId">Bác sĩ:</label> <select id="doctorId"
@@ -155,7 +156,8 @@ h1 {
 									<option value="" disabled selected>-- Chọn mã bệnh
 										nhân --</option>
 									<c:forEach var="patient" items="${patients}">
-										<option value="${patient.id}">${patient.idCard} - ${patient.user.fullName}</option>
+										<option value="${patient.id}">${patient.idCard}-
+											${patient.user.fullName}</option>
 									</c:forEach>
 								</select> <br /> <label for="vaccinationDate">Ngày tiêm:</label> <input
 									type="date" id="vaccinationDate" name="vaccinationDate"
@@ -167,7 +169,8 @@ h1 {
 									required>
 									<option value="" disabled selected>-- Chọn vaccine --</option>
 									<c:forEach var="vaccine" items="${vaccines}">
-										<option value="${vaccine.id}">${vaccine.name} - Số lượng : ${vaccine.quantity}</option>
+										<option value="${vaccine.id}">${vaccine.name}- Số
+											lượng : ${vaccine.quantity}</option>
 									</c:forEach>
 								</select> <br /> <label for="locationId">Địa điểm tiêm:</label> <select
 									id="locationId" name="location.id" class="form-control"
@@ -224,17 +227,25 @@ h1 {
 			    document.getElementById('notification-message').textContent = message;
 			    document.getElementById('notification').style.display = 'block';
 			}
-
-			// Validate date input
+			
+			// Validate date input: only allow today and future dates
 			$('#vaccinationDate').on('change', function() {
 			    var selectedDate = new Date($(this).val());
-			    var day = selectedDate.getDay(); // 0: Sunday, 6: Saturday
+			    var today = new Date();
+			    today.setHours(0, 0, 0, 0); // Reset to midnight for accurate comparison
 			    
-			    if (day === 0 || day === 6) {
+			    // Check if the selected date is in the past
+			    if (selectedDate < today) {
+			        showNotification('Ngày tiêm không được là ngày trong quá khứ. Vui lòng chọn ngày hiện tại hoặc trong tương lai.');
+			        $(this).val(''); // Clear the input value
+			    }
+			    // Validate if the day is Saturday or Sunday
+			    else if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
 			        showNotification('Bạn không thể chọn ngày Thứ 7 hoặc Chủ Nhật. Vui lòng chọn ngày khác.');
 			        $(this).val(''); // Clear the input value
 			    }
 			});
+
 			    
 			// Validate time input
 			$('#vaccinationTime').on('change', function() {

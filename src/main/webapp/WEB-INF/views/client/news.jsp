@@ -354,10 +354,6 @@ body {
         displayNews(currentPage);
     </script>
 
-	
-	
-
-
 	<!-- ======= FOOTER ======= -->
 	<jsp:include page="layout/footer.jsp" />
 
