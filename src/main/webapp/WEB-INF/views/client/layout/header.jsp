@@ -7,11 +7,11 @@
 		<div class="row w-100 align-items-center g-3">
 			<div class="col-md-2 col-lg-3">
 				<a class="navbar-brand d-none d-lg-block" href="/vacxin-system/home">
-					<img src="<c:url value='/resources/images/logo.png' />" width="60"
+					<img src="<c:url value='/resources/images/logo.png' />" width="80"
 					alt="eCommerce HTML Template">
 				</a>
 			</div>
-			<div class="col-md-6 col-lg-5 d-none d-lg-block">
+			<div class="col-md-6 col-lg-4 d-none d-lg-block">
 				<form action="#" class="search-header">
 					<div class="input-group">
 						<input type="text" class="form-control border-end-0"
@@ -77,7 +77,7 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="col-md-2 col-lg-1 d-flex">
+					<div class="col-md-2 col-lg-2 d-flex">
 						<a class="btn btn-primary mx-2" href="/vacxin-system/login">Login</a>
 						<a class="btn btn-primary" href="/vacxin-system/register">Register</a>
 					</div>
