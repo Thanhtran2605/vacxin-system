@@ -25,14 +25,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user")
+@Table(name = "usermain") 
 public class User {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-
-	
+		
 	@NotBlank(message = "Email không được trống")
     @Email(message = "Email không hợp lệ")
     private String email;
@@ -47,15 +46,20 @@ public class User {
     @NotBlank(message = "Số điện thoại không được trống")
     @Pattern(regexp = "^\\+?[0-9]*$", message = "Số điện thoại không đúng định dạng")
 	String phone;
-    @NotBlank(message = "Địa chỉ không được trống")
-	String address;
+    
     @NotNull(message = "Ngày sinh không được trống")
     LocalDate birthday;
 
 	String fullName;
-	String gender;
 	
+	String gender;
+
 	byte status;
+
+	@ManyToOne
+	@JoinColumn(name = "address")
+	@ToString.Include
+	Address address;
 
 	@ManyToOne
 	@JoinColumn(name = "role_id")

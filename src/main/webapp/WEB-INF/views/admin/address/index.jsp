@@ -24,7 +24,7 @@
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Quản lý người dùng</h1>
+			<h1>Quản lý chi nhánh</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -32,7 +32,7 @@
 					<li class="breadcrumb-item active">Users</li>
 				</ol>
 			</nav>
-			<a class="btn btn-sm btn-success" href="/vacxin-system/admin/qluser/add"><i
+			<a class="btn btn-sm btn-success" href="/vacxin-system/admin/QLchinhanh/add"><i
 					class="bi bi-plus"></i> Thêm mới</a>
 		</div>
 
@@ -43,7 +43,7 @@
 					<div class="card-body table-responsive">
 						<br>
 						<!-- Form tìm kiếm chỉ theo Username -->
-						<form action="/vacxin-system/admin/qluser/" method="get"
+						<form action="/vacxin-system/admin/QLchinhanh" method="get"
 							class="row mb-3">
 							<div class="col-9 col-sm-10">
 								<input type="text" class="form-control" name="username"
@@ -59,36 +59,31 @@
 							<thead>
 								<tr>
 									<th scope="col">STT</th>
-									<th scope="col">Username</th>
-									<th scope="col">Phone</th>
-									<th scope="col">Email</th>
-									<th scope="col">Birthday</th>
-									<th scope="col">Address</th>
-									<th scope="col">ROLE</th>
+									<th scope="col">ID</th>
+									<th scope="col">Tỉnh/Thành</th>
+									<th scope="col">Quận/Huyện</th>
+								
 									<th scope="col">Edit</th>
 									<th scope="col">Delete</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="user" items="${listUser}" varStatus="status">
+								<c:forEach var="address" items="${listAddress}" varStatus="status">
 									<tr>
 										<th scope="row">${status.index + 1}</th>
-										<td>${user.username}</td>
-										<td>${user.phone}</td>
-										<td>${user.email}</td>
-										<td>${user.birthday}</td>
-										<td>${user.address.district}</td>
-										<td>${user.role.value}</td>
+										<td>${address.id}</td>
+										<td>${address.address}</td>
+										<td>${address.district}</td>									
 
-										<td class="text-center"><a
-											href="/vacxin-system/admin/qluser/edit/${user.id}"
+										<td class=""><a
+											href="/vacxin-system/admin/QLchinhanh/edit/${address.id}"
 											class="btn btn-success btn-sm"> <i
 												class="bi bi-pencil-square"></i>
 										</a></td>
 
-										<td class="text-center">
+										<td class="">
 											<!-- Form to delete user -->
-											<form action="/vacxin-system/admin/qluser/delete"
+											<form action="#"
 												method="post" style="display: inline;">
 												<input type="hidden" name="userId" value="${user.id}" />
 												<button type="submit" class="btn btn-danger btn-sm"

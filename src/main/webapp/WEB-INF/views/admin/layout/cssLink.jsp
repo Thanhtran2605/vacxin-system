@@ -34,8 +34,7 @@
 </style>
   
   <!-- Favicons -->
-  <link rel="icon" href="<c:url value="/resources/images/logo.png" />" />
-  <link rel="apple-touch-icon" href="<c:url value="/resources/images/logo.png" />" />
+  <link rel="icon" href="<c:url value="/resources/images/logo2.png" />" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">

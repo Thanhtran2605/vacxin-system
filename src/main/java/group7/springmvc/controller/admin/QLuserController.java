@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import group7.springmvc.model.Employee;
+import group7.springmvc.model.Address;
 import group7.springmvc.model.Role;
 import group7.springmvc.model.User;
+import group7.springmvc.service.AddressService;
 import group7.springmvc.service.EmployeeService;
 import group7.springmvc.service.RoleService;
 import group7.springmvc.service.UserService;
@@ -35,6 +37,9 @@ public class QLuserController {
     @Autowired
     private EmployeeService employeeService;
     
+    @Autowired
+    private AddressService addressService; // Dịch vụ để lấy địa chỉ
+    
     @GetMapping("/")
     public String QLuser(@RequestParam(value = "username", required = false) String username, ModelMap model) {
         List<User> users;
@@ -43,6 +48,10 @@ public class QLuserController {
         } else {
             users = userService.findAll();
         }
+        
+        model.addAttribute("user", new User());
+        model.addAttribute("addresses", addressService.getAllAddress()); 
+        
         model.addAttribute("listUser", users);
         return "admin/QL_user/index";
     }
@@ -51,19 +60,23 @@ public class QLuserController {
     public String addUserForm(ModelMap model) {
         User newUser = new User();
         List<Role> roles = roleService.findAll(); 
+        
+        model.addAttribute("addresses", addressService.getAllAddress()); 
+
         model.addAttribute("newUser", newUser);
         model.addAttribute("roles", roles);
+        
         return "admin/QL_user/create";
     }
-
+    
     @PostMapping("/add")
-    public String saveNewUser(
+    public String saveNewUser( ModelMap model,
             @RequestParam("username") String username,
             @RequestParam("email") String email,
             @RequestParam("fullName") String fullName,
             @RequestParam("gender") String gender,
             @RequestParam("phone") String phone,
-            @RequestParam("address") String address,
+            @RequestParam("address") String addressId,
             @RequestParam("password") String password,
             @RequestParam("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
             @RequestParam("role") byte roleId,
@@ -76,6 +89,9 @@ public class QLuserController {
         }
 
         Role role = roleService.findById(roleId);
+        Address address = addressService.searchAddressById(addressId);
+        System.out.println("Address ID: " + addressId);
+        System.out.println("Address : " + address);
         String hashedPassword = passwordEncoder.encode(password); // Hash the password
         User newUser = User.builder()
             .username(username)
@@ -88,8 +104,15 @@ public class QLuserController {
             .birthday(birthday)
             .role(role)
             .build();
-
+        
+     
+        if (addressId == null || addressId.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Bạn phải chọn địa chỉ!");
+            return "redirect:/admin/qluser/add";
+        }
         // Lưu người dùng mới
+//        User user1 = new User();
+//        model.addAttribute("newUser1", user1);
         User savedUser = userService.save(newUser);
 //        Employee SaveEmployee = employeeService.save(savedUser);
         		
@@ -98,6 +121,7 @@ public class QLuserController {
         } else {
             redirectAttributes.addFlashAttribute("error", "User addition failed!");
         }
+        
         return "redirect:/admin/qluser/";
     }
   //---------------------------
@@ -109,6 +133,7 @@ public class QLuserController {
             model.addAttribute("editUser", user);
             // Giả sử bạn có một phương thức để lấy danh sách các vai trò
             List<Role> roles = roleService.findAll(); 
+            model.addAttribute("addresses", addressService.getAllAddress()); 
             model.addAttribute("roles", roles);
             return "admin/QL_user/edit";
         } else {
@@ -123,7 +148,7 @@ public class QLuserController {
             @RequestParam("username") String username,
             @RequestParam("email") String email,
             @RequestParam("phone") String phone,
-            @RequestParam("address") String address,
+            @RequestParam("address") String addressId,
             @RequestParam("birthday") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday,
             @RequestParam("role") byte roleId,
             RedirectAttributes redirectAttributes) {
@@ -134,7 +159,11 @@ public class QLuserController {
             return "redirect:/admin/qluser/edit/" + id;
         }
     
-        Role role = roleService.findById(roleId);    
+        Role role = roleService.findById(roleId); 
+        Address address = addressService.searchAddressById(addressId);
+        System.out.println("Address ID: " + addressId);
+        System.out.println("Address : " + address);
+        
         User updatedUser = User.builder()
             .username(username)
             .email(email)

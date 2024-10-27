@@ -86,13 +86,27 @@
 							</div>
 						</div>
 
-						<div class="row mb-3">
+					<%-- 	<div class="row mb-3">
 							<label for="inputNumber" class="col-sm-2 col-form-label">Address</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" name="address" required = "required"
-									value="${editUser.address}">
+									value="${editUser.address.district}">
 							</div>
 						</div>
+						 --%>
+						<div class="row mb-3">
+						    <label for="address" class="col-sm-2 col-form-label">Address</label>
+						    <div class="col-sm-10">
+						        <select class="form-select" name="address" id="address" aria-label="Default select example">
+						            <c:forEach items="${addresses}" var="address">
+						                <option value="${address.id}" ${address.id == editUser.address.id ? 'selected' : ''}>
+						                    ${address.district}
+						                </option>
+						            </c:forEach>
+						        </select>
+						    </div>
+						</div>
+						
 
 						<div class="row mb-3">
 						    <label for="role" class="col-sm-2 col-form-label">ROLE</label>

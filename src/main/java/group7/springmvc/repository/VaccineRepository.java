@@ -11,9 +11,11 @@ import group7.springmvc.model.Vaccine;
 
 @Repository
 public interface VaccineRepository extends JpaRepository<Vaccine, Long>, JpaSpecificationExecutor<Vaccine> {
-	@Query("SELECT vs.vaccine.name, COUNT(vs.patient.id) FROM VaccineSchedule vs WHERE vs.status = 'COMPLETED' GROUP BY vs.vaccine.id")
+	@Query("SELECT vs.vaccine.name, COUNT(vs.patient.id) FROM VaccineSchedule vs WHERE vs.status = 'COMPLETED' GROUP BY vs.vaccine.name")
 	List<Object[]> countPatientsByVaccine();
+
 
 	@Query("SELECT DISTINCT v.country FROM Vaccine v")
 	List<String> findDistinctCountries();
+	
 }

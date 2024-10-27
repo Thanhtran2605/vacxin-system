@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +77,21 @@
 											<form:label path="address" class="form-label">Địa chỉ</form:label>
 											<form:input type="text" path="address" class="form-control" />
 											<form:errors path="address" cssClass="text-danger" />
-										</div>
+										</div> 
+										
+										
+										<%-- <div class="col-6">
+										    <form:label path="address" class="form-label">Địa chỉ</form:label>
+										    <form:select path="address" class="form-control">
+										        <form:option value="">-- Chọn địa chỉ --</form:option>
+										        <c:forEach items="${newUser}" var="address">
+										            <form:option value="${address}">${address}</form:option>
+										        </c:forEach>
+										    </form:select>
+										    <form:errors path="address" cssClass="text-danger" />
+										</div> --%>
+
+
 
 										<div class="col-6">
 											<form:label path="birthday" class="form-label">Ngày sinh</form:label>

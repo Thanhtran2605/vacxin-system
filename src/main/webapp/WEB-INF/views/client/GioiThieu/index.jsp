@@ -184,7 +184,7 @@
 
 			<!-- Hình ảnh minh họa -->
 			<img
-				src="${pageContext.request.contextPath}/resources/images/tc-cho-tre-em-3.jpg"
+				src="${pageContext.request.contextPath}/resources/images/vnvc-app.jpg"
 				alt="Vaccine Illustration" class="intro-image" />
 
 			<div class="intro-section">

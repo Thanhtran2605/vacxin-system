@@ -88,12 +88,12 @@
 											</div>
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label">Địa chỉ</div>
-												<div class="col-lg-9 col-md-8">${ currentUser.address }</div>
+												<div class="col-lg-9 col-md-8">${ currentUser.address.district }</div>
 											</div>
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label">Trạng thái</div>
 												<c:choose>
-													<c:when test="${ currentUser.status == 0 }">
+													<c:when test="${ currentUser.status == 1 }">
 														<div class="col-lg-9 col-md-8">
 															<span class="badge bg-success">Active</span>
 														</div>
@@ -136,7 +136,7 @@
 											</div>
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label">Địa chỉ</div>
-												<div class="col-lg-9 col-md-8">${ currentEmployee.employee.user.address }</div>
+												<div class="col-lg-9 col-md-8">${ currentEmployee.employee.user.address.district }</div>
 											</div>
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label">Ngành</div>
@@ -149,7 +149,7 @@
 											<div class="col-lg-6 row">
 												<div class="col-lg-3 col-md-4 label">Trạng thái</div>
 												<c:choose>
-													<c:when test="${ currentDoctor.employee.user.status == 0 }">
+													<c:when test="${ currentDoctor.employee.user.status == 1 }">
 														<div class="col-lg-9 col-md-8">
 															<span class="badge bg-success">Active</span>
 														</div>

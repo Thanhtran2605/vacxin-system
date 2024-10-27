@@ -20,7 +20,16 @@
 				<li><a href="/vacxin-system/admin/qluser/"> <i
 						class="bi bi-circle"></i><span>Quản lý người dùng</span>
 				</a></li>
-			</ul></li>
+			</ul>
+			
+			<ul id="components-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/vacxin-system/admin/QLchinhanh/"> <i
+						class="bi bi-circle"></i><span>Quản lý chi nhánh</span>
+				</a></li>
+			</ul>
+			
+			</li>
 		<!-- End Components Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"

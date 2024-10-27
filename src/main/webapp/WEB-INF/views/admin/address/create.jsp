@@ -89,19 +89,14 @@
                 <form:input type="password" path="password" class="form-control" />
                 <form:errors path="password" cssClass="text-danger" />
             </div>
-           
-			
-			<div class="col-md-6">
-                <form:label path="address" class="form-label">Chọn địa chỉ</form:label>
-                <select id="addressSelect" name="address" class="form-control">
-			    <c:forEach var="address" items="${addresses}">
-			        <option value="${address.id}">${address.district}</option>
-			    </c:forEach>
-			</select>
-
+            
+            <div class="col-md-6">
+                <form:label path="address" class="form-label">Địa chỉ</form:label>
+                <form:input type="text" path="address" class="form-control" />
+                <form:errors path="address" cssClass="text-danger" />
             </div>
-
           
+
             <div class="col-md-6">
                 <form:label path="birthday" class="form-label">Ngày sinh</form:label>
                 <form:input type="date" path="birthday" class="form-control" />

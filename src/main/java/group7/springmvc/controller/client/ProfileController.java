@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import group7.springmvc.model.Address;
 import group7.springmvc.model.Doctor;
 import group7.springmvc.model.Employee;
 import group7.springmvc.model.Patient;
 import group7.springmvc.model.Receptionist;
 import group7.springmvc.model.User;
+import group7.springmvc.service.AddressService;
 import group7.springmvc.service.DoctorService;
 import group7.springmvc.service.EmployeeService;
 import group7.springmvc.service.PatientService;
@@ -45,6 +47,9 @@ public class ProfileController {
     
     @Autowired
     PatientService patientService;
+    
+    @Autowired
+    AddressService addressService;
 
     @GetMapping("profile")
     public String profile(Model model, HttpSession session) {
@@ -80,13 +85,15 @@ public class ProfileController {
             @RequestParam("fullName") String fullName,
             @RequestParam("idCard") String idCard,
             @RequestParam("gender") String gender,
-            @RequestParam("address") String address,
+            @RequestParam("address") String addressId,
             HttpSession session,
             Model model) {
 
         String loginUserName = (String) session.getAttribute("username");
         User currentUser = userService.findByUsername(loginUserName);
         Patient currentPatient = patientService.findByUser(currentUser);
+        Address address = addressService.searchAddressById(addressId);
+        
 
         if (currentUser != null) {
             currentUser.setUsername(username);
